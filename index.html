@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tianchang Sign Crafts</title>
+  <meta name="description" content="Tianchang Sign Crafts Co., Ltd. (SIGN 喜冠) — professional sign manufacturer in Chajian Town, Tianchang, Anhui, China.">
+  <link rel="icon" href="assets/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #2e3192;
+      --brand-dark: #1f2170;
+      --gold: #c9a227;
+      --bg: #ffffff;
+      --bg-alt: #f3f4f8;
+      --text: #1d1f2b;
+      --muted: #5b5f73;
+      --card: #ffffff;
+      --border: #e1e3ec;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #11121a; --bg-alt: #181a26; --text: #eceef6; --muted: #a3a7bd;
+        --card: #1d2030; --border: #2c3046; --brand: #6b6fe0; --brand-dark: #4b4fc0;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #11121a; --bg-alt: #181a26; --text: #eceef6; --muted: #a3a7bd;
+      --card: #1d2030; --border: #2c3046; --brand: #6b6fe0; --brand-dark: #4b4fc0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, "Noto Sans SC", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: inherit; }
+    .wrap { max-width: 1140px; margin: 0 auto; padding: 0 16px; }
+    h1, h2, h3 { font-family: "Playfair Display", "Noto Sans SC", serif; line-height: 1.2; }
+    h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); margin-bottom: .5rem; }
+    .eyebrow { color: var(--gold); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-size: .8rem; margin-bottom: .5rem; }
+    .lead { color: var(--muted); max-width: 680px; margin-bottom: 2.5rem; }
+    section { padding: 80px 0; }
+    section:nth-of-type(even) { background: var(--bg-alt); }
+
+    /* Header */
+    header { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--border); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .brand img { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; }
+    .brand strong { display: block; font-size: 1rem; color: var(--brand); }
+    .brand span { font-size: .75rem; color: var(--muted); }
+    nav ul { display: flex; gap: 24px; list-style: none; }
+    nav a { text-decoration: none; font-weight: 500; font-size: .92rem; color: var(--muted); }
+    nav a:hover { color: var(--brand); }
+    .menu-btn { display: none; background: none; border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; color: var(--text); font-size: 1.1rem; }
+    @media (max-width: 860px) {
+      .menu-btn { display: block; }
+      nav ul { display: none; position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--border); }
+      nav ul.open { display: flex; }
+      nav li a { display: block; padding: 14px 16px; }
+    }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #2e3192 0%, #1a1c5e 100%); color: #fff; padding: 96px 0; }
+    .hero-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: center; }
+    .hero h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); margin-bottom: 1rem; }
+    .hero h1 .cn { display: block; font-family: "Noto Sans SC", sans-serif; font-size: .55em; color: var(--gold); margin-top: .4rem; }
+    .hero p { color: #d4d6f2; max-width: 560px; margin-bottom: 2rem; }
+    .hero-logo { background: #eee; border-radius: 20px; padding: 24px; box-shadow: 0 20px 50px rgba(0,0,0,.35); max-width: 340px; justify-self: center; }
+    .hero-logo img { width: 100%; display: block; }
+    .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 12px 24px; border-radius: 999px; font-weight: 600; text-decoration: none; }
+    .btn-gold { background: var(--gold); color: #1a1c5e; }
+    .btn-ghost { border: 1px solid rgba(255,255,255,.5); color: #fff; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; max-width: 520px; }
+    .stats b { display: block; font-size: 1.8rem; color: var(--gold); font-family: "Playfair Display", serif; }
+    .stats span { font-size: .8rem; color: #c3c6ea; }
+    @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } .hero-logo { max-width: 240px; } }
+
+    /* Cards */
+    .grid { display: grid; gap: 20px; }
+    .g3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 26px; }
+    .card h3 { font-size: 1.15rem; margin-bottom: .5rem; color: var(--brand); }
+    .card p { color: var(--muted); font-size: .94rem; }
+    .icon { width: 44px; height: 44px; border-radius: 10px; background: var(--brand); color: #fff; display: grid; place-items: center; font-size: 1.3rem; margin-bottom: 14px; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .about-grid p { color: var(--muted); margin-bottom: 1rem; }
+    .facts { list-style: none; }
+    .facts li { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: .94rem; }
+    .facts li span:first-child { color: var(--muted); }
+    .facts li span:last-child { font-weight: 600; text-align: right; }
+    @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } }
+
+    /* Process */
+    .steps { counter-reset: s; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
+    .step { position: relative; padding-top: 52px; }
+    .step::before { counter-increment: s; content: counter(s, decimal-leading-zero); position: absolute; top: 0; left: 0; font-family: "Playfair Display", serif; font-size: 2.2rem; color: var(--gold); }
+    .step h3 { font-size: 1.05rem; margin-bottom: .3rem; }
+    .step p { color: var(--muted); font-size: .9rem; }
+
+    /* Group companies */
+    .co { display: flex; flex-direction: column; }
+    .co .tag { align-self: flex-start; font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--bg-alt); color: var(--brand); margin-bottom: 12px; }
+    .co.main { border: 2px solid var(--brand); }
+    .co.main .tag { background: var(--brand); color: #fff; }
+    .co dl { margin-top: 14px; font-size: .9rem; }
+    .co dt { color: var(--muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; margin-top: 10px; }
+    .co dd { font-weight: 500; }
+
+    /* Contact */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    form { display: grid; gap: 14px; }
+    input, textarea, select { width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--text); font: inherit; }
+    textarea { min-height: 120px; resize: vertical; }
+    button.submit { background: var(--brand); color: #fff; border: 0; padding: 14px; border-radius: 10px; font-weight: 600; font: inherit; cursor: pointer; }
+    button.submit:hover { background: var(--brand-dark); }
+    .map { border-radius: 14px; overflow: hidden; border: 1px solid var(--border); min-height: 220px; background: var(--bg-alt); }
+    .map iframe { width: 100%; height: 100%; min-height: 260px; border: 0; }
+    @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
+
+    footer { background: #14153f; color: #b9bce0; padding: 40px 0; font-size: .88rem; }
+    .foot { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: center; }
+    .foot img { width: 40px; border-radius: 6px; vertical-align: middle; margin-right: 10px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home">
+      <img src="assets/logo.jpg" alt="SIGN 喜冠 logo">
+      <div><strong>Tianchang Sign Crafts</strong><span>SIGN 喜冠 · Tianchang, Anhui</span></div>
+    </a>
+    <nav>
+      <button class="menu-btn" aria-label="Menu" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+      <ul id="menu" onclick="this.classList.remove('open')">
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#group">Our Group</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Sign Manufacturer · Anhui, China</p>
+      <h1>Crafting Signs That Crown Your Brand<span class="cn">喜冠标识 · 匠心制造</span></h1>
+      <p>Tianchang Sign Crafts Co., Ltd. designs and manufactures high-quality signage — from illuminated channel letters to architectural wayfinding — for brands, retailers and projects in China and worldwide.</p>
+      <div class="btns">
+        <a class="btn btn-gold" href="#contact">Request a Quote</a>
+        <a class="btn btn-ghost" href="#products">View Products</a>
+      </div>
+      <div class="stats">
+        <div><b>3</b><span>Group companies</span></div>
+        <div><b>OEM</b><span>& ODM service</span></div>
+        <div><b>Global</b><span>Export shipping</span></div>
+      </div>
+    </div>
+    <div class="hero-logo"><img src="assets/logo.jpg" alt="SIGN 喜冠 logo"></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <p class="eyebrow">About Us</p>
+      <h2>Tianchang Sign Crafts Co., Ltd.</h2>
+      <p>Located in the Industrial Park of Chajian Town, Tianchang, Anhui, our factory brings together design, metalwork, acrylic fabrication, LED lighting and finishing under one roof.</p>
+      <p>Under the <strong>SIGN 喜冠</strong> brand, we deliver signage that combines precise craftsmanship with durable materials — built to look great on day one and to last for years outdoors.</p>
+    </div>
+    <ul class="facts">
+      <li><span>Company</span><span>Tianchang Sign Crafts Co., Ltd.</span></li>
+      <li><span>Brand</span><span>SIGN 喜冠</span></li>
+      <li><span>Business type</span><span>Manufacturer / Exporter</span></li>
+      <li><span>Address</span><span>Area B, Industrial Park, Chajian Town,<br>Tianchang, Anhui, China</span></li>
+      <li><span>Services</span><span>Design · Production · Installation guidance</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="products">
+  <div class="wrap">
+    <p class="eyebrow">Products</p>
+    <h2>What We Make</h2>
+    <p class="lead">A complete range of indoor and outdoor signage, fully customisable in size, material, colour and lighting.</p>
+    <div class="grid g3">
+      <div class="card"><div class="icon">💡</div><h3>LED Channel Letters</h3><p>Front-lit, back-lit (halo) and side-lit letters in stainless steel, aluminium and acrylic.</p></div>
+      <div class="card"><div class="icon">🔲</div><h3>Light Boxes</h3><p>Single and double-sided light boxes, fabric frames and slim LED displays for storefronts.</p></div>
+      <div class="card"><div class="icon">🏢</div><h3>Pylon & Monument Signs</h3><p>Large freestanding signs for malls, gas stations, hotels and corporate campuses.</p></div>
+      <div class="card"><div class="icon">🧭</div><h3>Wayfinding & ADA Signs</h3><p>Directional systems, room plates and braille signs for offices, hospitals and public spaces.</p></div>
+      <div class="card"><div class="icon">✨</div><h3>Metal & Acrylic Letters</h3><p>Brushed, mirror and painted 3D letters and logos for lobbies and reception walls.</p></div>
+      <div class="card"><div class="icon">🌈</div><h3>Neon & Display Signs</h3><p>Flexible LED neon, menu boards and custom decorative signage for retail and hospitality.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <p class="eyebrow">How We Work</p>
+    <h2>From Idea to Installation</h2>
+    <p class="lead">A clear process that keeps every project on time and on spec.</p>
+    <div class="steps">
+      <div class="step"><h3>Consultation</h3><p>Share your logo, size and location — we recommend materials and lighting.</p></div>
+      <div class="step"><h3>Design & Quote</h3><p>We prepare drawings, renderings and a detailed quotation.</p></div>
+      <div class="step"><h3>Production</h3><p>Laser cutting, welding, painting and LED assembly in our own factory.</p></div>
+      <div class="step"><h3>Quality Check</h3><p>Every sign is lit, inspected and photographed before packing.</p></div>
+      <div class="step"><h3>Delivery</h3><p>Secure export packaging with installation guides shipped worldwide.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="group">
+  <div class="wrap">
+    <p class="eyebrow">Our Group</p>
+    <h2>Group Companies</h2>
+    <p class="lead">Tianchang Sign Crafts works together with two chain companies, giving clients more capacity, more materials and faster delivery.</p>
+    <div class="grid g3">
+      <div class="card co main">
+        <span class="tag">Head Company</span>
+        <h3>Tianchang Sign Crafts Co., Ltd.</h3>
+        <p>Main factory for design, manufacturing and export of signage under the SIGN 喜冠 brand.</p>
+        <dl>
+          <dt>Address</dt><dd>Area B, Industrial Park, Chajian Town, Tianchang, Anhui, China</dd>
+          <dt>Focus</dt><dd>Channel letters, light boxes, pylon signs, export orders</dd>
+        </dl>
+      </div>
+      <!-- TODO: replace with the real name and address of chain company 1 -->
+      <div class="card co">
+        <span class="tag">Chain Company 1</span>
+        <h3>[Chain Company 1 Name] Co., Ltd.</h3>
+        <p>[Short description — e.g. specialises in metal fabrication and stainless-steel lettering.]</p>
+        <dl>
+          <dt>Address</dt><dd>[Street, Town, City, Province, China]</dd>
+          <dt>Focus</dt><dd>[Main products / services]</dd>
+        </dl>
+      </div>
+      <!-- TODO: replace with the real name and address of chain company 2 -->
+      <div class="card co">
+        <span class="tag">Chain Company 2</span>
+        <h3>[Chain Company 2 Name] Co., Ltd.</h3>
+        <p>[Short description — e.g. specialises in LED modules, acrylic and display products.]</p>
+        <dl>
+          <dt>Address</dt><dd>[Street, Town, City, Province, China]</dd>
+          <dt>Focus</dt><dd>[Main products / services]</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <p class="eyebrow">Why Choose Us</p>
+    <h2>Quality You Can See</h2>
+    <p class="lead">What our clients value most about working with SIGN 喜冠.</p>
+    <div class="grid g3">
+      <div class="card"><h3>Factory-Direct Pricing</h3><p>Own production lines across our group mean competitive prices with no middlemen.</p></div>
+      <div class="card"><h3>Full Customisation</h3><p>Any size, font, colour or lighting effect — built exactly to your drawings.</p></div>
+      <div class="card"><h3>Durable Materials</h3><p>Weather-resistant finishes and long-life LEDs suitable for outdoor use.</p></div>
+      <div class="card"><h3>Strict Quality Control</h3><p>Multi-step inspection with photos and videos before shipment.</p></div>
+      <div class="card"><h3>Fast Turnaround</h3><p>Shared capacity between group companies keeps lead times short.</p></div>
+      <div class="card"><h3>Export Experience</h3><p>Professional packing and logistics support for overseas customers.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <h2>Get a Free Quote</h2>
+    <p class="lead">Tell us about your project and our team will reply with design suggestions and pricing.</p>
+    <div class="contact-grid">
+      <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='Thank you — we will contact you soon!';">
+        <input required placeholder="Your name">
+        <input required type="email" placeholder="Email address">
+        <select>
+          <option>LED Channel Letters</option><option>Light Boxes</option><option>Pylon & Monument Signs</option>
+          <option>Wayfinding & ADA Signs</option><option>Metal & Acrylic Letters</option><option>Neon & Display Signs</option><option>Other</option>
+        </select>
+        <textarea placeholder="Size, quantity, location and any other details"></textarea>
+        <button class="submit" type="submit">Send Inquiry</button>
+      </form>
+      <div>
+        <ul class="facts" style="margin-bottom:20px">
+          <li><span>Address</span><span>Area B, Industrial Park, Chajian Town,<br>Tianchang, Anhui, China</span></li>
+          <li><span>Phone</span><span>[+86 phone number]</span></li>
+          <li><span>Email</span><span>[email address]</span></li>
+          <li><span>Hours</span><span>Mon – Sat, 8:00 – 18:00 (CST)</span></li>
+        </ul>
+        <div class="map">
+          <iframe title="Map of the Tianchang area" loading="lazy"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=118.80%2C32.55%2C119.10%2C32.75&amp;layer=mapnik"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div><img src="assets/logo.jpg" alt="">© <span id="y"></span> Tianchang Sign Crafts Co., Ltd. All rights reserved.</div>
+    <div>Area B, Industrial Park, Chajian Town, Tianchang, Anhui, China</div>
+  </div>
+</footer>
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
