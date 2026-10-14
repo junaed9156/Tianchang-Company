@@ -59,6 +59,16 @@ window.MARKETS = [
   {key:'m.ca', flag:'ca', color:'#ff9f6e'}, {key:'m.kr', flag:'kr', color:'#9fe6c8'}, {key:'m.au', flag:'au', color:'#cdbcff'},
 ];
 
+// Hero tiles: each tile swaps through these cut-outs, one tile after another
+window.HERO = [
+  ['toys-1','toys-3','snuffle-1','toys-5','snuffle-2'],                   // big blue tile
+  ['outerwear-1','outerwear-2','apparel-2','outerwear-3','outerwear-4'],  // tall green tile
+  ['sweaters-1','sweaters-2','beds-3','access-2','sweaters-4'],           // orange tile
+  ['costumes-1','costumes-4','apparel-1','costumes-5','apparel-5'],       // tall purple tile
+  ['beds-1','beds-2','snuffle-3','beds-4','beds-5'],                      // sand tile
+  ['snuffle-4','toys-2','toys-4','snuffle-5','toys-6'],                   // small yellow circle
+];
+
 // Words in the big scrolling band
 window.WORDS = {en:['Toys','Sweaters','Costumes','Beds','Apparel','Outerwear','Snuffle mats','Accessories'],
                 zh:['玩具','毛衣','装扮服','宠物床','服装','外套','嗅闻垫','配饰']};
