@@ -89,7 +89,7 @@
     $('#p-count').textContent = expanded ? t.all(all.length) : t.showing(shown.length, all.length);
     $('#p-more-label').textContent = expanded ? t.fewer : t.viewAll(all.length);
     $('#p-more').setAttribute('aria-expanded', expanded);
-    if (animate && !reduce) gsap.from(grid.children, { y: 30, opacity: 0, scale: .94, duration: .6, ease: 'power3.out', stagger: { each: .03, from: 'start' } });
+    if (animate && !reduce) gsap.from(grid.children, { y: 30, opacity: 0, scale: .94, duration: .6, ease: 'power3.out', stagger: { each: .03, from: 'start' }, clearProps: 'transform,translate,rotate,scale,opacity' });
     if (hasGsap) ScrollTrigger.refresh();
   }
   tabsEl.addEventListener('click', e => { const tb = e.target.closest('.tab'); if (tb) showLine([...tabsEl.children].indexOf(tb)); });
@@ -393,18 +393,18 @@
   // ---- Numbers count up
   $$('.numbers .count').forEach((el, i) => ScrollTrigger.create({ trigger: el, start: 'top 85%', once: true,
     onEnter: () => countTo(el, +el.dataset.to, el.dataset.fmt, 2.2) }));
-  gsap.from('.num', { y: 50, opacity: 0, duration: 1, stagger: .12, scrollTrigger: { trigger: '.numbers', start: 'top 75%' } });
+  gsap.from('.num', { y: 50, opacity: 0, duration: 1, stagger: .12, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.numbers', start: 'top 75%' } });
   gsap.to('.b1', { x: 200, y: 120, scrollTrigger: { trigger: '.numbers', scrub: true } });
   gsap.to('.b2', { x: -200, y: -100, scrollTrigger: { trigger: '.numbers', scrub: true } });
 
   // ---- Split headings reveal
   splits.forEach(s => {
     gsap.from(zh ? s.chars : s.words, { yPercent: 110, duration: 1, stagger: zh ? .03 : .06, ease: 'expo.out',
-      scrollTrigger: { trigger: s.elements[0], start: 'top 85%' } });
+      clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: s.elements[0], start: 'top 85%' } });
   });
   // Paragraphs next to headings
   $$('.sec-head p, .coll-head p, .cta-inner p, .clients-head p').forEach(p =>
-    gsap.from(p, { y: 30, opacity: 0, duration: 1, delay: .15, scrollTrigger: { trigger: p, start: 'top 88%' } }));
+    gsap.from(p, { y: 30, opacity: 0, duration: 1, delay: .15, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: p, start: 'top 88%' } }));
 
   // ---- Collections: pinned horizontal scroll on large screens
   const mm = gsap.matchMedia();
@@ -420,16 +420,16 @@
           scrollTrigger: { trigger: card, containerAnimation: horiz, start: 'left right', end: 'right left', scrub: true } });
       });
       gsap.from($$('.coll-info > *', card), { y: 40, opacity: 0, duration: .8, stagger: .06,
-        scrollTrigger: { trigger: card, containerAnimation: horiz, start: 'left 75%' } });
+        clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: card, containerAnimation: horiz, start: 'left 75%' } });
     });
   });
   mm.add('(max-width: 980px)', () => {
-    gsap.from('.coll', { y: 40, opacity: 0, duration: .9, stagger: .1, scrollTrigger: { trigger: '#coll-pin', start: 'top 85%' } });
+    gsap.from('.coll', { y: 40, opacity: 0, duration: .9, stagger: .1, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '#coll-pin', start: 'top 85%' } });
   });
 
   // ---- Explorer
-  gsap.from('.tab', { y: 24, opacity: 0, duration: .6, stagger: .05, scrollTrigger: { trigger: '#tabs', start: 'top 88%' } });
-  gsap.from('#panel', { y: 60, opacity: 0, duration: 1, scrollTrigger: { trigger: '#panel', start: 'top 88%' } });
+  gsap.from('.tab', { y: 24, opacity: 0, duration: .6, stagger: .05, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '#tabs', start: 'top 88%' } });
+  gsap.from('#panel', { y: 60, opacity: 0, duration: 1, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '#panel', start: 'top 88%' } });
 
   // ---- Process: pinned on large screens, the line fills and steps light up
   mm.add('(min-width: 1181px)', () => {
@@ -440,20 +440,20 @@
         const p = self.progress; fill.style.setProperty('--p', p);
         steps.forEach((s, i) => s.classList.toggle('on', p >= i / steps.length + .02));
       } });
-    gsap.from(steps, { y: 60, opacity: 0, duration: .9, stagger: .1, scrollTrigger: { trigger: '#steps', start: 'top 85%' } });
+    gsap.from(steps, { y: 60, opacity: 0, duration: .9, stagger: .1, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '#steps', start: 'top 85%' } });
   });
   mm.add('(max-width: 1180px)', () => {
     $$('.step').forEach(s => { s.classList.add('on');
-      gsap.from(s, { y: 40, opacity: 0, duration: .8, scrollTrigger: { trigger: s, start: 'top 90%' } }); });
+      gsap.from(s, { y: 40, opacity: 0, duration: .8, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: s, start: 'top 90%' } }); });
   });
 
   // ---- Factories
-  gsap.from('.fac-tab', { y: 30, opacity: 0, duration: .8, stagger: .08, scrollTrigger: { trigger: '.fac-tabs', start: 'top 88%' } });
-  gsap.from('.fac-photo', { clipPath: 'inset(0% 0% 100% 0%)', duration: 1.3, ease: 'expo.out', scrollTrigger: { trigger: '#fac-panel', start: 'top 80%' } });
-  gsap.from('.fac-info > *', { y: 30, opacity: 0, duration: .8, stagger: .07, scrollTrigger: { trigger: '#fac-panel', start: 'top 75%' } });
+  gsap.from('.fac-tab', { y: 30, opacity: 0, duration: .8, stagger: .08, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.fac-tabs', start: 'top 88%' } });
+  gsap.from('.fac-photo', { clipPath: 'inset(0% 0% 100% 0%)', duration: 1.3, ease: 'expo.out', clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '#fac-panel', start: 'top 80%' } });
+  gsap.from('.fac-info > *', { y: 30, opacity: 0, duration: .8, stagger: .07, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '#fac-panel', start: 'top 75%' } });
   ScrollTrigger.create({ trigger: '.fac-stats', start: 'top 90%', once: true, onEnter: () => {
     const f = FACTORIES[fac]; countTo($('#fac-area'), f.area, 'comma', 1.8); countTo($('#fac-team'), f.team, 'int', 1.8); } });
-  gsap.from('.bar .track i', { scaleX: 0, duration: 1.6, ease: 'expo.out', stagger: .1, scrollTrigger: { trigger: '.bars', start: 'top 85%' } });
+  gsap.from('.bar .track i', { scaleX: 0, duration: 1.6, ease: 'expo.out', stagger: .1, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.bars', start: 'top 85%' } });
   ScrollTrigger.create({ trigger: '.bars', start: 'top 85%', once: true,
     onEnter: () => $$('.bars .count').forEach(el => countTo(el, +el.dataset.to, el.dataset.fmt, 1.8)) });
 
@@ -463,22 +463,22 @@
   });
   gsap.to('#route-paths .path, #route-paths .path-glow', { strokeDashoffset: 0, ease: 'none', stagger: .05,
     scrollTrigger: { trigger: '.routes', start: 'top 80%', end: 'center 45%', scrub: 1 } });
-  gsap.from('#route-nodes .node', { x: 40, opacity: 0, duration: .8, stagger: .08, scrollTrigger: { trigger: '.routes', start: 'top 60%' } });
-  gsap.from('#route-paths .mover', { opacity: 0, duration: .5, scrollTrigger: { trigger: '.routes', start: 'center 60%' } });
-  gsap.from('.duty article', { y: 40, opacity: 0, duration: .8, stagger: .08, scrollTrigger: { trigger: '.duty', start: 'top 85%' } });
+  gsap.from('#route-nodes .node', { x: 40, opacity: 0, duration: .8, stagger: .08, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.routes', start: 'top 60%' } });
+  gsap.from('#route-paths .mover', { opacity: 0, duration: .5, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.routes', start: 'center 60%' } });
+  gsap.from('.duty article', { y: 40, opacity: 0, duration: .8, stagger: .08, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.duty', start: 'top 85%' } });
 
   // ---- Trust
-  gsap.from('.cert', { y: 60, opacity: 0, rotate: 3, duration: .9, stagger: .08, scrollTrigger: { trigger: '.certs', start: 'top 85%' } });
+  gsap.from('.cert', { y: 50, opacity: 0, duration: .9, stagger: .08, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.certs', start: 'top 85%' } });
 
   // ---- CTA floating products
   $$('.cta [data-speed]').forEach(el => gsap.to(el, { y: () => (1 - parseFloat(el.dataset.speed)) * 400, rotate: '+=20', ease: 'none',
     scrollTrigger: { trigger: '.cta', start: 'top bottom', end: 'bottom top', scrub: true } }));
-  gsap.from('.cta-btn', { scale: 0, rotate: -90, duration: 1.2, ease: 'back.out(1.6)', scrollTrigger: { trigger: '.cta-btn', start: 'top 90%' } });
+  gsap.from('.cta-btn', { scale: 0, rotate: -90, duration: 1.2, ease: 'back.out(1.6)', clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.cta-btn', start: 'top 90%' } });
 
   // ---- Contact
-  gsap.from('.fl, #send', { y: 30, opacity: 0, duration: .7, stagger: .05, scrollTrigger: { trigger: '#quote', start: 'top 85%' } });
-  gsap.from('.contact-card', { y: 60, opacity: 0, duration: 1, scrollTrigger: { trigger: '.contact-card', start: 'top 88%' } });
-  gsap.from('.foot-big', { yPercent: 40, opacity: 0, duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: '.foot', start: 'top 85%' } });
+  gsap.from('.fl, #send', { y: 30, opacity: 0, duration: .7, stagger: .05, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '#quote', start: 'top 85%' } });
+  gsap.from('.contact-card', { y: 60, opacity: 0, duration: 1, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.contact-card', start: 'top 88%' } });
+  gsap.from('.foot-big', { yPercent: 40, opacity: 0, duration: 1.4, ease: 'expo.out', clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.foot', start: 'top 85%' } });
 
   // ---- Magnetic buttons
   if (fine) {
