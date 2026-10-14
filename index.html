@@ -22,36 +22,54 @@
   --mist:#f1f3f6;
   --line:#dde1e8;
   --muted:#5a6275;
-  --display:"Adventor", "Century Gothic", "Avenir", sans-serif;
-  --body:"Inter", "Segoe UI", system-ui, sans-serif;
+  --cjk:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","Noto Sans SC";
+  --display:"Adventor","Century Gothic","Avenir",var(--cjk),sans-serif;
+  --body:"Inter","Segoe UI",system-ui,var(--cjk),sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--body);font-size:17px;line-height:1.6;color:var(--ink);background:var(--white)}
 img{display:block;max-width:100%}
 a{color:inherit}
+button{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--swoosh);outline-offset:3px;border-radius:4px}
 .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
 h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.08;letter-spacing:-.015em}
+html[lang|="zh"] h1,html[lang|="zh"] h2,html[lang|="zh"] h3{letter-spacing:0;line-height:1.2}
 h2{font-size:48px;max-width:16ch}
 .intro{color:var(--muted);font-size:19px;max-width:58ch;margin-top:16px}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;font-weight:600;font-size:16px;text-decoration:none;border:0;cursor:pointer;font-family:var(--body);transition:background .2s,transform .2s}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;font-weight:600;font-size:16px;text-decoration:none;border:0;cursor:pointer;font-family:var(--body);transition:background .2s,color .2s}
 .btn-primary{background:var(--swoosh);color:#fff}
 .btn-primary:hover{background:var(--swoosh-dark)}
 .btn-line{border:1.5px solid var(--ink);color:var(--ink);background:transparent}
 .btn-line:hover{background:var(--ink);color:#fff}
+.btn-light{border:1.5px solid rgba(255,255,255,.6);color:#fff;background:transparent}
+.btn-light:hover{background:#fff;color:var(--ink)}
+.btn svg{width:18px;height:18px;flex:none}
+.btn small{font-weight:500;opacity:.75;font-size:13.5px}
 
 /* ---------- Header ---------- */
-.site-head{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.site-head .wrap{display:flex;align-items:center;justify-content:space-between;height:88px}
+.site-head{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;height:88px;gap:24px}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
 .logo img{height:60px;width:auto}
 .logo b{font-family:var(--display);font-size:22px;letter-spacing:.02em;display:block;line-height:1}
 .logo small{display:block;color:var(--muted);font-size:13px;margin-top:3px}
-.site-nav{display:flex;align-items:center;gap:30px}
+.site-nav{display:flex;align-items:center;gap:28px}
 .site-nav a{text-decoration:none;font-weight:500;font-size:15.5px;color:var(--ink-2)}
 .site-nav a:hover{color:var(--swoosh)}
-.site-nav .btn{padding:11px 22px;font-size:15px;color:#fff}
+.head-actions{display:flex;align-items:center;gap:12px}
+.head-actions .btn{padding:11px 22px;font-size:15px}
+.lang{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:9px 16px;font-weight:600;font-size:14.5px;cursor:pointer}
+.lang:hover{border-color:var(--ink)}
+.menu-btn{display:none;width:44px;height:44px;border:1.5px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;place-items:center}
+.menu-btn span,.menu-btn span::before,.menu-btn span::after{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px;position:relative;transition:transform .2s}
+.menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0}
+.menu-btn span::before{top:-6px}
+.menu-btn span::after{top:6px}
+.menu-btn[aria-expanded="true"] span{background:transparent}
+.menu-btn[aria-expanded="true"] span::before{transform:translateY(6px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span::after{transform:translateY(-6px) rotate(-45deg)}
 
 /* ---------- Hero ---------- */
 .hero{position:relative;overflow:hidden;background:var(--white)}
@@ -59,15 +77,14 @@ h2{font-size:48px;max-width:16ch}
 .hero-copy{padding:72px 0}
 .hero-kicker{display:inline-flex;align-items:center;gap:10px;font-weight:600;color:var(--ink-2);background:var(--mist);border-radius:999px;padding:8px 18px;font-size:14.5px}
 .hero-kicker::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--gold)}
-.hero h1{font-size:62px;margin:24px 0 24px;max-width:15ch}
+.hero h1{font-size:62px;margin:24px 0;max-width:15ch}
 .hero p.lead{font-size:20px;color:var(--muted);max-width:50ch}
-.hero .btns{display:flex;gap:14px;margin-top:34px}
-.spec{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:52px;border-top:1px solid var(--line);padding-top:24px}
+.hero .btns{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.spec{display:grid;grid-template-columns:repeat(4,1fr);margin-top:52px;border-top:1px solid var(--line);padding-top:24px}
 .spec div{padding:0 20px;border-left:1px solid var(--line)}
 .spec div:first-child{padding-left:0;border-left:0}
 .spec b{display:block;font-family:var(--display);font-size:30px;line-height:1;font-weight:700;white-space:nowrap}
 .spec span{display:block;color:var(--muted);font-size:14px;margin-top:10px;line-height:1.4}
-
 .wall{position:relative;height:700px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
   -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 12%,#000 88%,transparent 100%);
           mask-image:linear-gradient(to bottom,transparent 0,#000 12%,#000 88%,transparent 100%)}
@@ -92,34 +109,43 @@ h2{font-size:48px;max-width:16ch}
 /* ---------- Sections ---------- */
 .section{padding:120px 0}
 .section-mist{background:var(--mist)}
-.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:48px;margin-bottom:56px}
+section[id],#customers{scroll-margin-top:100px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:48px;margin-bottom:48px}
 .section-head .intro{margin-top:0}
 
-/* Products */
-.line{display:grid;grid-template-columns:300px 1fr;gap:48px;padding:40px 0;border-top:1px solid var(--line)}
-.line:last-child{border-bottom:1px solid var(--line)}
-.line h3{font-size:28px;margin-bottom:10px}
-.line p{color:var(--muted);font-size:16px}
-.line dl{margin-top:18px;font-size:14.5px;display:grid;grid-template-columns:auto 1fr;gap:6px 14px}
-.line dt{color:var(--muted)}
-.line dd{font-weight:600}
-.line .cap{color:var(--swoosh-dark)}
-.shots{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;align-content:start}
-.shots button{background:var(--mist);border:0;border-radius:16px;overflow:hidden;aspect-ratio:1/1;cursor:zoom-in;padding:0;transition:transform .25s}
-.shots button:hover{transform:translateY(-4px)}
-.shots img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply}
-.oem{margin-top:44px;display:flex;align-items:center;justify-content:space-between;gap:32px;background:var(--ink);color:#fff;border-radius:24px;padding:34px 40px}
+/* Products: tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.tab{display:inline-flex;align-items:center;gap:9px;border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:6px 16px 6px 6px;font-weight:600;font-size:15px;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.tab img{width:34px;height:34px;border-radius:50%;object-fit:cover;background:var(--mist);mix-blend-mode:multiply}
+.tab:hover{border-color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.tab[aria-selected="true"] img{mix-blend-mode:normal;background:#fff}
+.panel{display:grid;grid-template-columns:330px 1fr;gap:48px;border-top:1px solid var(--line);padding-top:40px}
+.panel h3{font-size:34px;margin-bottom:12px}
+.panel p{color:var(--muted)}
+.panel dl{margin-top:22px;font-size:15px;display:grid;grid-template-columns:auto 1fr;gap:8px 16px}
+.panel dt{color:var(--muted)}
+.panel dd{font-weight:600}
+.panel .cap{color:var(--swoosh-dark)}
+.panel .btn{margin-top:28px}
+.grid8{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-content:start}
+.grid8 button{background:var(--mist);border:0;border-radius:18px;overflow:hidden;aspect-ratio:1/1;cursor:zoom-in;padding:0;transition:transform .25s}
+.grid8 button:hover{transform:translateY(-4px)}
+.grid8 img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply}
+.grid8.swap{animation:fadein .35s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.oem{margin-top:56px;display:flex;align-items:center;justify-content:space-between;gap:32px;background:var(--ink);color:#fff;border-radius:24px;padding:34px 40px}
 .oem h3{font-size:26px}
 .oem p{color:#c9d0e2;margin-top:6px;max-width:62ch}
+.oem .btns{display:flex;gap:12px;flex-wrap:wrap;flex:none}
 
 /* Factories */
-.group-map{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:64px;border:1px solid var(--line);border-radius:20px;background:#fff;overflow:hidden}
+.group-map{display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:64px;border:1px solid var(--line);border-radius:20px;background:#fff;overflow:hidden}
 .group-map div{padding:24px 28px;border-left:1px solid var(--line)}
 .group-map div:first-child{border-left:0}
 .group-map b{font-family:var(--display);font-size:20px;display:block}
 .group-map span{color:var(--muted);font-size:14.5px}
-.group-map .flag{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--swoosh);margin-right:8px;vertical-align:middle}
-
+.group-map .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--swoosh);margin-right:8px;vertical-align:middle}
 .factory{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding:56px 0}
 .factory + .factory{border-top:1px solid var(--line)}
 .factory:nth-of-type(even) .factory-photo{order:2}
@@ -134,16 +160,16 @@ h2{font-size:48px;max-width:16ch}
 .facts div{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15.5px}
 .facts dt{color:var(--muted)}
 .facts dd{font-weight:600}
-
 .capacity{margin-top:56px;background:#fff;border-radius:24px;padding:40px;display:grid;grid-template-columns:280px 1fr;gap:48px;border:1px solid var(--line)}
 .capacity h3{font-size:30px}
 .capacity p{color:var(--muted);margin-top:10px}
 .bars{display:grid;gap:14px}
-.bar{display:grid;grid-template-columns:250px 1fr 110px;align-items:center;gap:18px;font-size:15px}
-.bar .track{height:14px;background:var(--mist);border-radius:99px;overflow:hidden}
+.bar{display:grid;grid-template-columns:250px 1fr 110px;grid-template-areas:"label track value";align-items:center;gap:18px;font-size:15px}
+.bar > span{grid-area:label}
+.bar .track{grid-area:track;height:14px;background:var(--mist);border-radius:99px;overflow:hidden}
 .bar .fill{height:100%;border-radius:99px;background:var(--ink)}
 .bar.kh .fill{background:var(--swoosh)}
-.bar b{text-align:right;font-family:var(--display);font-size:18px}
+.bar b{grid-area:value;text-align:right;font-family:var(--display);font-size:18px}
 .legend{display:flex;gap:22px;font-size:14px;color:var(--muted);margin-top:6px}
 .legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:7px;vertical-align:-1px;background:var(--ink)}
 .legend .kh i{background:var(--swoosh)}
@@ -176,20 +202,19 @@ h2{font-size:48px;max-width:16ch}
 
 /* Contact */
 .contact{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:start}
-form.quote{background:#fff;border:1px solid var(--line);border-radius:24px;padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+form.quote{position:relative;background:#fff;border:1px solid var(--line);border-radius:24px;padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
 form.quote label{display:grid;gap:6px;font-size:14.5px;font-weight:600}
 form.quote .full{grid-column:1/-1}
-form.quote input,form.quote select,form.quote textarea{font:inherit;font-weight:400;font-size:16px;color:var(--ink);padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;background:#fff}
+form.quote input,form.quote select,form.quote textarea{font:inherit;font-weight:400;font-size:16px;color:var(--ink);padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;background:#fff;width:100%}
 form.quote input:focus,form.quote select:focus,form.quote textarea:focus{outline:none;border-color:var(--ink)}
 form.quote textarea{min-height:120px;resize:vertical}
 form.quote .btn{justify-self:start;font-size:16.5px;padding:16px 30px}
+form.quote .btn[disabled]{opacity:.65;cursor:progress}
 .form-note{grid-column:1/-1;color:var(--muted);font-size:14px}
 .form-note.error{color:#b42318;font-weight:600}
 .form-note.error a{color:inherit}
 .honey{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-form.quote{position:relative}
-form.quote .btn[disabled]{opacity:.65;cursor:progress}
-.sent{grid-column:1/-1;text-align:left;padding:28px 4px}
+.sent{grid-column:1/-1;padding:28px 4px}
 .sent h3{font-size:30px;margin-bottom:10px}
 .sent p{color:var(--muted);max-width:46ch}
 .sent .tick{width:56px;height:56px;border-radius:50%;background:var(--swoosh);color:#fff;display:grid;place-items:center;font-size:28px;font-weight:700;margin-bottom:18px}
@@ -199,12 +224,18 @@ form.quote .btn[disabled]{opacity:.65;cursor:progress}
 .person b{font-family:var(--display);font-size:24px;display:block}
 .person span{color:var(--muted)}
 .reach{display:grid;gap:4px;padding:22px 0;border-bottom:1px solid var(--line)}
-.reach a{text-decoration:none;font-weight:600;font-size:18px}
+.reach a{text-decoration:none;font-weight:600;font-size:18px;overflow-wrap:anywhere}
 .reach a:hover{color:var(--swoosh)}
 .reach small{color:var(--muted);font-size:14px;font-weight:400;margin-left:8px}
-.addr{display:grid;gap:18px;padding-top:22px}
+.addr{display:grid;gap:18px;padding:22px 0;border-bottom:1px solid var(--line)}
 .addr b{display:block;font-size:15.5px}
 .addr span{color:var(--muted);font-size:14.5px}
+.catalog-link{display:flex;align-items:center;gap:14px;padding-top:22px;text-decoration:none}
+.catalog-link .ico{width:48px;height:48px;border-radius:12px;background:var(--swoosh);color:#fff;display:grid;place-items:center;flex:none}
+.catalog-link .ico svg{width:22px;height:22px}
+.catalog-link b{display:block;font-size:16px;color:var(--ink)}
+.catalog-link > span:last-child > span{color:var(--muted);font-size:14px}
+.catalog-link:hover b{color:var(--swoosh)}
 
 /* Footer */
 footer{background:#0e1830;color:#aab3c9;padding:48px 0;font-size:14.5px}
@@ -216,21 +247,110 @@ footer .logo small{color:#aab3c9}
 .lightbox{position:fixed;inset:0;background:rgba(14,24,48,.86);display:none;place-items:center;z-index:50;padding:40px}
 .lightbox.open{display:grid}
 .lightbox img{max-width:min(720px,90vw);max-height:84vh;border-radius:20px;background:#fff}
-.lightbox button{position:absolute;top:24px;right:28px;background:#fff;border:0;border-radius:999px;padding:10px 18px;font:600 15px var(--body);cursor:pointer}
+.lightbox button{position:absolute;top:24px;right:28px;background:#fff;border:0;border-radius:999px;padding:10px 18px;font-weight:600;font-size:15px;cursor:pointer}
 
 @media (prefers-reduced-motion:reduce){
-  .wall-col,.marquee-track{animation:none}
+  .wall-col,.marquee-track,.grid8.swap{animation:none}
   html{scroll-behavior:auto}
 }
+
+/* ---------- Tablet ---------- */
 @media (max-width:1100px){
+  .site-nav{gap:20px}
+  .site-nav a{font-size:14.5px}
   .hero .wrap,.factory,.contact,.capacity{grid-template-columns:1fr}
-  .wall{height:520px}
-  .shots{grid-template-columns:repeat(3,1fr)}
-  .line{grid-template-columns:1fr}
-  .certs,.retailers{grid-template-columns:repeat(3,1fr)}
-  .duty,.group-map{grid-template-columns:1fr}
-  .site-nav a:not(.btn){display:none}
+  .hero .wrap{min-height:0;gap:0}
+  .hero-copy{padding:56px 0 32px}
+  .wall{height:460px;margin-bottom:40px}
+  .panel{grid-template-columns:1fr;gap:28px}
+  .certs{grid-template-columns:repeat(3,1fr)}
+  .retailers{grid-template-columns:repeat(4,1fr)}
+  .duty{grid-template-columns:1fr 1fr}
+  .factory{gap:36px}
   .factory:nth-of-type(even) .factory-photo{order:0}
+  .oem{flex-direction:column;align-items:flex-start}
+}
+/* ---------- Menu button appears ---------- */
+@media (max-width:960px){
+  .menu-btn{display:grid}
+  .site-nav{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0;padding:8px 0 16px;box-shadow:0 18px 30px rgba(20,33,61,.12)}
+  .site-nav.open{display:flex}
+  .site-nav a{padding:14px 32px;font-size:17px}
+  .head-actions .btn{display:none}
+}
+/* ---------- Phone ---------- */
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:0 20px}
+  .site-head .wrap{height:72px;gap:10px}
+  .logo img{height:48px}
+  .logo b{font-size:19px}
+  .logo small{font-size:12px}
+  .site-nav a{padding:14px 20px}
+  h2{font-size:32px}
+  .intro{font-size:17px}
+  .section{padding:72px 0}
+  .section-head{flex-direction:column;align-items:flex-start;gap:14px;margin-bottom:32px}
+  .hero-copy{padding:36px 0 24px}
+  .hero-kicker{font-size:13.5px;padding:7px 14px}
+  .hero h1{font-size:38px;margin:18px 0}
+  .hero p.lead{font-size:17px}
+  .hero .btns{margin-top:26px}
+  .hero .btns .btn{flex:1 1 100%;justify-content:center}
+  .spec{grid-template-columns:1fr 1fr;row-gap:22px;margin-top:36px}
+  .spec div:nth-child(3){border-left:0;padding-left:0}
+  .spec b{font-size:26px}
+  .wall{height:300px;gap:10px;margin-bottom:28px}
+  .wall-col{gap:10px}
+  .wall-col figure{border-radius:14px}
+  .swoosh{width:560px;right:-160px;bottom:-150px}
+  .retail-band{padding:18px 0}
+  .retail-band .wrap{flex-direction:column;align-items:flex-start;gap:12px}
+  .retail-band p{max-width:none}
+  .marquee{width:100%}
+  .marquee-track span{height:52px;width:120px}
+  .tabs{flex-wrap:nowrap;overflow-x:auto;margin:0 -20px 22px;padding:0 20px 4px;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:none;font-size:14px}
+  .panel{padding-top:26px}
+  .panel h3{font-size:26px}
+  .grid8{grid-template-columns:repeat(2,1fr);gap:10px}
+  .grid8 button{border-radius:14px}
+  .oem{padding:26px 22px;margin-top:40px}
+  .oem h3{font-size:22px}
+  .oem .btns,.oem .btn{width:100%;justify-content:center}
+  .group-map{grid-template-columns:1fr;margin-bottom:24px}
+  .group-map div{border-left:0;border-top:1px solid var(--line);padding:18px 20px}
+  .group-map div:first-child{border-top:0}
+  .factory{padding:36px 0;gap:24px}
+  .factory h3{font-size:26px}
+  .badge{left:8px;top:8px;padding:10px 14px;border-radius:14px}
+  .badge img{height:30px}
+  .facts div{grid-template-columns:104px 1fr;gap:12px;font-size:14.5px}
+  .capacity{padding:24px 20px;gap:24px;margin-top:36px}
+  .capacity h3{font-size:24px}
+  .bar{grid-template-columns:1fr auto;grid-template-areas:"label value" "track track";gap:6px 12px;font-size:14.5px}
+  .bar b{font-size:16px}
+  .duty{grid-template-columns:1fr;gap:12px}
+  .duty article{padding:20px}
+  .certs{grid-template-columns:1fr 1fr;gap:10px}
+  .cert{padding:16px}
+  .cert .logo-box{height:72px}
+  .cert .logo-box img{max-height:64px}
+  .cert b{font-size:16px}
+  .cert span{font-size:13.5px}
+  .cert:last-child{grid-column:1/-1}
+  .retail-head{flex-direction:column;align-items:flex-start;gap:12px;margin:56px 0 24px}
+  .retail-head h3{font-size:28px}
+  .retailers{grid-template-columns:repeat(3,1fr);gap:8px}
+  .retailers div{height:76px;padding:10px 12px;border-radius:12px}
+  .retailers img{max-height:46px}
+  form.quote{grid-template-columns:1fr;padding:22px;gap:14px}
+  form.quote .btn{width:100%;justify-content:center}
+  .contact{gap:36px}
+  footer .wrap{flex-direction:column;align-items:flex-start;gap:16px}
+  .lightbox{padding:16px}
+  .lightbox button{top:14px;right:14px}
 }
 </style>
 </head>
@@ -240,16 +360,20 @@ footer .logo small{color:#aab3c9}
   <div class="wrap">
     <a class="logo" href="#top" aria-label="PAWSIGN home">
       <img src="assets/brand/pawsign-64.png" srcset="assets/brand/pawsign-64.png 1x, assets/brand/pawsign-128.png 2x, assets/brand/pawsign-192.png 3x" width="85" height="64" alt="">
-      <div><b>PAWSIGN</b><small>For pets, for life</small></div>
+      <div><b>PAWSIGN</b><small data-i18n="tagline">For pets, for life</small></div>
     </a>
-    <nav class="site-nav" aria-label="Main">
-      <a href="#products">Products</a>
-      <a href="#factories">Factories</a>
-      <a href="#cambodia">Cambodia advantage</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#customers">Customers</a>
-      <a class="btn btn-primary" href="#contact">Request a quote</a>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <a href="#products" data-i18n="nav.products">Products</a>
+      <a href="#factories" data-i18n="nav.factories">Factories</a>
+      <a href="#cambodia" data-i18n="nav.cambodia">Cambodia advantage</a>
+      <a href="#certifications" data-i18n="nav.certs">Certifications</a>
+      <a href="#customers" data-i18n="nav.customers">Customers</a>
     </nav>
+    <div class="head-actions">
+      <button class="lang" id="lang" type="button" lang="zh-CN" aria-label="切换到中文">中文</button>
+      <a class="btn btn-primary" href="#contact" data-i18n="cta.quote">Request a quote</a>
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span></button>
+    </div>
   </div>
 </header>
 
@@ -259,18 +383,21 @@ footer .logo small{color:#aab3c9}
 <section class="hero">
   <div class="wrap">
     <div class="hero-copy">
-      <span class="hero-kicker">Pet products manufacturer since 2008</span>
-      <h1>Pet apparel, toys and beds from our own factories</h1>
-      <p class="lead">PAWSIGN is a group of three factories in China and Cambodia. We design, sample, produce and export pet products for international brands and retailers.</p>
+      <span class="hero-kicker" data-i18n="hero.kicker">Pet products manufacturer since 2008</span>
+      <h1 data-i18n="hero.h1">Pet apparel, toys and beds from our own factories</h1>
+      <p class="lead" data-i18n="hero.lead">PAWSIGN is a group of three factories in China and Cambodia. We design, sample, produce and export pet products for international brands and retailers.</p>
       <div class="btns">
-        <a class="btn btn-primary" href="#contact">Request a quote</a>
-        <a class="btn btn-line" href="#factories">See our factories</a>
+        <a class="btn btn-primary" href="#contact" data-i18n="cta.quote">Request a quote</a>
+        <a class="btn btn-line" href="assets/catalog/PAWSIGN-catalog-2025.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
+          <span data-i18n="cta.catalog">Download catalog</span> <small>PDF, 15 MB</small>
+        </a>
       </div>
       <div class="spec">
-        <div><b>1.45M</b><span>units made every month</span></div>
-        <div><b>3</b><span>factories in China and Cambodia</span></div>
-        <div><b>900+</b><span>workers and supervisors</span></div>
-        <div><b>29,800</b><span>m² of factory space</span></div>
+        <div><b data-i18n="spec.1n">1.45M</b><span data-i18n="spec.1">units made every month</span></div>
+        <div><b>3</b><span data-i18n="spec.2">factories in China and Cambodia</span></div>
+        <div><b>900+</b><span data-i18n="spec.3">workers and supervisors</span></div>
+        <div><b>29,800</b><span data-i18n="spec.4">m² of factory space</span></div>
       </div>
     </div>
     <div class="wall" aria-hidden="true">
@@ -285,7 +412,7 @@ footer .logo small{color:#aab3c9}
 <!-- ================= RETAIL BAND ================= -->
 <div class="retail-band">
   <div class="wrap">
-    <p>Our products are sold at</p>
+    <p data-i18n="band">Our products are sold at</p>
     <div class="marquee"><div class="marquee-track" id="marquee"></div></div>
   </div>
 </div>
@@ -294,16 +421,28 @@ footer .logo small{color:#aab3c9}
 <section class="section" id="products">
   <div class="wrap">
     <div class="section-head">
-      <h2>Eight product lines, made to your design</h2>
-      <p class="intro">Send us a sketch, a sample or a photo. We make it in your fabrics, colours, labels and packaging, from sampling to export.</p>
+      <h2 data-i18n="products.h2">Eight product lines, made to your design</h2>
+      <p class="intro" data-i18n="products.intro">Send us a sketch, a sample or a photo. We make it in your fabrics, colours, labels and packaging, from sampling to export.</p>
     </div>
-    <div id="lines"></div>
+    <div class="tabs" role="tablist" id="tabs" aria-label="Product lines"></div>
+    <div class="panel" role="tabpanel" id="panel" aria-live="polite">
+      <div>
+        <h3 id="p-title"></h3>
+        <p id="p-desc"></p>
+        <dl><dt data-i18n="madeat">Made at</dt><dd id="p-made"></dd><dt data-i18n="capacity">Capacity</dt><dd class="cap" id="p-cap"></dd></dl>
+        <a class="btn btn-primary" href="#contact" id="p-quote" data-i18n="line.quote">Get a quote for this line</a>
+      </div>
+      <div class="grid8" id="p-grid"></div>
+    </div>
     <div class="oem">
       <div>
-        <h3>OEM and ODM for your brand</h3>
-        <p>Our sampling workshops turn your idea into a sample before you place an order. We already make private-label lines for some of the largest pet and general retailers in the US and Europe.</p>
+        <h3 data-i18n="oem.h3">OEM and ODM for your brand</h3>
+        <p data-i18n="oem.p">Our sampling workshops turn your idea into a sample before you place an order. We already make private-label lines for some of the largest pet and general retailers in the US and Europe.</p>
       </div>
-      <a class="btn btn-primary" href="#contact">Ask for samples</a>
+      <div class="btns">
+        <a class="btn btn-primary" href="#contact" data-i18n="oem.btn">Ask for samples</a>
+        <a class="btn btn-light" href="assets/catalog/PAWSIGN-catalog-2025.pdf" download data-i18n="cta.fullcatalog">Full catalog (PDF)</a>
+      </div>
     </div>
   </div>
 </section>
@@ -312,85 +451,85 @@ footer .logo small{color:#aab3c9}
 <section class="section section-mist" id="factories">
   <div class="wrap">
     <div class="section-head">
-      <h2>Three factories, one team</h2>
-      <p class="intro">Split your order between China and Cambodia to balance price, lead time and import duty. One contact manages everything.</p>
+      <h2 data-i18n="fac.h2">Three factories, one team</h2>
+      <p class="intro" data-i18n="fac.intro">Split your order between China and Cambodia to balance price, lead time and import duty. One contact manages everything.</p>
     </div>
 
     <div class="group-map">
-      <div><b><i class="flag"></i>Tianchang, Anhui</b><span>China. Pet apparel, toys and beds, since 2014</span></div>
-      <div><b><i class="flag"></i>Tonglu, Hangzhou</b><span>China. Knitwear and sweaters, since 2008</span></div>
-      <div><b><i class="flag"></i>Kampong Speu</b><span>Cambodia. Apparel and knitwear, since 2023</span></div>
+      <div><b><i class="dot"></i><span data-i18n="map.1">Tianchang, Anhui</span></b><span data-i18n="map.1s">China. Pet apparel, toys and beds, since 2014</span></div>
+      <div><b><i class="dot"></i><span data-i18n="map.2">Tonglu, Hangzhou</span></b><span data-i18n="map.2s">China. Knitwear and sweaters, since 2008</span></div>
+      <div><b><i class="dot"></i><span data-i18n="map.3">Kampong Speu</span></b><span data-i18n="map.3s">Cambodia. Apparel and knitwear, since 2023</span></div>
     </div>
 
     <article class="factory">
       <div class="factory-photo">
-        <img src="assets/factory/tianchang-1.jpg" alt="Tianchang Sign Crafts factory gate, buildings, cutting table and sewing floor">
+        <img src="assets/factory/tianchang-1.jpg" alt="Tianchang Sign Crafts factory gate, buildings, cutting table and sewing floor" loading="lazy">
         <div class="badge"><img src="assets/brand/sign.png" alt="SIGN 喜冠 logo"></div>
       </div>
       <div>
         <h3>Tianchang Sign Crafts Co., Ltd.</h3>
-        <p class="where">Tianchang, Anhui, China, since 2014</p>
-        <p class="desc">Our main China factory for pet apparel, plush toys and beds, with its own cutting, sewing, filling and sampling workshops.</p>
+        <p class="where" data-i18n="f1.where">Tianchang, Anhui, China, since 2014</p>
+        <p class="desc" data-i18n="f1.desc">Our main China factory for pet apparel, plush toys and beds, with its own cutting, sewing, filling and sampling workshops.</p>
         <dl class="facts">
-          <div><dt>Products</dt><dd>Pet apparel, pet toys, pet beds</dd></div>
-          <div><dt>Factory area</dt><dd>16,500 m² (8,900 m² indoor)</dd></div>
-          <div><dt>Team</dt><dd>151 people: 13 supervisors, 138 workers</dd></div>
-          <div><dt>Workshops</dt><dd>Cutting, sewing, filling and carding, finishing, QC, sampling, warehouse</dd></div>
-          <div><dt>Address</dt><dd>Area B, Industrial Park, Chajian Town, Tianchang, Anhui, China</dd></div>
+          <div><dt data-i18n="k.products">Products</dt><dd data-i18n="f1.products">Pet apparel, pet toys, pet beds</dd></div>
+          <div><dt data-i18n="k.area">Factory area</dt><dd data-i18n="f1.area">16,500 m² (8,900 m² indoor)</dd></div>
+          <div><dt data-i18n="k.team">Team</dt><dd data-i18n="f1.team">151 people: 13 supervisors, 138 workers</dd></div>
+          <div><dt data-i18n="k.workshops">Workshops</dt><dd data-i18n="f1.work">Cutting, sewing, filling and carding, finishing, QC, sampling, warehouse</dd></div>
+          <div><dt data-i18n="k.address">Address</dt><dd>Area B, Industrial Park, Chajian Town, Tianchang, Anhui, China</dd></div>
         </dl>
       </div>
     </article>
 
     <article class="factory">
       <div class="factory-photo">
-        <img src="assets/factory/tonglu-2.jpg" alt="Tonglu Hongyou Knitting workshops, packing area and sewing line">
+        <img src="assets/factory/tonglu-2.jpg" alt="Tonglu Hongyou Knitting workshops, packing area and sewing line" loading="lazy">
         <div class="badge"><img src="assets/brand/hy.png" alt="HY logo"></div>
       </div>
       <div>
         <h3>Tonglu Hongyou Knitting Co., Ltd.</h3>
-        <p class="where">Tonglu, Hangzhou, Zhejiang, China, since 2008</p>
-        <p class="desc">Our knitting specialist, where the group started. Pet sweaters, knitted garments, scarves and hats.</p>
+        <p class="where" data-i18n="f2.where">Tonglu, Hangzhou, Zhejiang, China, since 2008</p>
+        <p class="desc" data-i18n="f2.desc">Our knitting specialist, where the group started. Pet sweaters, knitted garments, scarves and hats.</p>
         <dl class="facts">
-          <div><dt>Products</dt><dd>Pet sweaters, knitted garments, scarves and hats</dd></div>
-          <div><dt>Factory area</dt><dd>3,335 m²</dd></div>
-          <div><dt>Team</dt><dd>146 people: 13 supervisors, 133 workers</dd></div>
-          <div><dt>Workshops</dt><dd>Cutting, sewing, filling and carding, finishing, QC, sampling, warehouse</dd></div>
-          <div><dt>Address</dt><dd>Building 2, No. 1028 Tongqian Road, Hengcun Town, Tonglu, Hangzhou, China</dd></div>
+          <div><dt data-i18n="k.products">Products</dt><dd data-i18n="f2.products">Pet sweaters, knitted garments, scarves and hats</dd></div>
+          <div><dt data-i18n="k.area">Factory area</dt><dd data-i18n="f2.area">3,335 m²</dd></div>
+          <div><dt data-i18n="k.team">Team</dt><dd data-i18n="f2.team">146 people: 13 supervisors, 133 workers</dd></div>
+          <div><dt data-i18n="k.workshops">Workshops</dt><dd data-i18n="f1.work">Cutting, sewing, filling and carding, finishing, QC, sampling, warehouse</dd></div>
+          <div><dt data-i18n="k.address">Address</dt><dd>Building 2, No. 1028 Tongqian Road, Hengcun Town, Tonglu, Hangzhou, China</dd></div>
         </dl>
       </div>
     </article>
 
     <article class="factory">
       <div class="factory-photo">
-        <img src="assets/factory/cambodia-1.jpg" alt="High Sense Cambodia factory entrance, fabric inspection and sewing hall">
+        <img src="assets/factory/cambodia-1.jpg" alt="High Sense Cambodia factory entrance, fabric inspection and sewing hall" loading="lazy">
         <div class="badge"><img src="assets/brand/hs.png" alt="High Sense logo"></div>
       </div>
       <div>
         <h3>High Sense (Cambodia) Co., Ltd.</h3>
-        <p class="where">Kampong Speu Province, Cambodia, since 2023</p>
-        <p class="desc">Our largest factory, 53 km from Phnom Penh. Duty advantages into the EU, US, Japan, Canada, Korea and Australia.</p>
+        <p class="where" data-i18n="f3.where">Kampong Speu Province, Cambodia, since 2023</p>
+        <p class="desc" data-i18n="f3.desc">Our largest factory, 53 km from Phnom Penh. Duty advantages into the EU, US, Japan, Canada, Korea and Australia.</p>
         <dl class="facts">
-          <div><dt>Products</dt><dd>Apparel, pet apparel, knitted garments, scarves and hats</dd></div>
-          <div><dt>Factory area</dt><dd>10,000 m² (6,950 m² indoor)</dd></div>
-          <div><dt>Team</dt><dd>610 people: 29 supervisors, 581 workers</dd></div>
-          <div><dt>Workshops</dt><dd>Cutting, sewing, knitting, printing and embroidery, finishing, QC, warehouse</dd></div>
-          <div><dt>Address</dt><dd>Land Title No. 46, Phum Bos Ta Ney, Khum Kahaeng, Samraong Tong District, Kampong Speu Province, Cambodia</dd></div>
+          <div><dt data-i18n="k.products">Products</dt><dd data-i18n="f3.products">Apparel, pet apparel, knitted garments, scarves and hats</dd></div>
+          <div><dt data-i18n="k.area">Factory area</dt><dd data-i18n="f3.area">10,000 m² (6,950 m² indoor)</dd></div>
+          <div><dt data-i18n="k.team">Team</dt><dd data-i18n="f3.team">610 people: 29 supervisors, 581 workers</dd></div>
+          <div><dt data-i18n="k.workshops">Workshops</dt><dd data-i18n="f3.work">Cutting, sewing, knitting, printing and embroidery, finishing, QC, warehouse</dd></div>
+          <div><dt data-i18n="k.address">Address</dt><dd>Land Title No. 46, Phum Bos Ta Ney, Khum Kahaeng, Samraong Tong District, Kampong Speu Province, Cambodia</dd></div>
         </dl>
       </div>
     </article>
 
     <div class="capacity">
       <div>
-        <h3>Monthly capacity</h3>
-        <p>1.45 million units a month across the group, so large retail programmes and peak-season orders ship on time.</p>
-        <div class="legend"><span><i></i>China</span><span class="kh"><i></i>Cambodia</span></div>
+        <h3 data-i18n="cap.h3">Monthly capacity</h3>
+        <p data-i18n="cap.p">1.45 million units a month across the group, so large retail programmes and peak-season orders ship on time.</p>
+        <div class="legend"><span><i></i><span data-i18n="china">China</span></span><span class="kh"><i></i><span data-i18n="cambodia">Cambodia</span></span></div>
       </div>
       <div class="bars">
-        <div class="bar"><span>Pet toys, China</span><div class="track"><div class="fill" style="width:100%"></div></div><b>500,000</b></div>
-        <div class="bar kh"><span>Pet apparel, Cambodia</span><div class="track"><div class="fill" style="width:60%"></div></div><b>300,000</b></div>
-        <div class="bar"><span>Pet apparel, China</span><div class="track"><div class="fill" style="width:50%"></div></div><b>250,000</b></div>
-        <div class="bar"><span>Pet sweaters, China</span><div class="track"><div class="fill" style="width:40%"></div></div><b>200,000</b></div>
-        <div class="bar kh"><span>Pet sweaters, Cambodia</span><div class="track"><div class="fill" style="width:40%"></div></div><b>200,000</b></div>
+        <div class="bar"><span data-i18n="bar.1">Pet toys, China</span><div class="track"><div class="fill" style="width:100%"></div></div><b>500,000</b></div>
+        <div class="bar kh"><span data-i18n="bar.2">Pet apparel, Cambodia</span><div class="track"><div class="fill" style="width:60%"></div></div><b>300,000</b></div>
+        <div class="bar"><span data-i18n="bar.3">Pet apparel, China</span><div class="track"><div class="fill" style="width:50%"></div></div><b>250,000</b></div>
+        <div class="bar"><span data-i18n="bar.4">Pet sweaters, China</span><div class="track"><div class="fill" style="width:40%"></div></div><b>200,000</b></div>
+        <div class="bar kh"><span data-i18n="bar.5">Pet sweaters, Cambodia</span><div class="track"><div class="fill" style="width:40%"></div></div><b>200,000</b></div>
       </div>
     </div>
   </div>
@@ -400,18 +539,18 @@ footer .logo small{color:#aab3c9}
 <section class="section" id="cambodia">
   <div class="wrap">
     <div class="section-head">
-      <h2>Lower import duty when you ship from Cambodia</h2>
-      <p class="intro">Cambodia is one of the UN's Least Developed Countries, so goods from our Kampong Speu factory get trade preferences in major markets.</p>
+      <h2 data-i18n="kh.h2">Lower import duty when you ship from Cambodia</h2>
+      <p class="intro" data-i18n="kh.intro">Cambodia is one of the UN's Least Developed Countries, so goods from our Kampong Speu factory get trade preferences in major markets.</p>
     </div>
     <div class="duty">
-      <article><div class="market"><img src="assets/flags/eu.png" alt=""><b>European Union</b></div><p>GSP preference: duty relief on imports into EU countries since January 2011.</p></article>
-      <article><div class="market"><img src="assets/flags/us.png" alt=""><b>United States</b></div><p>Most Favoured Nation status, with preferential terms for textiles and garments.</p></article>
-      <article><div class="market"><img src="assets/flags/jp.png" alt=""><b>Japan</b></div><p>ASEAN–Japan agreement: exempt from the usual 10–12% import tax, and quota-free.</p></article>
-      <article><div class="market"><img src="assets/flags/ca.png" alt=""><b>Canada</b></div><p>Quota-free and duty-free under Canada's preferential tariff for LDC countries.</p></article>
-      <article><div class="market"><img src="assets/flags/kr.png" alt=""><b>South Korea</b></div><p>Quota-free and duty-free import with minimum restrictions.</p></article>
-      <article><div class="market"><img src="assets/flags/au.png" alt=""><b>Australia</b></div><p>Tax-free status in line with other developed-market preferences.</p></article>
+      <article><div class="market"><img src="assets/flags/eu.png" alt=""><b data-i18n="m.eu">European Union</b></div><p data-i18n="m.eu.p">GSP preference: duty relief on imports into EU countries since January 2011.</p></article>
+      <article><div class="market"><img src="assets/flags/us.png" alt=""><b data-i18n="m.us">United States</b></div><p data-i18n="m.us.p">Most Favoured Nation status, with preferential terms for textiles and garments.</p></article>
+      <article><div class="market"><img src="assets/flags/jp.png" alt=""><b data-i18n="m.jp">Japan</b></div><p data-i18n="m.jp.p">ASEAN–Japan agreement: exempt from the usual 10–12% import tax, and quota-free.</p></article>
+      <article><div class="market"><img src="assets/flags/ca.png" alt=""><b data-i18n="m.ca">Canada</b></div><p data-i18n="m.ca.p">Quota-free and duty-free under Canada's preferential tariff for LDC countries.</p></article>
+      <article><div class="market"><img src="assets/flags/kr.png" alt=""><b data-i18n="m.kr">South Korea</b></div><p data-i18n="m.kr.p">Quota-free and duty-free import with minimum restrictions.</p></article>
+      <article><div class="market"><img src="assets/flags/au.png" alt=""><b data-i18n="m.au">Australia</b></div><p data-i18n="m.au.p">Tax-free status in line with other developed-market preferences.</p></article>
     </div>
-    <p class="duty-note">Exact duty depends on the product and its materials. Tell us your market and we will confirm the best factory for your order.</p>
+    <p class="duty-note" data-i18n="kh.note">Exact duty depends on the product and its materials. Tell us your market and we will confirm the best factory for your order.</p>
   </div>
 </section>
 
@@ -419,20 +558,20 @@ footer .logo small{color:#aab3c9}
 <section class="section trust" id="certifications">
   <div class="wrap">
     <div class="section-head">
-      <h2>Audited and certified for global retail</h2>
-      <p class="intro">Our factories pass the social, ethical and material audits that large retailers ask for, so your compliance team can approve us quickly.</p>
+      <h2 data-i18n="trust.h2">Audited and certified for global retail</h2>
+      <p class="intro" data-i18n="trust.intro">Our factories pass the social, ethical and material audits that large retailers ask for, so your compliance team can approve us quickly.</p>
     </div>
     <div class="certs">
-      <div class="cert"><div class="logo-box"><img src="assets/logos/bsci.png" alt="amfori BSCI"></div><b>amfori BSCI</b><span>Social compliance audit for working conditions</span></div>
-      <div class="cert"><div class="logo-box"><img src="assets/logos/sedex.png" alt="Sedex"></div><b>Sedex</b><span>Ethical supply-chain audit shared with buyers</span></div>
-      <div class="cert"><div class="logo-box"><img src="assets/logos/grs.png" alt="Global Recycled Standard"></div><b>Global Recycled Standard</b><span>Certified recycled materials</span></div>
-      <div class="cert"><div class="logo-box"><img src="assets/logos/ocs.png" alt="Organic Content Standard 100"></div><b>Organic Content Standard</b><span>Certified organic materials</span></div>
-      <div class="cert"><div class="logo-box"><img src="assets/logos/scan.png" alt="SCAN"></div><b>SCAN</b><span>Supply-chain security and compliance audit</span></div>
+      <div class="cert"><div class="logo-box"><img src="assets/logos/bsci.png" alt="amfori BSCI"></div><b>amfori BSCI</b><span data-i18n="c.bsci">Social compliance audit for working conditions</span></div>
+      <div class="cert"><div class="logo-box"><img src="assets/logos/sedex.png" alt="Sedex"></div><b>Sedex</b><span data-i18n="c.sedex">Ethical supply-chain audit shared with buyers</span></div>
+      <div class="cert"><div class="logo-box"><img src="assets/logos/grs.png" alt="Global Recycled Standard"></div><b data-i18n="c.grs.n">Global Recycled Standard</b><span data-i18n="c.grs">Certified recycled materials</span></div>
+      <div class="cert"><div class="logo-box"><img src="assets/logos/ocs.png" alt="Organic Content Standard 100"></div><b data-i18n="c.ocs.n">Organic Content Standard</b><span data-i18n="c.ocs">Certified organic materials</span></div>
+      <div class="cert"><div class="logo-box"><img src="assets/logos/scan.png" alt="SCAN"></div><b>SCAN</b><span data-i18n="c.scan">Supply-chain security and compliance audit</span></div>
     </div>
 
     <div class="retail-head" id="customers">
-      <h3>Trusted by leading retailers in the US and Europe</h3>
-      <p>Our products are on the shelves of these retailers today. Ask us for references in your market.</p>
+      <h3 data-i18n="retail.h3">Trusted by leading retailers in the US and Europe</h3>
+      <p data-i18n="retail.p">Our products are on the shelves of these retailers today. Ask us for references in your market.</p>
     </div>
     <div class="retailers" id="retailers"></div>
   </div>
@@ -442,45 +581,43 @@ footer .logo small{color:#aab3c9}
 <section class="section section-mist" id="contact">
   <div class="wrap">
     <div class="section-head">
-      <h2>Request a quote</h2>
-      <p class="intro">Tell us the product, quantity and target market. Our team will reply with pricing and sample timing.</p>
+      <h2 data-i18n="cta.quote">Request a quote</h2>
+      <p class="intro" data-i18n="contact.intro">Tell us the product, quantity and target market. Our team will reply with pricing and sample timing.</p>
     </div>
     <div class="contact">
       <form class="quote" id="quote" action="https://formsubmit.co/ryan@gladpaws.com.cn" method="POST">
         <input type="hidden" name="_subject" value="New quote request from the PAWSIGN website">
         <input type="hidden" name="_template" value="table">
         <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <label>Your name<input name="name" required autocomplete="name"></label>
-        <label>Company<input name="company" required autocomplete="organization"></label>
-        <label>Email<input name="email" type="email" required autocomplete="email"></label>
-        <label>Country<input name="country" autocomplete="country-name"></label>
-        <label>Product line
-          <select name="product">
-            <option>Plush and squeaky toys</option><option>Snuffle mats and holiday toys</option><option>Tees, hoodies and pajamas</option>
-            <option>Costumes</option><option>Knit sweaters</option><option>Jackets and outerwear</option><option>Beds and cat houses</option>
-            <option>Accessories</option><option>Several products</option>
-          </select>
-        </label>
-        <label>Order quantity<input name="qty" placeholder="e.g. 5,000 pcs per style"></label>
-        <label class="full">Your project<textarea name="msg" placeholder="Style, size range, materials, packaging, target price, delivery date"></textarea></label>
-        <button class="btn btn-primary" type="submit" id="send">Send inquiry</button>
-        <p class="form-note" id="form-status" aria-live="polite">Your inquiry goes straight to Ryan Lu, our sales contact.</p>
+        <label><span data-i18n="f.name">Your name</span><input name="name" required autocomplete="name"></label>
+        <label><span data-i18n="f.company">Company</span><input name="company" required autocomplete="organization"></label>
+        <label><span data-i18n="f.email">Email</span><input name="email" type="email" required autocomplete="email"></label>
+        <label><span data-i18n="f.country">Country</span><input name="country" autocomplete="country-name"></label>
+        <label><span data-i18n="f.product">Product line</span><select name="product" id="product"></select></label>
+        <label><span data-i18n="f.qty">Order quantity</span><input name="qty" data-i18n-ph="f.qty.ph" placeholder="e.g. 5,000 pcs per style"></label>
+        <label class="full"><span data-i18n="f.msg">Your project</span><textarea name="msg" data-i18n-ph="f.msg.ph" placeholder="Style, size range, materials, packaging, target price, delivery date"></textarea></label>
+        <button class="btn btn-primary" type="submit" id="send" data-i18n="f.send">Send inquiry</button>
+        <p class="form-note" id="form-status" aria-live="polite" data-i18n="f.note">Your inquiry goes straight to Ryan Lu, our sales contact.</p>
       </form>
       <aside>
         <div class="person">
           <div class="avatar"><img src="assets/brand/pawsign-64.png" srcset="assets/brand/pawsign-64.png 1x, assets/brand/pawsign-128.png 2x" alt=""></div>
-          <div><b>Ryan Lu</b><span>Sales contact, PAWSIGN group</span></div>
+          <div><b>Ryan Lu</b><span data-i18n="person.role">Sales contact, PAWSIGN group</span></div>
         </div>
         <div class="reach">
           <a href="mailto:ryan@gladpaws.com.cn">ryan@gladpaws.com.cn</a>
-          <a href="tel:+8613651790225">+86 136 5179 0225<small>China</small></a>
-          <a href="tel:+85570770225">+855 070 770 225<small>Cambodia</small></a>
+          <a href="tel:+8613651790225">+86 136 5179 0225<small data-i18n="china">China</small></a>
+          <a href="tel:+85570770225">+855 070 770 225<small data-i18n="cambodia">Cambodia</small></a>
         </div>
         <div class="addr">
           <div><b>Tianchang Sign Crafts Co., Ltd.</b><span>Area B, Industrial Park, Chajian Town, Tianchang, Anhui, China</span></div>
           <div><b>Tonglu Hongyou Knitting Co., Ltd.</b><span>Building 2, No. 1028 Tongqian Road, Hengcun Town, Tonglu, Hangzhou, China</span></div>
           <div><b>High Sense (Cambodia) Co., Ltd.</b><span>Land Title No. 46, Phum Bos Ta Ney, Khum Kahaeng, Samraong Tong District, Kampong Speu Province, Cambodia (53 km from Phnom Penh)</span></div>
         </div>
+        <a class="catalog-link" href="assets/catalog/PAWSIGN-catalog-2025.pdf" download>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg></span>
+          <span><b data-i18n="cat.title">Download our 2025 catalog</b><span data-i18n="cat.sub">58 pages, PDF, 15 MB</span></span>
+        </a>
       </aside>
     </div>
   </div>
@@ -490,81 +627,231 @@ footer .logo small{color:#aab3c9}
 
 <footer>
   <div class="wrap">
-    <a class="logo" href="#top"><img src="assets/brand/pawsign-64.png" srcset="assets/brand/pawsign-64.png 1x, assets/brand/pawsign-128.png 2x, assets/brand/pawsign-192.png 3x" width="85" height="64" alt=""><div><b>PAWSIGN</b><small>For pets, for life</small></div></a>
-    <span>Tianchang Sign Crafts, Tonglu Hongyou Knitting and High Sense (Cambodia)</span>
-    <span>© <span id="year">2026</span> PAWSIGN group</span>
+    <a class="logo" href="#top"><img src="assets/brand/pawsign-64.png" srcset="assets/brand/pawsign-64.png 1x, assets/brand/pawsign-128.png 2x, assets/brand/pawsign-192.png 3x" width="85" height="64" alt=""><div><b>PAWSIGN</b><small data-i18n="tagline">For pets, for life</small></div></a>
+    <span>Tianchang Sign Crafts, Tonglu Hongyou Knitting, High Sense (Cambodia)</span>
+    <span>© <span id="year">2026</span> <span data-i18n="group">PAWSIGN group</span></span>
   </div>
 </footer>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Product photo">
-  <button type="button" id="lb-close">Close</button>
+  <button type="button" id="lb-close" data-i18n="close">Close</button>
   <img id="lb-img" alt="">
 </div>
 
 <script>
+/* ---------------- Content ---------------- */
 const P = 'assets/products/';
-const lines = [
-  {t:'Plush and squeaky toys', d:'Plush, rubber-spike and crinkle toys in any shape, from sea animals to food characters.', made:'Tianchang, Anhui', cap:'500,000 toys a month', img:['toys-1','toys-2','toys-3','toys-4','toys-5','toys-6']},
-  {t:'Snuffle mats and holiday toys', d:'Treat-hiding snuffle mats and full Halloween and Christmas collections.', made:'Tianchang, Anhui', cap:'Seasonal ranges every year', img:['enrich-1','enrich-2','enrich-3','seasonal-1','seasonal-3','seasonal-4']},
-  {t:'Tees, hoodies and pajamas', d:'Everyday pet apparel with prints, embroidery and matching family sets.', made:'Tianchang and Cambodia', cap:'550,000 pieces a month', img:['apparel-1','apparel-2','apparel-3','apparel-4','apparel-5','apparel-6']},
-  {t:'Costumes', d:'Halloween and party costumes for dogs and cats, with hoods, wings and props.', made:'Tianchang and Cambodia', cap:'Part of apparel capacity', img:['costumes-1','costumes-2','costumes-3','costumes-4','costumes-5','costumes-6']},
-  {t:'Knit sweaters', d:'Cable knits, argyle, Fair Isle and holiday sweaters, knitted in-house.', made:'Tonglu and Cambodia', cap:'400,000 sweaters a month', img:['sweaters-1','sweaters-2','sweaters-3','sweaters-4','sweaters-5','sweaters-6']},
-  {t:'Jackets and outerwear', d:'Puffer jackets, raincoats and packable coats, with matching dog boots.', made:'Tianchang and Cambodia', cap:'Part of apparel capacity', img:['outerwear-1','outerwear-2','outerwear-3','outerwear-4','outerwear-5','outerwear-8']},
-  {t:'Beds and cat houses', d:'Bolster beds, cave beds and cat houses in plush, plaid and knit fabrics.', made:'Tianchang, Anhui', cap:'Custom sizes and fabrics', img:['beds-1','beds-2','beds-3','beds-5','beds-6','beds-7']},
-  {t:'Accessories', d:'Bandanas, bow ties, hats, holiday headbands and non-slip socks.', made:'Tianchang and Tonglu', cap:'Custom packaging and cards', img:['access-1','access-2','access-3','access-4','access-5','access-6']},
+const LINES = [
+  {id:'toys', img:['toys-1','toys-2','toys-3','toys-4','toys-5','toys-6','toys-7','toys-8'],
+   en:{tab:'Toys', t:'Plush and squeaky toys', d:'Plush, rubber-spike and crinkle toys in any shape, from sea animals to food characters.', made:'Tianchang, Anhui', cap:'500,000 toys a month'},
+   zh:{tab:'玩具', t:'毛绒与发声玩具', d:'毛绒、橡胶刺球和响纸玩具，造型不限，从海洋动物到美食卡通。', made:'安徽天长', cap:'每月50万件玩具'}},
+  {id:'snuffle', img:['enrich-1','enrich-2','enrich-3','enrich-4','seasonal-1','seasonal-3','seasonal-4','seasonal-6'],
+   en:{tab:'Seasonal', t:'Snuffle mats and holiday toys', d:'Treat-hiding snuffle mats and full Halloween and Christmas collections.', made:'Tianchang, Anhui', cap:'New seasonal ranges every year'},
+   zh:{tab:'节日系列', t:'嗅闻垫与节日玩具', d:'藏食嗅闻垫，以及完整的万圣节和圣诞节系列。', made:'安徽天长', cap:'每年推出新的季节系列'}},
+  {id:'apparel', img:['apparel-1','apparel-2','apparel-3','apparel-4','apparel-5','apparel-6','apparel-7','apparel-8'],
+   en:{tab:'Apparel', t:'Tees, hoodies and pajamas', d:'Everyday pet apparel with prints, embroidery and matching family sets.', made:'Tianchang and Cambodia', cap:'550,000 pieces a month'},
+   zh:{tab:'服装', t:'T恤、卫衣与睡衣', d:'日常宠物服装，支持印花、刺绣和亲子款。', made:'天长和柬埔寨', cap:'每月55万件'}},
+  {id:'costumes', img:['costumes-1','costumes-2','costumes-3','costumes-4','costumes-5','costumes-6','costumes-7','costumes-8'],
+   en:{tab:'Costumes', t:'Costumes', d:'Halloween and party costumes for dogs and cats, with hoods, wings and props.', made:'Tianchang and Cambodia', cap:'Part of apparel capacity'},
+   zh:{tab:'装扮服', t:'宠物装扮服', d:'适合猫狗的万圣节和派对装扮服，含头套、翅膀和道具。', made:'天长和柬埔寨', cap:'包含在服装产能内'}},
+  {id:'sweaters', img:['sweaters-1','sweaters-2','sweaters-3','sweaters-4','sweaters-5','sweaters-6','sweaters-7','sweaters-8'],
+   en:{tab:'Sweaters', t:'Knit sweaters', d:'Cable knits, argyle, Fair Isle and holiday sweaters, knitted in-house.', made:'Tonglu and Cambodia', cap:'400,000 sweaters a month'},
+   zh:{tab:'毛衣', t:'针织毛衣', d:'麻花针、菱格、费尔岛和节日毛衣，全部在自有工厂织造。', made:'桐庐和柬埔寨', cap:'每月40万件毛衣'}},
+  {id:'outerwear', img:['outerwear-1','outerwear-2','outerwear-3','outerwear-4','outerwear-5','outerwear-6','outerwear-7','outerwear-8'],
+   en:{tab:'Outerwear', t:'Jackets and outerwear', d:'Puffer jackets, raincoats and packable coats, with matching dog boots.', made:'Tianchang and Cambodia', cap:'Part of apparel capacity'},
+   zh:{tab:'外套', t:'夹克与外套', d:'棉服、雨衣和可收纳外套，并配套狗鞋。', made:'天长和柬埔寨', cap:'包含在服装产能内'}},
+  {id:'beds', img:['beds-1','beds-2','beds-3','beds-5','beds-6','beds-7','beds-8','beds-9'],
+   en:{tab:'Beds', t:'Beds and cat houses', d:'Bolster beds, cave beds and cat houses in plush, plaid and knit fabrics.', made:'Tianchang, Anhui', cap:'Custom sizes and fabrics'},
+   zh:{tab:'宠物床', t:'宠物床与猫窝', d:'靠枕床、窝床和猫屋，可选毛绒、格纹和针织面料。', made:'安徽天长', cap:'尺寸和面料可定制'}},
+  {id:'access', img:['access-1','access-2','access-3','access-4','access-5','access-6','access-7','access-8'],
+   en:{tab:'Accessories', t:'Accessories', d:'Bandanas, bow ties, hats, holiday headbands and non-slip socks.', made:'Tianchang and Tonglu', cap:'Custom packaging and cards'},
+   zh:{tab:'配饰', t:'配饰', d:'领巾、领结、帽子、节日发箍和防滑袜。', made:'天长和桐庐', cap:'包装和吊卡可定制'}},
 ];
-const linesEl = document.getElementById('lines');
-lines.forEach(l => {
-  const el = document.createElement('div');
-  el.className = 'line';
-  el.innerHTML = `<div><h3>${l.t}</h3><p>${l.d}</p><dl><dt>Made at</dt><dd>${l.made}</dd><dt>Capacity</dt><dd class="cap">${l.cap}</dd></dl></div>
-    <div class="shots">${l.img.map(i => `<button type="button" aria-label="Enlarge ${l.t} photo"><img loading="lazy" src="${P}${i}.jpg" alt="${l.t}"></button>`).join('')}</div>`;
-  linesEl.appendChild(el);
-});
+const SHOPS = [['target','Target'],['walmart','Walmart'],['petsmart','PetSmart'],['petco','Petco'],['action','Action'],['walgreens','Walgreens'],
+  ['tjmaxx','TJ Maxx'],['cvs','CVS'],['lowes',"Lowe's"],['carrefour','Carrefour'],['ross','Ross'],['aldi','ALDI']];
 
-const wall = [
+/* Chinese text. English is read from the page itself. */
+const ZH = {
+  'tagline':'为宠物，为一生',
+  'nav.products':'产品','nav.factories':'工厂','nav.cambodia':'柬埔寨优势','nav.certs':'认证','nav.customers':'客户',
+  'cta.quote':'获取报价','cta.catalog':'下载产品目录','cta.fullcatalog':'完整产品目录（PDF）',
+  'hero.kicker':'自2008年起专业生产宠物用品',
+  'hero.h1':'宠物服装、玩具和宠物床，全部出自自有工厂',
+  'hero.lead':'PAWSIGN 集团在中国和柬埔寨拥有三家工厂，为国际品牌和零售商提供宠物用品的设计、打样、生产和出口服务。',
+  'spec.1n':'145万','spec.1':'每月产量（件）','spec.2':'家工厂，位于中国和柬埔寨','spec.3':'名员工和管理人员','spec.4':'平方米厂房面积',
+  'band':'我们的产品销往',
+  'products.h2':'八大产品线，按您的设计定制',
+  'products.intro':'只需发来草图、样品或照片。我们按您指定的面料、颜色、标签和包装生产，从打样到出口一站式完成。',
+  'madeat':'生产工厂','capacity':'产能','line.quote':'获取该产品线报价',
+  'oem.h3':'为您的品牌提供 OEM 和 ODM 服务',
+  'oem.p':'下单前，我们的打样车间会先把您的想法做成样品。我们已在为美国和欧洲多家大型宠物及综合零售商生产自有品牌产品。',
+  'oem.btn':'申请样品',
+  'fac.h2':'三家工厂，一个团队',
+  'fac.intro':'订单可在中国和柬埔寨工厂之间灵活分配，兼顾价格、交期和进口关税，由一位专人负责全程对接。',
+  'map.1':'安徽天长','map.1s':'中国，宠物服装、玩具和宠物床，2014年起',
+  'map.2':'杭州桐庐','map.2s':'中国，针织品和毛衣，2008年起',
+  'map.3':'柬埔寨磅士卑省','map.3s':'柬埔寨，服装和针织品，2023年起',
+  'k.products':'产品','k.area':'厂房面积','k.team':'人员','k.workshops':'车间','k.address':'地址',
+  'f1.where':'中国安徽天长，2014年成立',
+  'f1.desc':'集团在中国的主力工厂，生产宠物服装、毛绒玩具和宠物床，拥有独立的裁剪、缝制、充棉和打样车间。',
+  'f1.products':'宠物服装、宠物玩具、宠物床','f1.area':'16,500平方米（室内8,900平方米）','f1.team':'151人：管理人员13人，工人138人',
+  'f1.work':'裁剪、缝制、充棉梳棉、后整、质检、打样、仓库',
+  'f2.where':'中国浙江杭州桐庐，2008年成立',
+  'f2.desc':'集团的起点，专注针织生产：宠物毛衣、针织服装、围巾和帽子。',
+  'f2.products':'宠物毛衣、针织服装、围巾和帽子','f2.area':'3,335平方米','f2.team':'146人：管理人员13人，工人133人',
+  'f3.where':'柬埔寨磅士卑省，2023年成立',
+  'f3.desc':'集团规模最大的工厂，距金边53公里。出口欧盟、美国、日本、加拿大、韩国和澳大利亚享有关税优势。',
+  'f3.products':'服装、宠物服装、针织服装、围巾和帽子','f3.area':'10,000平方米（室内6,950平方米）','f3.team':'610人：管理人员29人，工人581人',
+  'f3.work':'裁剪、缝制、针织、印花和刺绣、后整、质检、仓库',
+  'cap.h3':'月产能','cap.p':'集团每月产能达145万件，大型零售项目和旺季订单都能按时交货。',
+  'china':'中国','cambodia':'柬埔寨',
+  'bar.1':'宠物玩具（中国）','bar.2':'宠物服装（柬埔寨）','bar.3':'宠物服装（中国）','bar.4':'宠物毛衣（中国）','bar.5':'宠物毛衣（柬埔寨）',
+  'kh.h2':'从柬埔寨发货，进口关税更低',
+  'kh.intro':'柬埔寨是联合国认定的最不发达国家之一，因此我们磅士卑工厂的产品在主要市场享有贸易优惠。',
+  'm.eu':'欧盟','m.eu.p':'普惠制（GSP）：自2011年1月起，出口至欧盟国家可享关税减免。',
+  'm.us':'美国','m.us.p':'享有最惠国待遇，纺织品和服装可获优惠条件。',
+  'm.jp':'日本','m.jp.p':'东盟-日本协定：免征通常10%–12%的进口税，且不受配额限制。',
+  'm.ca':'加拿大','m.ca.p':'根据加拿大对最不发达国家的优惠关税，免配额、免关税。',
+  'm.kr':'韩国','m.kr.p':'免配额、免关税进口，限制条件极少。',
+  'm.au':'澳大利亚','m.au.p':'享有与其他发达市场一致的免税待遇。',
+  'kh.note':'具体关税取决于产品及其材料。告诉我们您的目标市场，我们会为您的订单确认最合适的工厂。',
+  'trust.h2':'通过全球零售所需的审核与认证',
+  'trust.intro':'我们的工厂通过了大型零售商要求的社会责任、道德贸易和材料认证审核，帮助您的合规团队快速完成供应商审批。',
+  'c.bsci':'社会责任审核，关注工作条件','c.sedex':'道德供应链审核，可与买家共享',
+  'c.grs.n':'全球回收标准（GRS）','c.grs':'再生材料认证','c.ocs.n':'有机含量标准（OCS）','c.ocs':'有机材料认证','c.scan':'供应链安全与合规审核',
+  'retail.h3':'深受欧美知名零售商信赖',
+  'retail.p':'我们的产品目前在这些零售商有售。如需您所在市场的合作案例，欢迎咨询。',
+  'contact.intro':'请告诉我们产品、数量和目标市场，我们的团队会回复报价和打样时间。',
+  'f.name':'姓名','f.company':'公司','f.email':'邮箱','f.country':'国家/地区','f.product':'产品线','f.qty':'订单数量','f.msg':'项目详情',
+  'f.qty.ph':'例如：每款5,000件','f.msg.ph':'款式、尺码范围、材料、包装、目标价格、交货日期',
+  'f.send':'发送询价','f.note':'您的询价将直接发送给我们的销售负责人 Ryan Lu。',
+  'person.role':'PAWSIGN 集团销售负责人',
+  'cat.title':'下载2025年产品目录','cat.sub':'共58页，PDF，15 MB',
+  'group':'PAWSIGN 集团','close':'关闭'
+};
+const T = {
+  en:{several:'Several products', sending:'Sending…', sendingNote:'Sending your inquiry…', sentH:'Inquiry sent',
+      sent:(n,e)=>`Thank you, ${n}. Ryan Lu will reply to ${e} with pricing and sample timing.`,
+      fail:(m,e)=>`Your inquiry could not be sent. Check your connection and try again, or <a href="${m}">email it to ${e}</a>.`,
+      enlarge:'Enlarge photo', title:'PAWSIGN | Pet Products Manufacturer in China and Cambodia', tablist:'Product lines', lightbox:'Product photo', menu:'Menu'},
+  zh:{several:'多种产品', sending:'发送中…', sendingNote:'正在发送您的询价…', sentH:'询价已发送',
+      sent:(n,e)=>`谢谢您，${n}。Ryan Lu 会回复至 ${e}，提供报价和打样时间。`,
+      fail:(m,e)=>`询价发送失败。请检查网络后重试，或<a href="${m}">直接发邮件至 ${e}</a>。`,
+      enlarge:'放大图片', title:'PAWSIGN | 中国和柬埔寨宠物用品制造商', tablist:'产品线', lightbox:'产品图片', menu:'菜单'}
+};
+
+/* ---------------- Language ---------------- */
+const EN = {};
+document.querySelectorAll('[data-i18n]').forEach(el => { if (!(el.dataset.i18n in EN)) EN[el.dataset.i18n] = el.innerHTML; });
+document.querySelectorAll('[data-i18n-ph]').forEach(el => EN[el.dataset.i18nPh] = el.placeholder);
+let lang = 'en';
+function storeGet(){ try { return localStorage.getItem('lang'); } catch(e) { return null; } }
+function storeSet(v){ try { localStorage.setItem('lang', v); } catch(e) {} }
+
+function setLang(l){
+  lang = l;
+  const dict = l === 'zh' ? ZH : EN;
+  document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
+  document.title = T[l].title;
+  document.querySelectorAll('[data-i18n]').forEach(el => { const v = dict[el.dataset.i18n] ?? EN[el.dataset.i18n]; if (v !== undefined) el.innerHTML = v; });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => el.placeholder = dict[el.dataset.i18nPh] ?? EN[el.dataset.i18nPh]);
+  const btn = document.getElementById('lang');
+  btn.textContent = l === 'zh' ? 'EN' : '中文';
+  btn.lang = l === 'zh' ? 'en' : 'zh-CN';
+  btn.setAttribute('aria-label', l === 'zh' ? 'Switch to English' : '切换到中文');
+  document.getElementById('tabs').setAttribute('aria-label', T[l].tablist);
+  document.getElementById('lightbox').setAttribute('aria-label', T[l].lightbox);
+  document.getElementById('menu-btn').setAttribute('aria-label', T[l].menu);
+  renderTabs(); showLine(current, false); renderSelect();
+  storeSet(l);
+}
+document.getElementById('lang').addEventListener('click', () => setLang(lang === 'en' ? 'zh' : 'en'));
+
+/* ---------------- Products ---------------- */
+let current = 0;
+const tabsEl = document.getElementById('tabs');
+function renderTabs(){
+  tabsEl.innerHTML = LINES.map((l, i) => `<button class="tab" role="tab" type="button" id="tab-${l.id}" aria-controls="panel" aria-selected="${i === current}" tabindex="${i === current ? 0 : -1}">
+    <img src="${P}${l.img[0]}.jpg" alt="">${l[lang].tab}</button>`).join('');
+}
+function showLine(i, animate = true){
+  current = i;
+  const l = LINES[i], c = l[lang];
+  tabsEl.querySelectorAll('.tab').forEach((t, k) => { t.setAttribute('aria-selected', k === i); t.tabIndex = k === i ? 0 : -1; });
+  document.getElementById('panel').setAttribute('aria-labelledby', 'tab-' + l.id);
+  document.getElementById('p-title').textContent = c.t;
+  document.getElementById('p-desc').textContent = c.d;
+  document.getElementById('p-made').textContent = c.made;
+  document.getElementById('p-cap').textContent = c.cap;
+  const grid = document.getElementById('p-grid');
+  grid.innerHTML = l.img.map(n => `<button type="button" aria-label="${T[lang].enlarge}: ${c.t}"><img loading="lazy" src="${P}${n}.jpg" alt="${c.t}"></button>`).join('');
+  if (animate) { grid.classList.remove('swap'); void grid.offsetWidth; grid.classList.add('swap'); }
+}
+tabsEl.addEventListener('click', e => { const t = e.target.closest('.tab'); if (t) showLine([...tabsEl.children].indexOf(t)); });
+tabsEl.addEventListener('keydown', e => {
+  if (!['ArrowRight','ArrowLeft','Home','End'].includes(e.key)) return;
+  e.preventDefault();
+  let i = current;
+  if (e.key === 'ArrowRight') i = (i + 1) % LINES.length;
+  if (e.key === 'ArrowLeft') i = (i - 1 + LINES.length) % LINES.length;
+  if (e.key === 'Home') i = 0;
+  if (e.key === 'End') i = LINES.length - 1;
+  showLine(i); tabsEl.children[i].focus();
+});
+document.getElementById('p-quote').addEventListener('click', () => { document.getElementById('product').value = LINES[current].en.t; });
+
+function renderSelect(){
+  const sel = document.getElementById('product'), keep = sel.value;
+  sel.innerHTML = LINES.map(l => `<option value="${l.en.t}">${l[lang].t}</option>`).join('') + `<option value="Several products">${T[lang].several}</option>`;
+  if (keep) sel.value = keep;
+}
+
+/* Hero wall and retailer logos */
+const WALL = [
   ['toys-1','apparel-1','beds-1','sweaters-1','costumes-3','enrich-2'],
   ['outerwear-5','toys-5','access-1','seasonal-3','sweaters-4','beds-5'],
   ['costumes-1','toys-3','apparel-3','outerwear-1','beds-3','toys-6'],
 ];
-wall.forEach((col, i) => {
-  const c = document.getElementById('col' + (i + 1));
-  c.innerHTML = [...col, ...col].map(n => `<figure><img src="${P}${n}.jpg" alt=""></figure>`).join('');
+WALL.forEach((col, i) => {
+  document.getElementById('col' + (i + 1)).innerHTML = [...col, ...col].map(n => `<figure><img src="${P}${n}.jpg" alt=""></figure>`).join('');
 });
+document.getElementById('marquee').innerHTML = [...SHOPS, ...SHOPS].map(([f, n]) => `<span><img src="assets/logos/${f}.png" alt="${n}"></span>`).join('');
+document.getElementById('retailers').innerHTML = SHOPS.map(([f, n]) => `<div><img src="assets/logos/${f}.png" alt="${n}" loading="lazy"></div>`).join('');
 
-const shops = ['target','walmart','petsmart','petco','action','walgreens','tjmaxx','cvs','lowes','carrefour','ross','aldi'];
-const names = {target:'Target',walmart:'Walmart',petsmart:'PetSmart',petco:'Petco',action:'Action',walgreens:'Walgreens',tjmaxx:'TJ Maxx',cvs:'CVS',lowes:"Lowe's",carrefour:'Carrefour',ross:'Ross',aldi:'ALDI'};
-document.getElementById('marquee').innerHTML = [...shops, ...shops].map(s => `<span><img src="assets/logos/${s}.png" alt="${names[s]}"></span>`).join('');
-document.getElementById('retailers').innerHTML = shops.map(s => `<div><img src="assets/logos/${s}.png" alt="${names[s]}"></div>`).join('');
+/* ---------------- Mobile menu ---------------- */
+const menuBtn = document.getElementById('menu-btn'), nav = document.getElementById('site-nav');
+menuBtn.addEventListener('click', () => { const open = nav.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', open); });
+nav.addEventListener('click', e => { if (e.target.closest('a')) { nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); } });
 
+/* ---------------- Lightbox ---------------- */
 const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lb-img');
+let lastFocus = null;
 document.addEventListener('click', e => {
-  const b = e.target.closest('.shots button');
-  if (b) { const im = b.querySelector('img'); lbImg.src = im.src; lbImg.alt = im.alt; lb.classList.add('open'); document.getElementById('lb-close').focus(); }
+  const b = e.target.closest('.grid8 button');
+  if (b) { const im = b.querySelector('img'); lbImg.src = im.src; lbImg.alt = im.alt; lastFocus = b; lb.classList.add('open'); document.getElementById('lb-close').focus(); }
 });
-const closeLb = () => lb.classList.remove('open');
+const closeLb = () => { if (!lb.classList.contains('open')) return; lb.classList.remove('open'); if (lastFocus) lastFocus.focus(); };
 document.getElementById('lb-close').addEventListener('click', closeLb);
 lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 
+/* ---------------- Quote form ---------------- */
 // Quote requests are emailed to this address through FormSubmit (formsubmit.co).
 // To send them somewhere else, change it here and in the form's action attribute.
 const QUOTE_EMAIL = 'ryan@gladpaws.com.cn';
 const quote = document.getElementById('quote');
-const sendBtn = document.getElementById('send');
-const statusEl = document.getElementById('form-status');
-
 quote.addEventListener('submit', async e => {
   e.preventDefault();
+  const sendBtn = document.getElementById('send'), statusEl = document.getElementById('form-status');
   const f = new FormData(quote);
   if (f.get('_honey')) return;               // spam bot filled the hidden field
   const data = Object.fromEntries(f.entries());
   delete data._honey;
   data._subject = `Quote request: ${data.product} from ${data.company}`;
   data._replyto = data.email;                 // Ryan can reply straight to the buyer
-
-  sendBtn.disabled = true; sendBtn.textContent = 'Sending…';
-  statusEl.className = 'form-note'; statusEl.textContent = 'Sending your inquiry…';
+  data.site_language = lang === 'zh' ? 'Chinese' : 'English';
+  sendBtn.disabled = true; sendBtn.textContent = T[lang].sending;
+  statusEl.className = 'form-note'; statusEl.textContent = T[lang].sendingNote;
   try {
     const res = await fetch(`https://formsubmit.co/ajax/${QUOTE_EMAIL}`, {
       method: 'POST',
@@ -572,20 +859,23 @@ quote.addEventListener('submit', async e => {
       body: JSON.stringify(data)
     });
     if (!res.ok) throw new Error('HTTP ' + res.status);
-    quote.innerHTML = `<div class="sent" role="status"><div class="tick">✓</div><h3>Inquiry sent</h3>
-      <p>Thank you, ${escapeHtml(data.name)}. Ryan Lu will reply to ${escapeHtml(data.email)} with pricing and sample timing.</p></div>`;
+    quote.innerHTML = `<div class="sent" role="status"><div class="tick">✓</div><h3>${T[lang].sentH}</h3><p>${T[lang].sent(esc(data.name), esc(data.email))}</p></div>`;
   } catch (err) {
     const body = `Name: ${data.name}\nCompany: ${data.company}\nEmail: ${data.email}\nCountry: ${data.country}\nProduct: ${data.product}\nQuantity: ${data.qty}\n\n${data.msg}`;
     const mailto = `mailto:${QUOTE_EMAIL}?subject=${encodeURIComponent(data._subject)}&body=${encodeURIComponent(body)}`;
     statusEl.className = 'form-note error';
-    statusEl.innerHTML = `Your inquiry could not be sent. Check your connection and try again, or <a href="${mailto}">email it to ${QUOTE_EMAIL}</a>.`;
-    sendBtn.disabled = false; sendBtn.textContent = 'Send inquiry';
+    statusEl.innerHTML = T[lang].fail(mailto, QUOTE_EMAIL);
+    sendBtn.disabled = false; sendBtn.textContent = lang === 'zh' ? ZH['f.send'] : EN['f.send'];
   }
 });
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+/* ---------------- Start ---------------- */
 document.getElementById('year').textContent = new Date().getFullYear();
+const urlLang = new URLSearchParams(location.search).get('lang');
+const start = urlLang === 'zh' || urlLang === 'en' ? urlLang : (storeGet() || ((navigator.language || '').toLowerCase().startsWith('zh') ? 'zh' : 'en'));
+renderTabs(); showLine(0, false); renderSelect();
+if (start === 'zh') setLang('zh');
 </script>
 </body>
 </html>
