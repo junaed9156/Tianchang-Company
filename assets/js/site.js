@@ -335,7 +335,7 @@
   } });
 
   // ---- Floating quote button: after the hero, hidden over the contact form
-  ScrollTrigger.create({ trigger: '#story', start: 'top 60%', endTrigger: '#contact', end: 'top 80%',
+  ScrollTrigger.create({ trigger: '.numbers', start: 'top 60%', endTrigger: '#contact', end: 'top 80%',
     onToggle: self => $('#fab').classList.toggle('show', self.isActive) });
 
   // ---- Hero parallax (scroll + mouse)
@@ -362,12 +362,6 @@
     gsap.to(wordsLoop, { timeScale: dir, duration: 1.2, delay: .2, overwrite: false });
   } });
 
-  // ---- Story text lights up word by word
-  const story = $('#story-text');
-  const parts = zh ? [...story.textContent] : story.textContent.split(/(\s+)/);
-  story.innerHTML = parts.map(p => /^\s+$/.test(p) ? p : `<span class="w">${p}</span>`).join('');
-  gsap.to('#story-text .w', { opacity: 1, ease: 'none', stagger: .1,
-    scrollTrigger: { trigger: story, start: 'top 78%', end: 'bottom 42%', scrub: .6 } });
 
   // ---- Numbers count up
   $$('.numbers .count').forEach((el, i) => ScrollTrigger.create({ trigger: el, start: 'top 85%', once: true,
@@ -473,21 +467,13 @@
 
   // ---- Custom cursor
   if (fine) {
-    const cur = $('.cursor'), dot = $('.cursor-dot'), ring = $('.cursor-ring'), label = $('#cursor-label');
-    label.textContent = t.view;
-    const dx = gsap.quickTo(dot, 'x', { duration: .1 }), dy = gsap.quickTo(dot, 'y', { duration: .1 });
-    const rx = gsap.quickTo(ring, 'x', { duration: .45 }), ry = gsap.quickTo(ring, 'y', { duration: .45 });
-    gsap.set([dot, ring], { opacity: 0 });
-    let seen = false;
-    window.addEventListener('mousemove', e => { if (!seen) { seen = true; gsap.set([dot, ring], { x: e.clientX, y: e.clientY }); gsap.to([dot, ring], { opacity: 1, duration: .3 }); } dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY); });
-    document.addEventListener('mouseover', e => {
-      const tg = e.target;
-      cur.classList.toggle('view', !!tg.closest('[data-cursor="view"]'));
-      cur.classList.toggle('hover', !tg.closest('[data-cursor="view"]') && !!tg.closest('a, button, [data-cursor="hover"], .tab, .fac-tab'));
-      cur.classList.toggle('dark', !!tg.closest('.numbers, .process, .cambodia, .foot, .words, .cta, .contact-card, .lightbox, .coll-end, .loader'));
-    });
-    document.addEventListener('mouseleave', () => gsap.to([dot, ring], { opacity: 0, duration: .2 }));
-    document.addEventListener('mouseenter', () => gsap.to([dot, ring], { opacity: 1, duration: .2 }));
+    // "View" bubble that follows the normal mouse pointer over product photos
+    const cur = $('.cursor'), ring = $('.cursor-ring');
+    $('#cursor-label').textContent = t.view;
+    const rx = gsap.quickTo(ring, 'x', { duration: .2 }), ry = gsap.quickTo(ring, 'y', { duration: .2 });
+    window.addEventListener('mousemove', e => { rx(e.clientX); ry(e.clientY); }, { passive: true });
+    document.addEventListener('mouseover', e => cur.classList.toggle('view', !!e.target.closest('[data-cursor="view"]')));
+    document.addEventListener('mouseleave', () => cur.classList.remove('view'));
   }
 
   window.addEventListener('load', () => ScrollTrigger.refresh());

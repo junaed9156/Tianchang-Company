@@ -79,18 +79,15 @@ html.intro .curtain{display:block;position:fixed;inset:0;z-index:99;background:v
 .cursor{display:none}
 @media (hover:hover) and (pointer:fine){
   html.js:not(.reduce) .cursor{display:block}
-  html.js:not(.reduce) body,html.js:not(.reduce) a,html.js:not(.reduce) button{cursor:none}
-  html.js:not(.reduce) input,html.js:not(.reduce) textarea,html.js:not(.reduce) select{cursor:text}
 }
-.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;z-index:90;pointer-events:none;border-radius:50%}
-.cursor-dot{width:8px;height:8px;margin:-4px 0 0 -4px;background:var(--orange)}
-.cursor-ring{width:42px;height:42px;margin:-21px 0 0 -21px;border:1.5px solid var(--navy);display:grid;place-items:center;transition:width .35s var(--ease),height .35s var(--ease),margin .35s var(--ease),background .35s,border-color .35s}
-.cursor-ring span{font-size:13px;font-weight:600;color:#fff;opacity:0;transition:opacity .2s}
-.cursor.hover .cursor-ring{width:64px;height:64px;margin:-32px 0 0 -32px;border-color:var(--orange);background:rgba(255,90,31,.08)}
-.cursor.view .cursor-ring{width:88px;height:88px;margin:-44px 0 0 -44px;background:var(--navy);border-color:var(--navy)}
-.cursor.view .cursor-ring span{opacity:1}
-.cursor.view .cursor-dot{opacity:0}
-.cursor.dark .cursor-ring{border-color:#fff}
+/* The normal mouse pointer always stays visible. Over product photos a small
+   "View" bubble appears beside it. */
+.cursor-dot{display:none}
+.cursor-ring{position:fixed;top:0;left:0;z-index:90;pointer-events:none;width:72px;height:72px;margin:14px 0 0 14px}
+.cursor-ring span{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;background:var(--navy);color:#fff;font-size:13px;font-weight:600;
+  box-shadow:0 10px 24px -8px rgba(18,32,74,.5);transform:scale(0);transform-origin:top left;transition:transform .3s var(--ease)}
+.cursor.view .cursor-ring span{transform:scale(1)}
+[data-cursor="view"]{cursor:zoom-in}
 
 /* ---------- Header ---------- */
 .site-head{position:fixed;top:0;left:0;right:0;z-index:50;transition:transform .5s var(--ease),background .35s,box-shadow .35s}
@@ -177,11 +174,6 @@ html[lang|="zh"] .hero-title{font-size:clamp(44px,5.8vw,96px)}
 .words-track i svg{width:46px;height:46px}
 
 /* ---------- Story ---------- */
-.story{padding:clamp(100px,14vw,200px) 0}
-.story-text{font-family:var(--display);font-size:clamp(30px,4.2vw,62px);line-height:1.15;letter-spacing:-.015em;color:var(--navy);max-width:22ch;margin:0 auto;text-align:left}
-html[lang|="zh"] .story-text{max-width:20em;line-height:1.4;letter-spacing:0}
-.story-text .w{opacity:.14}
-html.reduce .story-text .w,html:not(.js) .story-text .w{opacity:1}
 
 /* ---------- Numbers ---------- */
 .numbers{position:relative;overflow:hidden;background:var(--navy);color:#fff;padding:clamp(80px,10vw,140px) 0}
@@ -410,6 +402,7 @@ form.quote .btn[disabled]{opacity:.7;cursor:progress}
 .avatar img{width:48px;height:auto}
 .person b{display:block;font-family:var(--display);font-size:28px}
 .person span{color:#c7cfe6}
+.about{color:#c7cfe6;font-size:15px;line-height:1.65;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.14)}
 .reach{display:grid;gap:8px;padding:26px 0;border-bottom:1px solid rgba(255,255,255,.14)}
 .reach a{font-weight:600;font-size:19px;overflow-wrap:anywhere;transition:color .3s}
 .reach a:hover{color:var(--gold)}
