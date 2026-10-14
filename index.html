@@ -1,315 +1,547 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tianchang Sign Crafts</title>
-  <meta name="description" content="Tianchang Sign Crafts Co., Ltd. (SIGN 喜冠) — professional sign manufacturer in Chajian Town, Tianchang, Anhui, China.">
-  <link rel="icon" href="assets/logo.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@500;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --brand: #2e3192;
-      --brand-dark: #1f2170;
-      --gold: #c9a227;
-      --bg: #ffffff;
-      --bg-alt: #f3f4f8;
-      --text: #1d1f2b;
-      --muted: #5b5f73;
-      --card: #ffffff;
-      --border: #e1e3ec;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) {
-        --bg: #11121a; --bg-alt: #181a26; --text: #eceef6; --muted: #a3a7bd;
-        --card: #1d2030; --border: #2c3046; --brand: #6b6fe0; --brand-dark: #4b4fc0;
-      }
-    }
-    :root[data-theme="dark"] {
-      --bg: #11121a; --bg-alt: #181a26; --text: #eceef6; --muted: #a3a7bd;
-      --card: #1d2030; --border: #2c3046; --brand: #6b6fe0; --brand-dark: #4b4fc0;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: Inter, "Noto Sans SC", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-    a { color: inherit; }
-    .wrap { max-width: 1140px; margin: 0 auto; padding: 0 16px; }
-    h1, h2, h3 { font-family: "Playfair Display", "Noto Sans SC", serif; line-height: 1.2; }
-    h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); margin-bottom: .5rem; }
-    .eyebrow { color: var(--gold); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-size: .8rem; margin-bottom: .5rem; }
-    .lead { color: var(--muted); max-width: 680px; margin-bottom: 2.5rem; }
-    section { padding: 80px 0; }
-    section:nth-of-type(even) { background: var(--bg-alt); }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAWSIGN | Pet Products Manufacturer in China and Cambodia</title>
+<meta name="description" content="PAWSIGN makes pet apparel, sweaters, toys and beds in three factories in China and Cambodia. BSCI, Sedex, GRS and OCS certified. Supplier to Target, Walmart, PetSmart and more.">
+<link rel="icon" href="assets/brand/pawsign.png">
+<style>
+/* Fonts are hosted with the site so they load in China too */
+@font-face{font-family:"Adventor";src:url(assets/fonts/adventor-bold.woff) format("woff");font-weight:700;font-display:swap}
+@font-face{font-family:"Inter";src:url(assets/fonts/inter-regular.woff) format("woff");font-weight:400;font-display:swap}
+@font-face{font-family:"Inter";src:url(assets/fonts/inter-medium.woff) format("woff");font-weight:500;font-display:swap}
+@font-face{font-family:"Inter";src:url(assets/fonts/inter-semibold.woff) format("woff");font-weight:600 700;font-display:swap}
+:root{
+  --ink:#14213d;          /* collar navy */
+  --ink-2:#22325a;
+  --swoosh:#f25c1f;       /* catalog orange arc */
+  --swoosh-dark:#d44812;
+  --gold:#c8962e;         /* PAWSIGN logo gold */
+  --white:#ffffff;
+  --mist:#f1f3f6;
+  --line:#dde1e8;
+  --muted:#5a6275;
+  --display:"Adventor", "Century Gothic", "Avenir", sans-serif;
+  --body:"Inter", "Segoe UI", system-ui, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);font-size:17px;line-height:1.6;color:var(--ink);background:var(--white)}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--swoosh);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.08;letter-spacing:-.015em}
+h2{font-size:48px;max-width:16ch}
+.intro{color:var(--muted);font-size:19px;max-width:58ch;margin-top:16px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;font-weight:600;font-size:16px;text-decoration:none;border:0;cursor:pointer;font-family:var(--body);transition:background .2s,transform .2s}
+.btn-primary{background:var(--swoosh);color:#fff}
+.btn-primary:hover{background:var(--swoosh-dark)}
+.btn-line{border:1.5px solid var(--ink);color:var(--ink);background:transparent}
+.btn-line:hover{background:var(--ink);color:#fff}
 
-    /* Header */
-    header { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--border); }
-    .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
-    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .brand img { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; }
-    .brand strong { display: block; font-size: 1rem; color: var(--brand); }
-    .brand span { font-size: .75rem; color: var(--muted); }
-    nav ul { display: flex; gap: 24px; list-style: none; }
-    nav a { text-decoration: none; font-weight: 500; font-size: .92rem; color: var(--muted); }
-    nav a:hover { color: var(--brand); }
-    .menu-btn { display: none; background: none; border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; color: var(--text); font-size: 1.1rem; }
-    @media (max-width: 860px) {
-      .menu-btn { display: block; }
-      nav ul { display: none; position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--border); }
-      nav ul.open { display: flex; }
-      nav li a { display: block; padding: 14px 16px; }
-    }
+/* ---------- Header ---------- */
+.site-head{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;height:80px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo img{height:46px;width:auto}
+.logo b{font-family:var(--display);font-size:22px;letter-spacing:.02em;display:block;line-height:1}
+.logo small{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.site-nav{display:flex;align-items:center;gap:30px}
+.site-nav a{text-decoration:none;font-weight:500;font-size:15.5px;color:var(--ink-2)}
+.site-nav a:hover{color:var(--swoosh)}
+.site-nav .btn{padding:11px 22px;font-size:15px;color:#fff}
 
-    /* Hero */
-    .hero { background: linear-gradient(135deg, #2e3192 0%, #1a1c5e 100%); color: #fff; padding: 96px 0; }
-    .hero-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: center; }
-    .hero h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); margin-bottom: 1rem; }
-    .hero h1 .cn { display: block; font-family: "Noto Sans SC", sans-serif; font-size: .55em; color: var(--gold); margin-top: .4rem; }
-    .hero p { color: #d4d6f2; max-width: 560px; margin-bottom: 2rem; }
-    .hero-logo { background: #eee; border-radius: 20px; padding: 24px; box-shadow: 0 20px 50px rgba(0,0,0,.35); max-width: 340px; justify-self: center; }
-    .hero-logo img { width: 100%; display: block; }
-    .btns { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn { display: inline-block; padding: 12px 24px; border-radius: 999px; font-weight: 600; text-decoration: none; }
-    .btn-gold { background: var(--gold); color: #1a1c5e; }
-    .btn-ghost { border: 1px solid rgba(255,255,255,.5); color: #fff; }
-    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; max-width: 520px; }
-    .stats b { display: block; font-size: 1.8rem; color: var(--gold); font-family: "Playfair Display", serif; }
-    .stats span { font-size: .8rem; color: #c3c6ea; }
-    @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } .hero-logo { max-width: 240px; } }
+/* ---------- Hero ---------- */
+.hero{position:relative;overflow:hidden;background:var(--white)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;min-height:700px;position:relative;z-index:2}
+.hero-copy{padding:72px 0}
+.hero-kicker{display:inline-flex;align-items:center;gap:10px;font-weight:600;color:var(--ink-2);background:var(--mist);border-radius:999px;padding:7px 16px 7px 8px;font-size:14.5px}
+.hero-kicker img{height:24px}
+.hero h1{font-size:62px;margin:24px 0 24px;max-width:15ch}
+.hero p.lead{font-size:20px;color:var(--muted);max-width:50ch}
+.hero .btns{display:flex;gap:14px;margin-top:34px}
+.spec{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:52px;border-top:1px solid var(--line);padding-top:24px}
+.spec div{padding:0 20px;border-left:1px solid var(--line)}
+.spec div:first-child{padding-left:0;border-left:0}
+.spec b{display:block;font-family:var(--display);font-size:30px;line-height:1;font-weight:700;white-space:nowrap}
+.spec span{display:block;color:var(--muted);font-size:14px;margin-top:10px;line-height:1.4}
 
-    /* Cards */
-    .grid { display: grid; gap: 20px; }
-    .g3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 26px; }
-    .card h3 { font-size: 1.15rem; margin-bottom: .5rem; color: var(--brand); }
-    .card p { color: var(--muted); font-size: .94rem; }
-    .icon { width: 44px; height: 44px; border-radius: 10px; background: var(--brand); color: #fff; display: grid; place-items: center; font-size: 1.3rem; margin-bottom: 14px; }
+.wall{position:relative;height:700px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 12%,#000 88%,transparent 100%);
+          mask-image:linear-gradient(to bottom,transparent 0,#000 12%,#000 88%,transparent 100%)}
+.wall-col{display:flex;flex-direction:column;gap:16px;animation:drift 46s linear infinite}
+.wall-col:nth-child(2){animation-duration:58s;animation-direction:reverse;margin-top:-90px}
+.wall-col:nth-child(3){animation-duration:52s;margin-top:-40px}
+.wall-col figure{background:var(--mist);border-radius:22px;overflow:hidden;aspect-ratio:1/1}
+.wall-col img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply}
+@keyframes drift{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+.swoosh{position:absolute;right:-120px;bottom:-210px;width:980px;z-index:1;pointer-events:none}
 
-    /* About */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-    .about-grid p { color: var(--muted); margin-bottom: 1rem; }
-    .facts { list-style: none; }
-    .facts li { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: .94rem; }
-    .facts li span:first-child { color: var(--muted); }
-    .facts li span:last-child { font-weight: 600; text-align: right; }
-    @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } }
+/* ---------- Retailer band ---------- */
+.retail-band{background:var(--ink);color:#fff;padding:26px 0;overflow:hidden}
+.retail-band .wrap{display:flex;align-items:center;gap:36px}
+.retail-band p{flex:none;font-weight:600;font-size:15px;color:#c9d0e2;max-width:12ch;line-height:1.3}
+.marquee{overflow:hidden;flex:1;-webkit-mask-image:linear-gradient(to right,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(to right,transparent,#000 6%,#000 94%,transparent)}
+.marquee-track{display:flex;gap:16px;width:max-content;animation:slide 40s linear infinite}
+.marquee-track span{background:#fff;border-radius:12px;height:64px;width:150px;display:grid;place-items:center;padding:10px 18px}
+.marquee-track img{max-height:40px;max-width:110px;object-fit:contain}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-    /* Process */
-    .steps { counter-reset: s; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
-    .step { position: relative; padding-top: 52px; }
-    .step::before { counter-increment: s; content: counter(s, decimal-leading-zero); position: absolute; top: 0; left: 0; font-family: "Playfair Display", serif; font-size: 2.2rem; color: var(--gold); }
-    .step h3 { font-size: 1.05rem; margin-bottom: .3rem; }
-    .step p { color: var(--muted); font-size: .9rem; }
+/* ---------- Sections ---------- */
+.section{padding:120px 0}
+.section-mist{background:var(--mist)}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:48px;margin-bottom:56px}
+.section-head .intro{margin-top:0}
 
-    /* Group companies */
-    .co { display: flex; flex-direction: column; }
-    .co .tag { align-self: flex-start; font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--bg-alt); color: var(--brand); margin-bottom: 12px; }
-    .co.main { border: 2px solid var(--brand); }
-    .co.main .tag { background: var(--brand); color: #fff; }
-    .co dl { margin-top: 14px; font-size: .9rem; }
-    .co dt { color: var(--muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; margin-top: 10px; }
-    .co dd { font-weight: 500; }
+/* Products */
+.line{display:grid;grid-template-columns:300px 1fr;gap:48px;padding:40px 0;border-top:1px solid var(--line)}
+.line:last-child{border-bottom:1px solid var(--line)}
+.line h3{font-size:28px;margin-bottom:10px}
+.line p{color:var(--muted);font-size:16px}
+.line dl{margin-top:18px;font-size:14.5px;display:grid;grid-template-columns:auto 1fr;gap:6px 14px}
+.line dt{color:var(--muted)}
+.line dd{font-weight:600}
+.line .cap{color:var(--swoosh-dark)}
+.shots{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;align-content:start}
+.shots button{background:var(--mist);border:0;border-radius:16px;overflow:hidden;aspect-ratio:1/1;cursor:zoom-in;padding:0;transition:transform .25s}
+.shots button:hover{transform:translateY(-4px)}
+.shots img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply}
+.oem{margin-top:44px;display:flex;align-items:center;justify-content:space-between;gap:32px;background:var(--ink);color:#fff;border-radius:24px;padding:34px 40px}
+.oem h3{font-size:26px}
+.oem p{color:#c9d0e2;margin-top:6px;max-width:62ch}
 
-    /* Contact */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-    form { display: grid; gap: 14px; }
-    input, textarea, select { width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--text); font: inherit; }
-    textarea { min-height: 120px; resize: vertical; }
-    button.submit { background: var(--brand); color: #fff; border: 0; padding: 14px; border-radius: 10px; font-weight: 600; font: inherit; cursor: pointer; }
-    button.submit:hover { background: var(--brand-dark); }
-    .map { border-radius: 14px; overflow: hidden; border: 1px solid var(--border); min-height: 220px; background: var(--bg-alt); }
-    .map iframe { width: 100%; height: 100%; min-height: 260px; border: 0; }
-    @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
+/* Factories */
+.group-map{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:64px;border:1px solid var(--line);border-radius:20px;background:#fff;overflow:hidden}
+.group-map div{padding:24px 28px;border-left:1px solid var(--line)}
+.group-map div:first-child{border-left:0}
+.group-map b{font-family:var(--display);font-size:20px;display:block}
+.group-map span{color:var(--muted);font-size:14.5px}
+.group-map .flag{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--swoosh);margin-right:8px;vertical-align:middle}
 
-    footer { background: #14153f; color: #b9bce0; padding: 40px 0; font-size: .88rem; }
-    .foot { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: center; }
-    .foot img { width: 40px; border-radius: 6px; vertical-align: middle; margin-right: 10px; }
-  </style>
+.factory{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding:56px 0}
+.factory + .factory{border-top:1px solid var(--line)}
+.factory:nth-of-type(even) .factory-photo{order:2}
+.factory-photo{position:relative}
+.factory-photo > img{width:100%;border-radius:8px;mix-blend-mode:multiply}
+.badge{position:absolute;left:-10px;top:-10px;background:var(--ink);border-radius:18px;padding:16px 20px;box-shadow:0 14px 30px rgba(20,33,61,.25)}
+.badge img{height:46px;width:auto}
+.factory h3{font-size:36px}
+.where{color:var(--swoosh-dark);font-weight:600;margin-top:8px}
+.factory p.desc{color:var(--muted);margin-top:14px}
+.facts{margin-top:24px;border-top:1px solid var(--line)}
+.facts div{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.facts dt{color:var(--muted)}
+.facts dd{font-weight:600}
+
+.capacity{margin-top:56px;background:#fff;border-radius:24px;padding:40px;display:grid;grid-template-columns:280px 1fr;gap:48px;border:1px solid var(--line)}
+.capacity h3{font-size:30px}
+.capacity p{color:var(--muted);margin-top:10px}
+.bars{display:grid;gap:14px}
+.bar{display:grid;grid-template-columns:250px 1fr 110px;align-items:center;gap:18px;font-size:15px}
+.bar .track{height:14px;background:var(--mist);border-radius:99px;overflow:hidden}
+.bar .fill{height:100%;border-radius:99px;background:var(--ink)}
+.bar.kh .fill{background:var(--swoosh)}
+.bar b{text-align:right;font-family:var(--display);font-size:18px}
+.legend{display:flex;gap:22px;font-size:14px;color:var(--muted);margin-top:6px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:7px;vertical-align:-1px;background:var(--ink)}
+.legend .kh i{background:var(--swoosh)}
+
+/* Cambodia advantage */
+.duty{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.duty article{border:1px solid var(--line);border-radius:20px;padding:26px 26px 28px;background:#fff}
+.duty .market{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.duty .market img{width:40px;height:28px;object-fit:cover;border-radius:4px;box-shadow:0 0 0 1px var(--line)}
+.duty .market b{font-family:var(--display);font-size:21px}
+.duty p{color:var(--muted);font-size:15.5px}
+.duty-note{margin-top:22px;color:var(--muted);font-size:14.5px}
+
+/* Trust */
+.trust{background:var(--ink);color:#fff}
+.trust h2{color:#fff}
+.trust .intro{color:#c9d0e2}
+.certs{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.cert{background:#fff;color:var(--ink);border-radius:20px;padding:22px;display:flex;flex-direction:column}
+.cert .logo-box{height:96px;display:grid;place-items:center;margin-bottom:16px}
+.cert .logo-box img{max-height:88px;max-width:100%;object-fit:contain}
+.cert b{font-family:var(--display);font-size:19px;line-height:1.2}
+.cert span{color:var(--muted);font-size:14.5px;margin-top:6px;line-height:1.45}
+.retail-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin:96px 0 36px}
+.retail-head h3{font-size:40px;max-width:18ch}
+.retail-head p{color:#c9d0e2;max-width:44ch}
+.retailers{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.retailers div{background:#fff;border-radius:18px;height:118px;display:grid;place-items:center;padding:20px 22px}
+.retailers img{max-height:70px;max-width:100%;object-fit:contain}
+
+/* Contact */
+.contact{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:start}
+form.quote{background:#fff;border:1px solid var(--line);border-radius:24px;padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+form.quote label{display:grid;gap:6px;font-size:14.5px;font-weight:600}
+form.quote .full{grid-column:1/-1}
+form.quote input,form.quote select,form.quote textarea{font:inherit;font-weight:400;font-size:16px;color:var(--ink);padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;background:#fff}
+form.quote input:focus,form.quote select:focus,form.quote textarea:focus{outline:none;border-color:var(--ink)}
+form.quote textarea{min-height:120px;resize:vertical}
+form.quote .btn{justify-self:start;font-size:16.5px;padding:16px 30px}
+.form-note{grid-column:1/-1;color:var(--muted);font-size:14px}
+.person{display:flex;align-items:center;gap:18px;padding-bottom:26px;border-bottom:1px solid var(--line)}
+.person .avatar{width:64px;height:64px;border-radius:50%;background:var(--ink);display:grid;place-items:center;flex:none}
+.person .avatar img{width:42px}
+.person b{font-family:var(--display);font-size:24px;display:block}
+.person span{color:var(--muted)}
+.reach{display:grid;gap:4px;padding:22px 0;border-bottom:1px solid var(--line)}
+.reach a{text-decoration:none;font-weight:600;font-size:18px}
+.reach a:hover{color:var(--swoosh)}
+.reach small{color:var(--muted);font-size:14px;font-weight:400;margin-left:8px}
+.addr{display:grid;gap:18px;padding-top:22px}
+.addr b{display:block;font-size:15.5px}
+.addr span{color:var(--muted);font-size:14.5px}
+
+/* Footer */
+footer{background:#0e1830;color:#aab3c9;padding:48px 0;font-size:14.5px}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:32px}
+footer .logo b{color:#fff}
+footer .logo small{color:#aab3c9}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(14,24,48,.86);display:none;place-items:center;z-index:50;padding:40px}
+.lightbox.open{display:grid}
+.lightbox img{max-width:min(720px,90vw);max-height:84vh;border-radius:20px;background:#fff}
+.lightbox button{position:absolute;top:24px;right:28px;background:#fff;border:0;border-radius:999px;padding:10px 18px;font:600 15px var(--body);cursor:pointer}
+
+@media (prefers-reduced-motion:reduce){
+  .wall-col,.marquee-track{animation:none}
+  html{scroll-behavior:auto}
+}
+@media (max-width:1100px){
+  .hero .wrap,.factory,.contact,.capacity{grid-template-columns:1fr}
+  .wall{height:520px}
+  .shots{grid-template-columns:repeat(3,1fr)}
+  .line{grid-template-columns:1fr}
+  .certs,.retailers{grid-template-columns:repeat(3,1fr)}
+  .duty,.group-map{grid-template-columns:1fr}
+  .site-nav a:not(.btn){display:none}
+  .factory:nth-of-type(even) .factory-photo{order:0}
+}
+</style>
 </head>
 <body>
 
-<header>
-  <div class="wrap nav">
-    <a class="brand" href="#home">
-      <img src="assets/logo.jpg" alt="SIGN 喜冠 logo">
-      <div><strong>Tianchang Sign Crafts</strong><span>SIGN 喜冠 · Tianchang, Anhui</span></div>
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="PAWSIGN home">
+      <img src="assets/brand/pawsign.png" alt="">
+      <div><b>PAWSIGN</b><small>For pets, for life</small></div>
     </a>
-    <nav>
-      <button class="menu-btn" aria-label="Menu" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
-      <ul id="menu" onclick="this.classList.remove('open')">
-        <li><a href="#about">About</a></li>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#process">Process</a></li>
-        <li><a href="#group">Our Group</a></li>
-        <li><a href="#why">Why Us</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#products">Products</a>
+      <a href="#factories">Factories</a>
+      <a href="#cambodia">Cambodia advantage</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#customers">Customers</a>
+      <a class="btn btn-primary" href="#contact">Request a quote</a>
     </nav>
   </div>
 </header>
 
-<section class="hero" id="home">
-  <div class="wrap hero-grid">
-    <div>
-      <p class="eyebrow">Sign Manufacturer · Anhui, China</p>
-      <h1>Crafting Signs That Crown Your Brand<span class="cn">喜冠标识 · 匠心制造</span></h1>
-      <p>Tianchang Sign Crafts Co., Ltd. designs and manufactures high-quality signage — from illuminated channel letters to architectural wayfinding — for brands, retailers and projects in China and worldwide.</p>
+<main id="top">
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="hero-kicker"><img src="assets/brand/pawsign.png" alt="">Pet products manufacturer since 2008</span>
+      <h1>Pet apparel, toys and beds from our own factories</h1>
+      <p class="lead">PAWSIGN is a group of three factories in China and Cambodia. We design, sample, produce and export pet products for international brands and retailers.</p>
       <div class="btns">
-        <a class="btn btn-gold" href="#contact">Request a Quote</a>
-        <a class="btn btn-ghost" href="#products">View Products</a>
+        <a class="btn btn-primary" href="#contact">Request a quote</a>
+        <a class="btn btn-line" href="#factories">See our factories</a>
       </div>
-      <div class="stats">
-        <div><b>3</b><span>Group companies</span></div>
-        <div><b>OEM</b><span>& ODM service</span></div>
-        <div><b>Global</b><span>Export shipping</span></div>
-      </div>
-    </div>
-    <div class="hero-logo"><img src="assets/logo.jpg" alt="SIGN 喜冠 logo"></div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="wrap about-grid">
-    <div>
-      <p class="eyebrow">About Us</p>
-      <h2>Tianchang Sign Crafts Co., Ltd.</h2>
-      <p>Located in the Industrial Park of Chajian Town, Tianchang, Anhui, our factory brings together design, metalwork, acrylic fabrication, LED lighting and finishing under one roof.</p>
-      <p>Under the <strong>SIGN 喜冠</strong> brand, we deliver signage that combines precise craftsmanship with durable materials — built to look great on day one and to last for years outdoors.</p>
-    </div>
-    <ul class="facts">
-      <li><span>Company</span><span>Tianchang Sign Crafts Co., Ltd.</span></li>
-      <li><span>Brand</span><span>SIGN 喜冠</span></li>
-      <li><span>Business type</span><span>Manufacturer / Exporter</span></li>
-      <li><span>Address</span><span>Area B, Industrial Park, Chajian Town,<br>Tianchang, Anhui, China</span></li>
-      <li><span>Services</span><span>Design · Production · Installation guidance</span></li>
-    </ul>
-  </div>
-</section>
-
-<section id="products">
-  <div class="wrap">
-    <p class="eyebrow">Products</p>
-    <h2>What We Make</h2>
-    <p class="lead">A complete range of indoor and outdoor signage, fully customisable in size, material, colour and lighting.</p>
-    <div class="grid g3">
-      <div class="card"><div class="icon">💡</div><h3>LED Channel Letters</h3><p>Front-lit, back-lit (halo) and side-lit letters in stainless steel, aluminium and acrylic.</p></div>
-      <div class="card"><div class="icon">🔲</div><h3>Light Boxes</h3><p>Single and double-sided light boxes, fabric frames and slim LED displays for storefronts.</p></div>
-      <div class="card"><div class="icon">🏢</div><h3>Pylon & Monument Signs</h3><p>Large freestanding signs for malls, gas stations, hotels and corporate campuses.</p></div>
-      <div class="card"><div class="icon">🧭</div><h3>Wayfinding & ADA Signs</h3><p>Directional systems, room plates and braille signs for offices, hospitals and public spaces.</p></div>
-      <div class="card"><div class="icon">✨</div><h3>Metal & Acrylic Letters</h3><p>Brushed, mirror and painted 3D letters and logos for lobbies and reception walls.</p></div>
-      <div class="card"><div class="icon">🌈</div><h3>Neon & Display Signs</h3><p>Flexible LED neon, menu boards and custom decorative signage for retail and hospitality.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="process">
-  <div class="wrap">
-    <p class="eyebrow">How We Work</p>
-    <h2>From Idea to Installation</h2>
-    <p class="lead">A clear process that keeps every project on time and on spec.</p>
-    <div class="steps">
-      <div class="step"><h3>Consultation</h3><p>Share your logo, size and location — we recommend materials and lighting.</p></div>
-      <div class="step"><h3>Design & Quote</h3><p>We prepare drawings, renderings and a detailed quotation.</p></div>
-      <div class="step"><h3>Production</h3><p>Laser cutting, welding, painting and LED assembly in our own factory.</p></div>
-      <div class="step"><h3>Quality Check</h3><p>Every sign is lit, inspected and photographed before packing.</p></div>
-      <div class="step"><h3>Delivery</h3><p>Secure export packaging with installation guides shipped worldwide.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="group">
-  <div class="wrap">
-    <p class="eyebrow">Our Group</p>
-    <h2>Group Companies</h2>
-    <p class="lead">Tianchang Sign Crafts works together with two chain companies, giving clients more capacity, more materials and faster delivery.</p>
-    <div class="grid g3">
-      <div class="card co main">
-        <span class="tag">Head Company</span>
-        <h3>Tianchang Sign Crafts Co., Ltd.</h3>
-        <p>Main factory for design, manufacturing and export of signage under the SIGN 喜冠 brand.</p>
-        <dl>
-          <dt>Address</dt><dd>Area B, Industrial Park, Chajian Town, Tianchang, Anhui, China</dd>
-          <dt>Focus</dt><dd>Channel letters, light boxes, pylon signs, export orders</dd>
-        </dl>
-      </div>
-      <!-- TODO: replace with the real name and address of chain company 1 -->
-      <div class="card co">
-        <span class="tag">Chain Company 1</span>
-        <h3>[Chain Company 1 Name] Co., Ltd.</h3>
-        <p>[Short description — e.g. specialises in metal fabrication and stainless-steel lettering.]</p>
-        <dl>
-          <dt>Address</dt><dd>[Street, Town, City, Province, China]</dd>
-          <dt>Focus</dt><dd>[Main products / services]</dd>
-        </dl>
-      </div>
-      <!-- TODO: replace with the real name and address of chain company 2 -->
-      <div class="card co">
-        <span class="tag">Chain Company 2</span>
-        <h3>[Chain Company 2 Name] Co., Ltd.</h3>
-        <p>[Short description — e.g. specialises in LED modules, acrylic and display products.]</p>
-        <dl>
-          <dt>Address</dt><dd>[Street, Town, City, Province, China]</dd>
-          <dt>Focus</dt><dd>[Main products / services]</dd>
-        </dl>
+      <div class="spec">
+        <div><b>1.45M</b><span>units made every month</span></div>
+        <div><b>3</b><span>factories in China and Cambodia</span></div>
+        <div><b>900+</b><span>workers and supervisors</span></div>
+        <div><b>29,800</b><span>m² of factory space</span></div>
       </div>
     </div>
-  </div>
-</section>
-
-<section id="why">
-  <div class="wrap">
-    <p class="eyebrow">Why Choose Us</p>
-    <h2>Quality You Can See</h2>
-    <p class="lead">What our clients value most about working with SIGN 喜冠.</p>
-    <div class="grid g3">
-      <div class="card"><h3>Factory-Direct Pricing</h3><p>Own production lines across our group mean competitive prices with no middlemen.</p></div>
-      <div class="card"><h3>Full Customisation</h3><p>Any size, font, colour or lighting effect — built exactly to your drawings.</p></div>
-      <div class="card"><h3>Durable Materials</h3><p>Weather-resistant finishes and long-life LEDs suitable for outdoor use.</p></div>
-      <div class="card"><h3>Strict Quality Control</h3><p>Multi-step inspection with photos and videos before shipment.</p></div>
-      <div class="card"><h3>Fast Turnaround</h3><p>Shared capacity between group companies keeps lead times short.</p></div>
-      <div class="card"><h3>Export Experience</h3><p>Professional packing and logistics support for overseas customers.</p></div>
+    <div class="wall" aria-hidden="true">
+      <div class="wall-col" id="col1"></div>
+      <div class="wall-col" id="col2"></div>
+      <div class="wall-col" id="col3"></div>
     </div>
   </div>
+  <svg class="swoosh" viewBox="0 0 980 420" aria-hidden="true"><path d="M0 420 C 260 180, 620 60, 980 40 L 980 110 C 680 130, 360 240, 120 420 Z" fill="#f25c1f"/></svg>
 </section>
 
-<section id="contact">
+<!-- ================= RETAIL BAND ================= -->
+<div class="retail-band">
   <div class="wrap">
-    <p class="eyebrow">Contact</p>
-    <h2>Get a Free Quote</h2>
-    <p class="lead">Tell us about your project and our team will reply with design suggestions and pricing.</p>
-    <div class="contact-grid">
-      <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='Thank you — we will contact you soon!';">
-        <input required placeholder="Your name">
-        <input required type="email" placeholder="Email address">
-        <select>
-          <option>LED Channel Letters</option><option>Light Boxes</option><option>Pylon & Monument Signs</option>
-          <option>Wayfinding & ADA Signs</option><option>Metal & Acrylic Letters</option><option>Neon & Display Signs</option><option>Other</option>
-        </select>
-        <textarea placeholder="Size, quantity, location and any other details"></textarea>
-        <button class="submit" type="submit">Send Inquiry</button>
-      </form>
+    <p>Our products are sold at</p>
+    <div class="marquee"><div class="marquee-track" id="marquee"></div></div>
+  </div>
+</div>
+
+<!-- ================= PRODUCTS ================= -->
+<section class="section" id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Eight product lines, made to your design</h2>
+      <p class="intro">Send us a sketch, a sample or a photo. We make it in your fabrics, colours, labels and packaging, from sampling to export.</p>
+    </div>
+    <div id="lines"></div>
+    <div class="oem">
       <div>
-        <ul class="facts" style="margin-bottom:20px">
-          <li><span>Address</span><span>Area B, Industrial Park, Chajian Town,<br>Tianchang, Anhui, China</span></li>
-          <li><span>Phone</span><span>[+86 phone number]</span></li>
-          <li><span>Email</span><span>[email address]</span></li>
-          <li><span>Hours</span><span>Mon – Sat, 8:00 – 18:00 (CST)</span></li>
-        </ul>
-        <div class="map">
-          <iframe title="Map of the Tianchang area" loading="lazy"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=118.80%2C32.55%2C119.10%2C32.75&amp;layer=mapnik"></iframe>
-        </div>
+        <h3>OEM and ODM for your brand</h3>
+        <p>Our sampling workshops turn your idea into a sample before you place an order. We already make private-label lines for some of the largest pet and general retailers in the US and Europe.</p>
+      </div>
+      <a class="btn btn-primary" href="#contact">Ask for samples</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FACTORIES ================= -->
+<section class="section section-mist" id="factories">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Three factories, one team</h2>
+      <p class="intro">Split your order between China and Cambodia to balance price, lead time and import duty. One contact manages everything.</p>
+    </div>
+
+    <div class="group-map">
+      <div><b><i class="flag"></i>Tianchang, Anhui</b><span>China. Pet apparel, toys and beds, since 2014</span></div>
+      <div><b><i class="flag"></i>Tonglu, Hangzhou</b><span>China. Knitwear and sweaters, since 2008</span></div>
+      <div><b><i class="flag"></i>Kampong Speu</b><span>Cambodia. Apparel and knitwear, since 2023</span></div>
+    </div>
+
+    <article class="factory">
+      <div class="factory-photo">
+        <img src="assets/factory/tianchang-1.jpg" alt="Tianchang Sign Crafts factory gate, buildings, cutting table and sewing floor">
+        <div class="badge"><img src="assets/brand/sign.png" alt="SIGN 喜冠 logo"></div>
+      </div>
+      <div>
+        <h3>Tianchang Sign Crafts Co., Ltd.</h3>
+        <p class="where">Tianchang, Anhui, China, since 2014</p>
+        <p class="desc">Our main China factory for pet apparel, plush toys and beds, with its own cutting, sewing, filling and sampling workshops.</p>
+        <dl class="facts">
+          <div><dt>Products</dt><dd>Pet apparel, pet toys, pet beds</dd></div>
+          <div><dt>Factory area</dt><dd>16,500 m² (8,900 m² indoor)</dd></div>
+          <div><dt>Team</dt><dd>151 people: 13 supervisors, 138 workers</dd></div>
+          <div><dt>Workshops</dt><dd>Cutting, sewing, filling and carding, finishing, QC, sampling, warehouse</dd></div>
+          <div><dt>Address</dt><dd>Area B, Industrial Park, Chajian Town, Tianchang, Anhui, China</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <article class="factory">
+      <div class="factory-photo">
+        <img src="assets/factory/tonglu-2.jpg" alt="Tonglu Hongyou Knitting workshops, packing area and sewing line">
+        <div class="badge"><img src="assets/brand/hy.png" alt="HY logo"></div>
+      </div>
+      <div>
+        <h3>Tonglu Hongyou Knitting Co., Ltd.</h3>
+        <p class="where">Tonglu, Hangzhou, Zhejiang, China, since 2008</p>
+        <p class="desc">Our knitting specialist, where the group started. Pet sweaters, knitted garments, scarves and hats.</p>
+        <dl class="facts">
+          <div><dt>Products</dt><dd>Pet sweaters, knitted garments, scarves and hats</dd></div>
+          <div><dt>Factory area</dt><dd>3,335 m²</dd></div>
+          <div><dt>Team</dt><dd>146 people: 13 supervisors, 133 workers</dd></div>
+          <div><dt>Workshops</dt><dd>Cutting, sewing, filling and carding, finishing, QC, sampling, warehouse</dd></div>
+          <div><dt>Address</dt><dd>Building 2, No. 1028 Tongqian Road, Hengcun Town, Tonglu, Hangzhou, China</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <article class="factory">
+      <div class="factory-photo">
+        <img src="assets/factory/cambodia-1.jpg" alt="High Sense Cambodia factory entrance, fabric inspection and sewing hall">
+        <div class="badge"><img src="assets/brand/hs.png" alt="High Sense logo"></div>
+      </div>
+      <div>
+        <h3>High Sense (Cambodia) Co., Ltd.</h3>
+        <p class="where">Kampong Speu Province, Cambodia, since 2023</p>
+        <p class="desc">Our largest factory, 53 km from Phnom Penh. Duty advantages into the EU, US, Japan, Canada, Korea and Australia.</p>
+        <dl class="facts">
+          <div><dt>Products</dt><dd>Apparel, pet apparel, knitted garments, scarves and hats</dd></div>
+          <div><dt>Factory area</dt><dd>10,000 m² (6,950 m² indoor)</dd></div>
+          <div><dt>Team</dt><dd>610 people: 29 supervisors, 581 workers</dd></div>
+          <div><dt>Workshops</dt><dd>Cutting, sewing, knitting, printing and embroidery, finishing, QC, warehouse</dd></div>
+          <div><dt>Address</dt><dd>Land Title No. 46, Phum Bos Ta Ney, Khum Kahaeng, Samraong Tong District, Kampong Speu Province, Cambodia</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <div class="capacity">
+      <div>
+        <h3>Monthly capacity</h3>
+        <p>1.45 million units a month across the group, so large retail programmes and peak-season orders ship on time.</p>
+        <div class="legend"><span><i></i>China</span><span class="kh"><i></i>Cambodia</span></div>
+      </div>
+      <div class="bars">
+        <div class="bar"><span>Pet toys, China</span><div class="track"><div class="fill" style="width:100%"></div></div><b>500,000</b></div>
+        <div class="bar kh"><span>Pet apparel, Cambodia</span><div class="track"><div class="fill" style="width:60%"></div></div><b>300,000</b></div>
+        <div class="bar"><span>Pet apparel, China</span><div class="track"><div class="fill" style="width:50%"></div></div><b>250,000</b></div>
+        <div class="bar"><span>Pet sweaters, China</span><div class="track"><div class="fill" style="width:40%"></div></div><b>200,000</b></div>
+        <div class="bar kh"><span>Pet sweaters, Cambodia</span><div class="track"><div class="fill" style="width:40%"></div></div><b>200,000</b></div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ================= CAMBODIA ADVANTAGE ================= -->
+<section class="section" id="cambodia">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Lower import duty when you ship from Cambodia</h2>
+      <p class="intro">Cambodia is one of the UN's Least Developed Countries, so goods from our Kampong Speu factory get trade preferences in major markets.</p>
+    </div>
+    <div class="duty">
+      <article><div class="market"><img src="assets/flags/eu.png" alt=""><b>European Union</b></div><p>GSP preference: duty relief on imports into EU countries since January 2011.</p></article>
+      <article><div class="market"><img src="assets/flags/us.png" alt=""><b>United States</b></div><p>Most Favoured Nation status, with preferential terms for textiles and garments.</p></article>
+      <article><div class="market"><img src="assets/flags/jp.png" alt=""><b>Japan</b></div><p>ASEAN–Japan agreement: exempt from the usual 10–12% import tax, and quota-free.</p></article>
+      <article><div class="market"><img src="assets/flags/ca.png" alt=""><b>Canada</b></div><p>Quota-free and duty-free under Canada's preferential tariff for LDC countries.</p></article>
+      <article><div class="market"><img src="assets/flags/kr.png" alt=""><b>South Korea</b></div><p>Quota-free and duty-free import with minimum restrictions.</p></article>
+      <article><div class="market"><img src="assets/flags/au.png" alt=""><b>Australia</b></div><p>Tax-free status in line with other developed-market preferences.</p></article>
+    </div>
+    <p class="duty-note">Exact duty depends on the product and its materials. Tell us your market and we will confirm the best factory for your order.</p>
+  </div>
+</section>
+
+<!-- ================= TRUST ================= -->
+<section class="section trust" id="certifications">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Audited and certified for global retail</h2>
+      <p class="intro">Our factories pass the social, ethical and material audits that large retailers ask for, so your compliance team can approve us quickly.</p>
+    </div>
+    <div class="certs">
+      <div class="cert"><div class="logo-box"><img src="assets/logos/bsci.png" alt="amfori BSCI"></div><b>amfori BSCI</b><span>Social compliance audit for working conditions</span></div>
+      <div class="cert"><div class="logo-box"><img src="assets/logos/sedex.png" alt="Sedex"></div><b>Sedex</b><span>Ethical supply-chain audit shared with buyers</span></div>
+      <div class="cert"><div class="logo-box"><img src="assets/logos/grs.png" alt="Global Recycled Standard"></div><b>Global Recycled Standard</b><span>Certified recycled materials</span></div>
+      <div class="cert"><div class="logo-box"><img src="assets/logos/ocs.png" alt="Organic Content Standard 100"></div><b>Organic Content Standard</b><span>Certified organic materials</span></div>
+      <div class="cert"><div class="logo-box"><img src="assets/logos/scan.png" alt="SCAN"></div><b>SCAN</b><span>Supply-chain security and compliance audit</span></div>
+    </div>
+
+    <div class="retail-head" id="customers">
+      <h3>Trusted by leading retailers in the US and Europe</h3>
+      <p>Our products are on the shelves of these retailers today. Ask us for references in your market.</p>
+    </div>
+    <div class="retailers" id="retailers"></div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="section section-mist" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Request a quote</h2>
+      <p class="intro">Tell us the product, quantity and target market. Our team will reply with pricing and sample timing.</p>
+    </div>
+    <div class="contact">
+      <form class="quote" id="quote">
+        <label>Your name<input name="name" required autocomplete="name"></label>
+        <label>Company<input name="company" required autocomplete="organization"></label>
+        <label>Email<input name="email" type="email" required autocomplete="email"></label>
+        <label>Country<input name="country" autocomplete="country-name"></label>
+        <label>Product line
+          <select name="product">
+            <option>Plush and squeaky toys</option><option>Snuffle mats and holiday toys</option><option>Tees, hoodies and pajamas</option>
+            <option>Costumes</option><option>Knit sweaters</option><option>Jackets and outerwear</option><option>Beds and cat houses</option>
+            <option>Accessories</option><option>Several products</option>
+          </select>
+        </label>
+        <label>Order quantity<input name="qty" placeholder="e.g. 5,000 pcs per style"></label>
+        <label class="full">Your project<textarea name="msg" placeholder="Style, size range, materials, packaging, target price, delivery date"></textarea></label>
+        <button class="btn btn-primary" type="submit">Send inquiry</button>
+        <p class="form-note">Your inquiry goes straight to our sales team.</p>
+      </form>
+      <aside>
+        <div class="person">
+          <div class="avatar"><img src="assets/brand/pawsign.png" alt=""></div>
+          <div><b>Ryan Lu</b><span>Sales contact, PAWSIGN group</span></div>
+        </div>
+        <div class="reach">
+          <a href="mailto:ryan@gladpaws.com.cn">ryan@gladpaws.com.cn</a>
+          <a href="tel:+8613651790225">+86 136 5179 0225<small>China</small></a>
+          <a href="tel:+85570770225">+855 070 770 225<small>Cambodia</small></a>
+        </div>
+        <div class="addr">
+          <div><b>Tianchang Sign Crafts Co., Ltd.</b><span>Area B, Industrial Park, Chajian Town, Tianchang, Anhui, China</span></div>
+          <div><b>Tonglu Hongyou Knitting Co., Ltd.</b><span>Building 2, No. 1028 Tongqian Road, Hengcun Town, Tonglu, Hangzhou, China</span></div>
+          <div><b>High Sense (Cambodia) Co., Ltd.</b><span>Land Title No. 46, Phum Bos Ta Ney, Khum Kahaeng, Samraong Tong District, Kampong Speu Province, Cambodia (53 km from Phnom Penh)</span></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+</main>
 
 <footer>
-  <div class="wrap foot">
-    <div><img src="assets/logo.jpg" alt="">© <span id="y"></span> Tianchang Sign Crafts Co., Ltd. All rights reserved.</div>
-    <div>Area B, Industrial Park, Chajian Town, Tianchang, Anhui, China</div>
+  <div class="wrap">
+    <a class="logo" href="#top"><img src="assets/brand/pawsign.png" alt=""><div><b>PAWSIGN</b><small>For pets, for life</small></div></a>
+    <span>Tianchang Sign Crafts, Tonglu Hongyou Knitting and High Sense (Cambodia)</span>
+    <span>© <span id="year">2026</span> PAWSIGN group</span>
   </div>
 </footer>
-<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Product photo">
+  <button type="button" id="lb-close">Close</button>
+  <img id="lb-img" alt="">
+</div>
+
+<script>
+const P = 'assets/products/';
+const lines = [
+  {t:'Plush and squeaky toys', d:'Plush, rubber-spike and crinkle toys in any shape, from sea animals to food characters.', made:'Tianchang, Anhui', cap:'500,000 toys a month', img:['toys-1','toys-2','toys-3','toys-4','toys-5','toys-6']},
+  {t:'Snuffle mats and holiday toys', d:'Treat-hiding snuffle mats and full Halloween and Christmas collections.', made:'Tianchang, Anhui', cap:'Seasonal ranges every year', img:['enrich-1','enrich-2','enrich-3','seasonal-1','seasonal-3','seasonal-4']},
+  {t:'Tees, hoodies and pajamas', d:'Everyday pet apparel with prints, embroidery and matching family sets.', made:'Tianchang and Cambodia', cap:'550,000 pieces a month', img:['apparel-1','apparel-2','apparel-3','apparel-4','apparel-5','apparel-6']},
+  {t:'Costumes', d:'Halloween and party costumes for dogs and cats, with hoods, wings and props.', made:'Tianchang and Cambodia', cap:'Part of apparel capacity', img:['costumes-1','costumes-2','costumes-3','costumes-4','costumes-5','costumes-6']},
+  {t:'Knit sweaters', d:'Cable knits, argyle, Fair Isle and holiday sweaters, knitted in-house.', made:'Tonglu and Cambodia', cap:'400,000 sweaters a month', img:['sweaters-1','sweaters-2','sweaters-3','sweaters-4','sweaters-5','sweaters-6']},
+  {t:'Jackets and outerwear', d:'Puffer jackets, raincoats and packable coats, with matching dog boots.', made:'Tianchang and Cambodia', cap:'Part of apparel capacity', img:['outerwear-1','outerwear-2','outerwear-3','outerwear-4','outerwear-5','outerwear-8']},
+  {t:'Beds and cat houses', d:'Bolster beds, cave beds and cat houses in plush, plaid and knit fabrics.', made:'Tianchang, Anhui', cap:'Custom sizes and fabrics', img:['beds-1','beds-2','beds-3','beds-5','beds-6','beds-7']},
+  {t:'Accessories', d:'Bandanas, bow ties, hats, holiday headbands and non-slip socks.', made:'Tianchang and Tonglu', cap:'Custom packaging and cards', img:['access-1','access-2','access-3','access-4','access-5','access-6']},
+];
+const linesEl = document.getElementById('lines');
+lines.forEach(l => {
+  const el = document.createElement('div');
+  el.className = 'line';
+  el.innerHTML = `<div><h3>${l.t}</h3><p>${l.d}</p><dl><dt>Made at</dt><dd>${l.made}</dd><dt>Capacity</dt><dd class="cap">${l.cap}</dd></dl></div>
+    <div class="shots">${l.img.map(i => `<button type="button" aria-label="Enlarge ${l.t} photo"><img loading="lazy" src="${P}${i}.jpg" alt="${l.t}"></button>`).join('')}</div>`;
+  linesEl.appendChild(el);
+});
+
+const wall = [
+  ['toys-1','apparel-1','beds-1','sweaters-1','costumes-3','enrich-2'],
+  ['outerwear-5','toys-5','access-1','seasonal-3','sweaters-4','beds-5'],
+  ['costumes-1','toys-3','apparel-3','outerwear-1','beds-3','toys-6'],
+];
+wall.forEach((col, i) => {
+  const c = document.getElementById('col' + (i + 1));
+  c.innerHTML = [...col, ...col].map(n => `<figure><img src="${P}${n}.jpg" alt=""></figure>`).join('');
+});
+
+const shops = ['target','walmart','petsmart','petco','action','walgreens','tjmaxx','cvs','lowes','carrefour','ross','aldi'];
+const names = {target:'Target',walmart:'Walmart',petsmart:'PetSmart',petco:'Petco',action:'Action',walgreens:'Walgreens',tjmaxx:'TJ Maxx',cvs:'CVS',lowes:"Lowe's",carrefour:'Carrefour',ross:'Ross',aldi:'ALDI'};
+document.getElementById('marquee').innerHTML = [...shops, ...shops].map(s => `<span><img src="assets/logos/${s}.png" alt="${names[s]}"></span>`).join('');
+document.getElementById('retailers').innerHTML = shops.map(s => `<div><img src="assets/logos/${s}.png" alt="${names[s]}"></div>`).join('');
+
+const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lb-img');
+document.addEventListener('click', e => {
+  const b = e.target.closest('.shots button');
+  if (b) { const im = b.querySelector('img'); lbImg.src = im.src; lbImg.alt = im.alt; lb.classList.add('open'); document.getElementById('lb-close').focus(); }
+});
+const closeLb = () => lb.classList.remove('open');
+document.getElementById('lb-close').addEventListener('click', closeLb);
+lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+document.getElementById('quote').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  const body = `Name: ${f.get('name')}\nCompany: ${f.get('company')}\nEmail: ${f.get('email')}\nCountry: ${f.get('country')}\nProduct: ${f.get('product')}\nQuantity: ${f.get('qty')}\n\n${f.get('msg')}`;
+  location.href = `mailto:ryan@gladpaws.com.cn?subject=${encodeURIComponent('Quote request: ' + f.get('product'))}&body=${encodeURIComponent(body)}`;
+});
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
