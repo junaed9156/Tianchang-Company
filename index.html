@@ -184,6 +184,15 @@ form.quote input:focus,form.quote select:focus,form.quote textarea:focus{outline
 form.quote textarea{min-height:120px;resize:vertical}
 form.quote .btn{justify-self:start;font-size:16.5px;padding:16px 30px}
 .form-note{grid-column:1/-1;color:var(--muted);font-size:14px}
+.form-note.error{color:#b42318;font-weight:600}
+.form-note.error a{color:inherit}
+.honey{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+form.quote{position:relative}
+form.quote .btn[disabled]{opacity:.65;cursor:progress}
+.sent{grid-column:1/-1;text-align:left;padding:28px 4px}
+.sent h3{font-size:30px;margin-bottom:10px}
+.sent p{color:var(--muted);max-width:46ch}
+.sent .tick{width:56px;height:56px;border-radius:50%;background:var(--swoosh);color:#fff;display:grid;place-items:center;font-size:28px;font-weight:700;margin-bottom:18px}
 .person{display:flex;align-items:center;gap:18px;padding-bottom:26px;border-bottom:1px solid var(--line)}
 .person .avatar{width:64px;height:64px;border-radius:50%;background:var(--ink);display:grid;place-items:center;flex:none}
 .person .avatar img{width:42px}
@@ -437,7 +446,10 @@ footer .logo small{color:#aab3c9}
       <p class="intro">Tell us the product, quantity and target market. Our team will reply with pricing and sample timing.</p>
     </div>
     <div class="contact">
-      <form class="quote" id="quote">
+      <form class="quote" id="quote" action="https://formsubmit.co/ryan@gladpaws.com.cn" method="POST">
+        <input type="hidden" name="_subject" value="New quote request from the PAWSIGN website">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
         <label>Your name<input name="name" required autocomplete="name"></label>
         <label>Company<input name="company" required autocomplete="organization"></label>
         <label>Email<input name="email" type="email" required autocomplete="email"></label>
@@ -451,8 +463,8 @@ footer .logo small{color:#aab3c9}
         </label>
         <label>Order quantity<input name="qty" placeholder="e.g. 5,000 pcs per style"></label>
         <label class="full">Your project<textarea name="msg" placeholder="Style, size range, materials, packaging, target price, delivery date"></textarea></label>
-        <button class="btn btn-primary" type="submit">Send inquiry</button>
-        <p class="form-note">Your inquiry goes straight to our sales team.</p>
+        <button class="btn btn-primary" type="submit" id="send">Send inquiry</button>
+        <p class="form-note" id="form-status" aria-live="polite">Your inquiry goes straight to Ryan Lu, our sales contact.</p>
       </form>
       <aside>
         <div class="person">
@@ -535,12 +547,44 @@ document.getElementById('lb-close').addEventListener('click', closeLb);
 lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 
-document.getElementById('quote').addEventListener('submit', e => {
+// Quote requests are emailed to this address through FormSubmit (formsubmit.co).
+// To send them somewhere else, change it here and in the form's action attribute.
+const QUOTE_EMAIL = 'ryan@gladpaws.com.cn';
+const quote = document.getElementById('quote');
+const sendBtn = document.getElementById('send');
+const statusEl = document.getElementById('form-status');
+
+quote.addEventListener('submit', async e => {
   e.preventDefault();
-  const f = new FormData(e.target);
-  const body = `Name: ${f.get('name')}\nCompany: ${f.get('company')}\nEmail: ${f.get('email')}\nCountry: ${f.get('country')}\nProduct: ${f.get('product')}\nQuantity: ${f.get('qty')}\n\n${f.get('msg')}`;
-  location.href = `mailto:ryan@gladpaws.com.cn?subject=${encodeURIComponent('Quote request: ' + f.get('product'))}&body=${encodeURIComponent(body)}`;
+  const f = new FormData(quote);
+  if (f.get('_honey')) return;               // spam bot filled the hidden field
+  const data = Object.fromEntries(f.entries());
+  delete data._honey;
+  data._subject = `Quote request: ${data.product} from ${data.company}`;
+  data._replyto = data.email;                 // Ryan can reply straight to the buyer
+
+  sendBtn.disabled = true; sendBtn.textContent = 'Sending…';
+  statusEl.className = 'form-note'; statusEl.textContent = 'Sending your inquiry…';
+  try {
+    const res = await fetch(`https://formsubmit.co/ajax/${QUOTE_EMAIL}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    quote.innerHTML = `<div class="sent" role="status"><div class="tick">✓</div><h3>Inquiry sent</h3>
+      <p>Thank you, ${escapeHtml(data.name)}. Ryan Lu will reply to ${escapeHtml(data.email)} with pricing and sample timing.</p></div>`;
+  } catch (err) {
+    const body = `Name: ${data.name}\nCompany: ${data.company}\nEmail: ${data.email}\nCountry: ${data.country}\nProduct: ${data.product}\nQuantity: ${data.qty}\n\n${data.msg}`;
+    const mailto = `mailto:${QUOTE_EMAIL}?subject=${encodeURIComponent(data._subject)}&body=${encodeURIComponent(body)}`;
+    statusEl.className = 'form-note error';
+    statusEl.innerHTML = `Your inquiry could not be sent. Check your connection and try again, or <a href="${mailto}">email it to ${QUOTE_EMAIL}</a>.`;
+    sendBtn.disabled = false; sendBtn.textContent = 'Send inquiry';
+  }
 });
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
 document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
