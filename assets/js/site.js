@@ -122,19 +122,41 @@
   $('#logos-a').innerHTML = logoSpans(rowA) + logoSpans(rowA).replace(/alt="[^"]*"/g, 'alt=""') + logoSpans(rowA).replace(/alt="[^"]*"/g, 'alt=""');
   $('#logos-b').innerHTML = logoSpans(rowB) + logoSpans(rowB).replace(/alt="[^"]*"/g, 'alt=""') + logoSpans(rowB).replace(/alt="[^"]*"/g, 'alt=""');
 
-  /* ======================= Build: route map ======================= */
+  /* ======================= Route map: Cambodia -> six markets ======================= */
+  // Routes are drawn in pixels so each line ends exactly at its country row on the right.
   const NS = 'http://www.w3.org/2000/svg';
-  const paths = $('#route-paths'), nodes = $('#route-nodes');
-  MARKETS.forEach((m, i) => {
-    const y = 40 + i * 72, d = `M188 220 C 430 220, 560 ${y}, 780 ${y}`;
-    paths.insertAdjacentHTML('beforeend',
-      `<path class="path-glow" d="${d}" stroke="${m.color}"/><path class="path" id="rp-${i}" d="${d}" stroke="${m.color}"/>
-       <circle class="mover" r="5" fill="${m.color}" style="color:${m.color}">${reduce ? '' : `<animateMotion dur="3.4s" begin="${(i * 0.45).toFixed(2)}s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".4 0 .2 1"><mpath href="#rp-${i}"/></animateMotion>`}</circle>`);
-    nodes.insertAdjacentHTML('beforeend',
-      `<g class="node" transform="translate(790 ${y})"><rect class="node-pill" x="0" y="-25" width="200" height="50" rx="25"/>
-       <image href="assets/flags/${m.flag}.png" x="16" y="-11" width="32" height="22" preserveAspectRatio="xMidYMid slice"/>
-       <text class="node-label" x="60" y="6">${tr(m.key)}</text></g>`);
-  });
+  const map = $('#route-map'), routePaths = $('#route-paths'), origin = $('#route-origin');
+  const dutyRows = $$('#duty article');
+  dutyRows.forEach((row, i) => row.style.setProperty('--c', MARKETS[i].color));
+  let routesDrawn = reduce;   // becomes true once the draw-in animation has played
+  function drawRoutes() {
+    const r = map.getBoundingClientRect(); if (!r.width || !r.height) return;
+    const w = r.width, h = r.height, ox = Math.min(64, w * .32), oy = h / 2;
+    origin.setAttribute('transform', `translate(${ox} ${oy})`);
+    routePaths.innerHTML = dutyRows.map((row, i) => {
+      const rr = row.getBoundingClientRect(), ey = rr.top + rr.height / 2 - r.top, ex = w + 2, m = MARKETS[i];
+      const d = `M${ox} ${oy} C ${ox + (w - ox) * .55} ${oy}, ${ox + (w - ox) * .45} ${ey}, ${ex} ${ey}`;
+      return `<path class="path-glow" data-i="${i}" d="${d}" stroke="${m.color}"/><path class="path" id="rp-${i}" data-i="${i}" d="${d}" stroke="${m.color}"/>
+        <circle class="end" cx="${ex}" cy="${ey}" r="5" fill="${m.color}"/>
+        <circle class="mover" r="4.5" fill="${m.color}" style="color:${m.color}">${reduce ? '' : `<animateMotion dur="3s" begin="${(i * .4).toFixed(2)}s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".4 0 .2 1"><mpath href="#rp-${i}"/></animateMotion>`}</circle>`;
+    }).join('');
+    if (!routesDrawn) $$('.path, .path-glow', routePaths).forEach(p => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+  }
+  function revealRoutes() {
+    if (routesDrawn) return; routesDrawn = true;
+    $$('.path, .path-glow', routePaths).forEach((p, k) => gsap.to(p, { strokeDashoffset: 0, duration: 1.4, delay: Math.floor(k / 2) * .08, ease: 'power2.inOut',
+      onComplete: () => { p.style.strokeDasharray = ''; p.style.strokeDashoffset = ''; } }));
+  }
+  function focusRoute(i) {
+    map.classList.toggle('focus', i !== null);
+    $$('.path, .path-glow', routePaths).forEach(p => p.classList.toggle('hot', +p.dataset.i === i));
+    dutyRows.forEach((row, k) => row.classList.toggle('hot', k === i));
+  }
+  dutyRows.forEach((row, i) => { row.addEventListener('mouseenter', () => focusRoute(i)); row.addEventListener('mouseleave', () => focusRoute(null)); });
+  drawRoutes();
+  let rTimer; window.addEventListener('resize', () => { clearTimeout(rTimer); rTimer = setTimeout(drawRoutes, 150); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawRoutes);
+  window.addEventListener('load', drawRoutes);
 
   /* ======================= Factories ======================= */
   let fac = 0;
@@ -403,7 +425,7 @@
       clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: s.elements[0], start: 'top 85%' } });
   });
   // Paragraphs next to headings
-  $$('.sec-head p, .coll-head p, .cta-inner p, .clients-head p').forEach(p =>
+  $$('.sec-head p, .coll-head p, .bk-lead, .clients-head p').forEach(p =>
     gsap.from(p, { y: 30, opacity: 0, duration: 1, delay: .15, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: p, start: 'top 88%' } }));
 
   // ---- Collections: pinned horizontal scroll on large screens
@@ -457,23 +479,15 @@
   ScrollTrigger.create({ trigger: '.bars', start: 'top 85%', once: true,
     onEnter: () => $$('.bars .count').forEach(el => countTo(el, +el.dataset.to, el.dataset.fmt, 1.8)) });
 
-  // ---- Cambodia routes draw in with the scroll
-  $$('#route-paths .path, #route-paths .path-glow').forEach(p => {
-    const len = p.getTotalLength(); p.style.strokeDasharray = len; p.style.strokeDashoffset = len;
-  });
-  gsap.to('#route-paths .path, #route-paths .path-glow', { strokeDashoffset: 0, ease: 'none', stagger: .05,
-    scrollTrigger: { trigger: '.routes', start: 'top 80%', end: 'center 45%', scrub: 1 } });
-  gsap.from('#route-nodes .node', { x: 40, opacity: 0, duration: .8, stagger: .08, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.routes', start: 'top 60%' } });
-  gsap.from('#route-paths .mover', { opacity: 0, duration: .5, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.routes', start: 'center 60%' } });
-  gsap.from('.duty article', { y: 40, opacity: 0, duration: .8, stagger: .08, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.duty', start: 'top 85%' } });
+  // ---- Your brand + Cambodia
+  ScrollTrigger.create({ trigger: '.bk-routes', start: 'top 75%', once: true, onEnter: revealRoutes });
+  gsap.from('.bk-steps li, .bk-btns > *', { x: -30, opacity: 0, duration: .7, stagger: .08, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.bk-steps', start: 'top 85%' } });
+  gsap.from('.bk-card', { y: 60, opacity: 0, duration: 1, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.bk-card', start: 'top 85%', onLeaveBack: null } });
+  gsap.from('#duty article', { x: 40, opacity: 0, duration: .7, stagger: .07, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '#duty', start: 'top 80%' } });
+  $$('.bk-float img').forEach((el, i) => gsap.to(el, { y: i ? -120 : 120, rotate: i ? -16 : 16, ease: 'none', scrollTrigger: { trigger: '.brandkh', start: 'top bottom', end: 'bottom top', scrub: true } }));
 
   // ---- Trust
   gsap.from('.cert', { y: 50, opacity: 0, duration: .9, stagger: .08, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.certs', start: 'top 85%' } });
-
-  // ---- CTA floating products
-  $$('.cta [data-speed]').forEach(el => gsap.to(el, { y: () => (1 - parseFloat(el.dataset.speed)) * 400, rotate: '+=20', ease: 'none',
-    scrollTrigger: { trigger: '.cta', start: 'top bottom', end: 'bottom top', scrub: true } }));
-  gsap.from('.cta-btn', { scale: 0, rotate: -90, duration: 1.2, ease: 'back.out(1.6)', clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.cta-btn', start: 'top 90%' } });
 
   // ---- Contact
   gsap.from('.fl, #send', { y: 30, opacity: 0, duration: .7, stagger: .05, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '#quote', start: 'top 85%' } });

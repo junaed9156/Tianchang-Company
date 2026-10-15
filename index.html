@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#12204a">
 <link rel="icon" type="image/png" href="assets/brand/pawsign-128.png">
 <link rel="preload" href="assets/fonts/adventor-bold.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/site.css?v=20261015">
 <script>
   // Mark JS + motion support early so content is hidden only when it will be animated in
   (function () {
@@ -251,38 +251,53 @@
   </div>
 </section>
 
-<!-- ================= CAMBODIA ================= -->
-<section class="cambodia" id="cambodia">
-  <div class="wrap">
-    <div class="sec-head light">
-      <h2 class="split" data-i18n="kh.h2">Lower import duty from Cambodia</h2>
-      <p data-i18n="kh.p">Cambodia is one of the UN's Least Developed Countries, so goods from our Kampong Speu factory get trade preferences in six major markets.</p>
+<!-- ================= YOUR BRAND + CAMBODIA ================= -->
+<section class="brandkh" id="cambodia">
+  <div class="bk-float" aria-hidden="true">
+    <img class="bf1" src="assets/cutouts/toys-3.webp" alt="">
+    <img class="bf2" src="assets/cutouts/snuffle-3.webp" alt="">
+  </div>
+  <div class="wrap bk-grid">
+    <div class="bk-copy" id="cta">
+      <p class="bk-tag">OEM · ODM</p>
+      <h2 class="bk-title split" data-i18n="cta.h2">Your brand. Our factories.</h2>
+      <p class="bk-lead" data-i18n="cta.p">We already make private-label lines for leading pet and general retailers. Tell us what you need and get a sample before you order.</p>
+      <ol class="bk-steps">
+        <li><b>1</b><span data-i18n="cta.s1">Send your idea</span></li>
+        <li><b>2</b><span data-i18n="cta.s2">Approve the sample</span></li>
+        <li><b>3</b><span data-i18n="cta.s3">We produce and ship</span></li>
+      </ol>
+      <div class="bk-btns">
+        <a class="btn btn-dark magnetic" href="#contact"><span data-i18n="cta.samples">Ask for samples</span><svg><use href="#arrow"/></svg></a>
+        <a class="btn btn-white magnetic" href="assets/catalog/PAWSIGN-catalog-2025.pdf" download><svg><use href="#down"/></svg><span data-i18n="cta.catalog">2025 catalog</span></a>
+      </div>
     </div>
-    <div class="routes">
-      <svg class="route-map" id="route-map" viewBox="0 0 1000 440" role="img" aria-label="Export routes from Cambodia to six markets">
-        <defs>
-          <radialGradient id="glow"><stop offset="0" stop-color="#ffb02e" stop-opacity=".55"/><stop offset="1" stop-color="#ffb02e" stop-opacity="0"/></radialGradient>
-        </defs>
-        <g id="route-paths"></g>
-        <g class="origin" transform="translate(170 220)">
-          <circle r="90" fill="url(#glow)"/>
-          <circle class="ring r1" r="26"/><circle class="ring r2" r="26"/>
-          <circle r="16" fill="#ffb02e"/>
-          <text y="56" text-anchor="middle" class="o-name">High Sense</text>
-          <text y="80" text-anchor="middle" class="o-sub" data-i18n="kh.origin">Kampong Speu, Cambodia</text>
-        </g>
-        <g id="route-nodes"></g>
-      </svg>
+    <div class="bk-card">
+      <h3 data-i18n="kh.h2">Lower import duty from Cambodia</h3>
+      <p class="bk-card-p" data-i18n="kh.p">Cambodia is one of the UN's Least Developed Countries, so goods from our Kampong Speu factory get trade preferences in six major markets.</p>
+      <div class="bk-routes">
+        <div class="kh-map">
+          <svg class="route-map" id="route-map" role="img" aria-label="Export routes from Cambodia to six markets">
+            <defs><radialGradient id="glow"><stop offset="0" stop-color="#ffb02e" stop-opacity=".55"/><stop offset="1" stop-color="#ffb02e" stop-opacity="0"/></radialGradient></defs>
+            <g id="route-paths"></g>
+            <g class="origin" id="route-origin">
+              <circle r="56" fill="url(#glow)"/><circle class="ring r1" r="16"/><circle class="ring r2" r="16"/><circle r="10" fill="#ffb02e"/>
+              <text y="38" text-anchor="middle" class="o-name">High Sense</text>
+              <text y="54" text-anchor="middle" class="o-sub" data-i18n="kh.origin">Kampong Speu, Cambodia</text>
+            </g>
+          </svg>
+        </div>
+        <div class="duty" id="duty">
+          <article data-i="0"><img src="assets/flags/eu.png" alt=""><div><b data-i18n="m.eu">European Union</b><p data-i18n="m.eu.p">GSP preference: duty relief on imports into EU countries since January 2011.</p></div></article>
+          <article data-i="1"><img src="assets/flags/us.png" alt=""><div><b data-i18n="m.us">United States</b><p data-i18n="m.us.p">Most Favoured Nation status, with preferential terms for textiles and garments.</p></div></article>
+          <article data-i="2"><img src="assets/flags/jp.png" alt=""><div><b data-i18n="m.jp">Japan</b><p data-i18n="m.jp.p">ASEAN–Japan agreement: exempt from the usual 10–12% import tax, and quota-free.</p></div></article>
+          <article data-i="3"><img src="assets/flags/ca.png" alt=""><div><b data-i18n="m.ca">Canada</b><p data-i18n="m.ca.p">Quota-free and duty-free under Canada's preferential tariff for LDC countries.</p></div></article>
+          <article data-i="4"><img src="assets/flags/kr.png" alt=""><div><b data-i18n="m.kr">South Korea</b><p data-i18n="m.kr.p">Quota-free and duty-free import with minimum restrictions.</p></div></article>
+          <article data-i="5"><img src="assets/flags/au.png" alt=""><div><b data-i18n="m.au">Australia</b><p data-i18n="m.au.p">Tax-free status in line with other developed-market preferences.</p></div></article>
+        </div>
+      </div>
+      <p class="duty-note" data-i18n="kh.note">Exact duty depends on the product and its materials. Tell us your market and we will confirm the best factory for your order.</p>
     </div>
-    <div class="duty">
-      <article><img src="assets/flags/eu.png" alt=""><div><b data-i18n="m.eu">European Union</b><p data-i18n="m.eu.p">GSP preference: duty relief on imports into EU countries since January 2011.</p></div></article>
-      <article><img src="assets/flags/us.png" alt=""><div><b data-i18n="m.us">United States</b><p data-i18n="m.us.p">Most Favoured Nation status, with preferential terms for textiles and garments.</p></div></article>
-      <article><img src="assets/flags/jp.png" alt=""><div><b data-i18n="m.jp">Japan</b><p data-i18n="m.jp.p">ASEAN–Japan agreement: exempt from the usual 10–12% import tax, and quota-free.</p></div></article>
-      <article><img src="assets/flags/ca.png" alt=""><div><b data-i18n="m.ca">Canada</b><p data-i18n="m.ca.p">Quota-free and duty-free under Canada's preferential tariff for LDC countries.</p></div></article>
-      <article><img src="assets/flags/kr.png" alt=""><div><b data-i18n="m.kr">South Korea</b><p data-i18n="m.kr.p">Quota-free and duty-free import with minimum restrictions.</p></div></article>
-      <article><img src="assets/flags/au.png" alt=""><div><b data-i18n="m.au">Australia</b><p data-i18n="m.au.p">Tax-free status in line with other developed-market preferences.</p></div></article>
-    </div>
-    <p class="duty-note" data-i18n="kh.note">Exact duty depends on the product and its materials. Tell us your market and we will confirm the best factory for your order.</p>
   </div>
 </section>
 
@@ -308,21 +323,6 @@
     </div>
     <div class="logo-row"><div class="logo-track" id="logos-a"></div></div>
     <div class="logo-row"><div class="logo-track rev" id="logos-b"></div></div>
-  </div>
-</section>
-
-<!-- ================= BIG CTA ================= -->
-<section class="cta" id="cta">
-  <div class="cta-float" aria-hidden="true">
-    <img class="f1" data-speed="1.3" src="assets/cutouts/toys-3.webp" alt="">
-    <img class="f2" data-speed="0.8" src="assets/cutouts/access-5.webp" alt="">
-    <img class="f3" data-speed="1.2" src="assets/cutouts/snuffle-3.webp" alt="">
-    <img class="f4" data-speed="0.9" src="assets/cutouts/toys-5.webp" alt="">
-  </div>
-  <div class="wrap cta-inner">
-    <h2 class="cta-title split" data-i18n="cta.h2">Your brand. Our factories.</h2>
-    <p data-i18n="cta.p">We already make private-label lines for leading pet and general retailers. Tell us what you need and get a sample before you order.</p>
-    <a class="cta-btn magnetic" href="#contact" data-cursor="hover"><span data-i18n="cta.samples">Ask for samples</span></a>
   </div>
 </section>
 
@@ -397,7 +397,7 @@
 <script src="assets/js/vendor/gsap.min.js"></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/js/vendor/SplitText.min.js"></script>
-<script src="assets/js/content.js"></script>
-<script src="assets/js/site.js"></script>
+<script src="assets/js/content.js?v=20261015"></script>
+<script src="assets/js/site.js?v=20261015"></script>
 </body>
 </html>
