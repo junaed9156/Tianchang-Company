@@ -343,7 +343,7 @@
       quote.innerHTML = `<div class="sent" role="status"><div class="tick">✓</div><h3>${t.sentH}</h3><p>${t.sent(esc(data.name), esc(data.email))}</p></div>`;
       confetti(quote);
     } catch (err) {
-      const body = `Name: ${data.name}\nCompany: ${data.company}\nEmail: ${data.email}\nCountry: ${data.country}\nProduct: ${data.product}\nQuantity: ${data.qty}\n\n${data.msg}`;
+      const body = `Name: ${data.name}\nCompany: ${data.company}\nEmail: ${data.email}\nPhone: ${data.phone}\nCountry: ${data.country}\nProduct: ${data.product}\nQuantity: ${data.qty}\n\n${data.msg}`;
       const mailto = `mailto:${QUOTE_EMAIL}?subject=${encodeURIComponent(data._subject)}&body=${encodeURIComponent(body)}`;
       statusEl.className = 'form-note error'; statusEl.innerHTML = t.fail(mailto, QUOTE_EMAIL);
       sendBtn.disabled = false; label.textContent = orig;

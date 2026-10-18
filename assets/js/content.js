@@ -104,7 +104,7 @@ window.ZH = {
   'retail.h3':'我们的产品在这些零售商有售','retail.p':'如需您所在市场的合作案例，欢迎咨询。',
   'cta.h2':'您的品牌，我们的工厂。','cta.s1':'发来您的创意','cta.s2':'确认样品','cta.s3':'我们生产并出货','cta.p':'我们已在为多家知名宠物及综合零售商生产自有品牌产品。告诉我们您的需求，下单前先拿到样品。','cta.samples':'申请样品',
   'contact.p':'请告诉我们产品、数量和目标市场，我们的团队会回复报价和打样时间。',
-  'f.name':'姓名','f.company':'公司','f.email':'邮箱','f.country':'国家/地区','f.product':'产品线','f.qty':'订单数量（例如：每款5,000件）',
+  'f.name':'姓名','f.company':'公司','f.email':'邮箱','f.phone':'电话 / WhatsApp','f.country':'国家/地区','f.product':'产品线','f.qty':'订单数量（例如：每款5,000件）',
   'f.msg':'款式、尺码、材料、包装、目标价格、交货日期','f.send':'发送询价','f.note':'您的询价将直接发送给我们的销售负责人 Ryan Lu。',
   'person.role':'PAWSIGN 集团销售负责人','cat.title':'下载2025年产品目录','cat.sub':'共58页，PDF，15 MB',
   'group':'PAWSIGN 集团','top':'返回顶部','close':'关闭'

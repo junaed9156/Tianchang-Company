@@ -344,9 +344,10 @@
         <label class="fl"><input name="name" required autocomplete="name" placeholder=" "><span data-i18n="f.name">Your name</span></label>
         <label class="fl"><input name="company" required autocomplete="organization" placeholder=" "><span data-i18n="f.company">Company</span></label>
         <label class="fl"><input name="email" type="email" required autocomplete="email" placeholder=" "><span data-i18n="f.email">Email</span></label>
+        <label class="fl"><input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder=" "><span data-i18n="f.phone">Phone / WhatsApp</span></label>
         <label class="fl"><input name="country" autocomplete="country-name" placeholder=" "><span data-i18n="f.country">Country</span></label>
-        <label class="fl sel"><select name="product" id="product"></select><span data-i18n="f.product">Product line</span></label>
         <label class="fl"><input name="qty" placeholder=" "><span data-i18n="f.qty">Order quantity (e.g. 5,000 pcs per style)</span></label>
+        <label class="fl sel full"><select name="product" id="product"></select><span data-i18n="f.product">Product line</span></label>
         <label class="fl full"><textarea name="msg" placeholder=" "></textarea><span data-i18n="f.msg">Style, sizes, materials, packaging, target price, delivery date</span></label>
         <button class="btn btn-orange magnetic" type="submit" id="send"><span data-i18n="f.send">Send inquiry</span><svg><use href="#arrow"/></svg></button>
         <p class="form-note" id="form-status" aria-live="polite" data-i18n="f.note">Your inquiry goes straight to Ryan Lu, our sales contact.</p>
