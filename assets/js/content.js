@@ -59,16 +59,6 @@ window.MARKETS = [
   {key:'m.ca', flag:'ca', color:'#ff9f6e'}, {key:'m.kr', flag:'kr', color:'#9fe6c8'}, {key:'m.au', flag:'au', color:'#cdbcff'},
 ];
 
-// Hero tiles: each tile swaps through these cut-outs, one tile after another
-window.HERO = [
-  ['toys-1','toys-3','snuffle-1','toys-5','snuffle-2'],                   // big blue tile
-  ['outerwear-1','outerwear-2','apparel-2','outerwear-3','outerwear-4'],  // tall green tile
-  ['sweaters-1','sweaters-2','beds-3','access-2','sweaters-4'],           // orange tile
-  ['costumes-1','costumes-4','apparel-1','costumes-5','apparel-5'],       // tall purple tile
-  ['beds-1','beds-2','snuffle-3','beds-4','beds-5'],                      // sand tile
-  ['snuffle-4','toys-2','toys-4','snuffle-5','toys-6'],                   // small yellow circle
-];
-
 // Words in the big scrolling band
 window.WORDS = {en:['Toys','Sweaters','Costumes','Beds','Apparel','Outerwear','Snuffle mats','Accessories'],
                 zh:['玩具','毛衣','装扮服','宠物床','服装','外套','嗅闻垫','配饰']};
@@ -81,7 +71,7 @@ window.ZH = {
   'hero.tag':'中国和柬埔寨宠物用品 OEM / ODM 制造商',
   'hero.l1':'为宠物而生。','hero.l2':'为零售而造。',
   'hero.lead':'宠物服装、玩具和宠物床，出自我们自己的三家工厂，已进入 Target、Walmart、PetSmart 等零售商的货架。',
-  'sticker.1':'每月产量（件）','hero.sold':'产品销往',
+  'hero.sold':'产品销往',
   'story':'自2008年起，PAWSIGN 从桐庐的一家针织工坊，发展为在中国和柬埔寨拥有三家工厂的集团。我们为欧美多家大型零售商设计、打样并生产宠物用品。',
   'n.1':'每月产量（件）','n.2':'名员工，分布于三家工厂','n.3':'平方米厂房面积','n.4':'款产品，收录于2025年目录',
   'coll.h2':'八大产品系列，一站式供应。','coll.p':'向下滚动浏览我们的产品系列。所有产品均在自有工厂生产，可按您的面料、颜色、标签和包装定制。',

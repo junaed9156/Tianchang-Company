@@ -41,7 +41,6 @@
     return String(Math.round(v));
   };
   $$('.count').forEach(el => { if (el.dataset.to) el.textContent = fmt(+el.dataset.to, el.dataset.fmt); });
-  $('.s1 b').textContent = fmt(1450000, 'm');
 
   /* ======================= Build: word band ======================= */
   const colors = ['#ffd84d', '#9fd4ff', '#ffb8cc', '#9fe6c8', '#cdbcff', '#ffc7a1', '#ffa98f', '#ecd9bd'];
