@@ -85,7 +85,7 @@
       const d = Math.abs(card.getBoundingClientRect().left - railLeft - gutter);
       if (d < distance) { distance = d; nearest = i; }
     });
-    $('#collection-index').textContent = `${String(nearest + 1).padStart(2, '0')} / ${String(collectionCards.length).padStart(2, '0')}`;
+    $('#collection-index').textContent = `${String(Math.min(nearest + 1, LINES.length)).padStart(2, '0')} / ${String(LINES.length).padStart(2, '0')}`;
     $('#collection-progress').style.transform = `scaleX(${max ? .12 + .88 * x / max : 1})`;
     collectionPrev.disabled = x < 4;
     collectionNext.disabled = x >= max - 4;

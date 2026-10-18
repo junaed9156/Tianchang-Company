@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="assets/css/site.css?v=20261018">
 <link rel="stylesheet" href="assets/css/polish.css?v=20261018">
 <script>
-  // Mark JS + motion support early so content is hidden only when it will be animated in
+  // Respect motion preferences before the page is painted.
   (function () {
     var d = document.documentElement; d.classList.add('js');
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -123,7 +123,7 @@
     <p data-i18n="coll.p">Scroll through our ranges. Every product is made in our own factories, in your fabrics, colours, labels and packaging.</p>
   </div>
   <div class="wrap collection-controls">
-    <div class="collection-position" aria-hidden="true"><span id="collection-index">01 / 09</span><div class="collection-progress"><i id="collection-progress"></i></div></div>
+    <div class="collection-position" aria-hidden="true"><span id="collection-index">01 / 08</span><div class="collection-progress"><i id="collection-progress"></i></div></div>
     <div class="collection-arrows">
       <button id="collection-prev" type="button" aria-label="Previous collection" aria-controls="coll-pin" disabled><svg><use href="#arrow"/></svg></button>
       <button id="collection-next" type="button" aria-label="Next collection" aria-controls="coll-pin"><svg><use href="#arrow"/></svg></button>
