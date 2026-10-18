@@ -229,6 +229,14 @@ form.quote{gap:15px}
 .foot-big{font-size:clamp(66px,15vw,220px);letter-spacing:-.045em;margin-bottom:52px;-webkit-text-stroke:1px #ffffff30;line-height:.88}
 .foot-grid{gap:30px;font-size:12px;line-height:1.9}
 .foot-bottom{font-size:11px}
+/* WhatsApp: the number in the contact card, and a floating chat button on every screen size. */
+.reach .wa-link{display:flex;align-items:center;gap:9px}.reach .wa-link svg{flex:none;width:20px;height:20px;fill:#25d366}
+.wa-fab{position:fixed;left:20px;bottom:20px;z-index:46;display:flex;align-items:center;gap:10px;padding:10px 16px 10px 10px;border-radius:999px;background:#25d366;color:#fff;font-weight:600;font-size:13px;line-height:1.15;box-shadow:0 12px 30px -12px #0b6b3399;transition:transform .3s,box-shadow .3s,background .3s}
+.wa-fab svg{width:30px;height:30px;fill:#fff;flex:none}
+.wa-fab span{display:grid}.wa-fab small{font-size:10px;font-weight:500;opacity:.9}
+.wa-fab:hover{background:#1ebe5b;transform:translateY(-2px);box-shadow:0 16px 34px -12px #0b6b33bb}
+.wa-fab:focus-visible{outline:3px solid #fff;outline-offset:2px;box-shadow:0 0 0 6px #25d366}
+@media (max-width:640px){.wa-fab{left:16px;bottom:16px;padding:12px}.wa-fab svg{width:26px;height:26px}.wa-fab span{display:none}}
 .fab{background:var(--navy);box-shadow:0 12px 32px -16px #12204a80;font-size:12px;padding:13px 19px 13px 14px;bottom:20px;right:20px;border:1px solid #ffffff30}
 .fab:hover{background:var(--orange)}
 .fab svg{width:20px;height:20px;fill:var(--gold)}
