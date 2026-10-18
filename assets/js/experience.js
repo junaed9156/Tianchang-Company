@@ -1,5 +1,14 @@
 import * as THREE from './vendor/three.module.js';
-import {buildShowroom,positionCards,nearestAngle,wrapIndex,STEP} from './scene-models.js';
+import {buildShowroom,positionCards,nearestAngle,wrapIndex} from './scene-models.js?v=20261018-pets';
+
+const ROTATION_SPEED=Math.PI*2/66;
+export function showroomSlides(lines){
+  return [
+    {id:'catalog-dog',image:'assets/cutouts/costumes-1.webp',color:'#f0dfb9',pet:true,collectionIndex:null,en:{t:'Made for dogs'},zh:{t:'为狗狗而设计'}},
+    {id:'catalog-cat',image:'assets/cutouts/costumes-3.webp',color:'#d7e9e4',pet:true,collectionIndex:null,en:{t:'Made for cats'},zh:{t:'为猫咪而设计'}},
+    ...lines.map((line,collectionIndex)=>({...line,image:`assets/cutouts/${line.id}-${({apparel:3,costumes:2,sweaters:3,beds:5})[line.id]||1}.webp`,collectionIndex}))
+  ];
+}
 
 const strings={
   en:{heading:'Interactive showroom',drag:'Drag to rotate',paused:'Motion paused · drag to explore',explore:'Explore collection',prev:'Previous 3D collection',next:'Next 3D collection',pause:'Pause 3D animation',play:'Play 3D animation',reset:'Reset 3D view',choose:'Choose a collection',instructions:'Interactive 3D product showroom. Drag to rotate, or use the left and right arrow keys. Press Space to pause or play.',chapters:'Explore the page',collections:'Product collections',products:'The full catalog',process:'From sketch to shelf',factories:'Our factories',cambodia:'Your brand, our factories',trust:'Certifications',contact:'Start a conversation'},
@@ -9,12 +18,12 @@ const strings={
 export function mountShowroom({Renderer=THREE.WebGLRenderer,textureLoader=null,observe=true}={}) {
   const world=document.getElementById('hero-world');if(!world)return null;
   const $=s=>world.querySelector(s),viewport=$('#world-viewport'),host=$('#world-canvas');
-  const lang=document.documentElement.lang.startsWith('zh')?'zh':'en',text=strings[lang],lines=window.LINES;
+  const lang=document.documentElement.lang.startsWith('zh')?'zh':'en',text=strings[lang],lines=showroomSlides(window.LINES),step=Math.PI*2/lines.length;
   const preference=window.matchMedia('(prefers-reduced-motion: reduce)');
   const compact=window.matchMedia('(pointer: coarse)').matches||window.innerWidth<700;
-  const state={selected:5,playing:!preference.matches,angle:-5*STEP,target:-5*STEP,elapsed:0,visible:true,disposed:false};
+  const state={selected:0,playing:!preference.matches,angle:0,target:0,elapsed:0,visible:true,disposed:false};
   const listeners=[];const listen=(el,type,fn,options)=>{el.addEventListener(type,fn,options);listeners.push(()=>el.removeEventListener(type,fn,options));};
-  let renderer=null,scene=null,camera=null,model=null,drag=null,frameId=0,clock=0,lastFrame=0,autoAt=0,manualMotion=false;
+  let renderer=null,scene=null,camera=null,model=null,drag=null,frameId=0,clock=0,lastFrame=0,manualMotion=false,selectionPending=false;
   let retiredRenderer=null;
   let pointerX=0,pointerY=0,smoothedX=0,smoothedY=0,hover=-1;
   const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
@@ -24,16 +33,16 @@ export function mountShowroom({Renderer=THREE.WebGLRenderer,textureLoader=null,o
   $('#world-categories').setAttribute('aria-label',text.choose);
   const thumbs=lines.map((line,i)=>{
     const button=document.createElement('button');button.type='button';button.dataset.worldLine=i;
-    button.setAttribute('aria-label',line[lang].t);button.setAttribute('aria-pressed',String(i===5));button.style.setProperty('--swatch',line.color);
-    const image=document.createElement('img');image.src=`assets/cutouts/${line.id}-1.webp`;image.alt='';image.width=38;image.height=38;button.append(image);
+    button.setAttribute('aria-label',line[lang].t);button.setAttribute('aria-pressed',String(i===0));button.style.setProperty('--swatch',line.color);
+    const image=document.createElement('img');image.src=line.image;image.alt='';image.width=38;image.height=38;button.append(image);
     $('#world-categories').append(button);return button;
   });
   // CSS perspective is a functional fallback if the device cannot create WebGL.
   const fallback=document.createElement('div');fallback.className='world-css-orbit';fallback.setAttribute('aria-hidden','true');
   fallback.innerHTML='<svg class="world-css-paw" viewBox="0 0 64 64"><use href="#paw"/></svg>';
   const fallbackCards=lines.map((line,i)=>{
-    const card=document.createElement('div');card.className='world-css-card';card.style.background=line.color;
-    card.innerHTML=`<img src="assets/cutouts/${line.id}-1.webp" alt=""><span>${String(i+1).padStart(2,'0')}</span>`;
+    const card=document.createElement('div');card.className=`world-css-card${line.pet?' world-css-card--pet':''}`;card.style.background=line.color;
+    card.innerHTML=`<img src="${line.image}" alt=""><span>${String(i+1).padStart(2,'0')}</span>`;
     fallback.append(card);return card;
   });viewport.append(fallback);world.classList.add('world-mounted');
   try {
@@ -52,9 +61,9 @@ export function mountShowroom({Renderer=THREE.WebGLRenderer,textureLoader=null,o
     model=buildShowroom(lines,{compact});scene.add(model.root);
     const loader=textureLoader||new THREE.TextureLoader();
     model.cards.forEach((card,i)=>{
-      const texture=loader.load(`assets/cutouts/${lines[i].id}-1.webp`,loaded=>{
+      const texture=loader.load(lines[i].image,loaded=>{
         if(state.disposed){loaded.dispose();return;}
-        const aspect=loaded.image.width/loaded.image.height,w=aspect>1?1.29:Math.min(1.29,1.5*aspect),h=w/aspect;
+        const aspect=loaded.image.width/loaded.image.height,maxWidth=lines[i].pet?1.39:1.29,maxHeight=lines[i].pet?1.72:1.5,w=Math.min(maxWidth,maxHeight*aspect),h=w/aspect;
         card.image.scale.set(w,h,1);requestDraw();
       },undefined,()=>{world.dataset.textureWarning='true';});
       texture.colorSpace=THREE.SRGBColorSpace;card.image.material.map=texture;card.image.material.needsUpdate=true;
@@ -71,7 +80,8 @@ export function mountShowroom({Renderer=THREE.WebGLRenderer,textureLoader=null,o
   }
   function updateLabels() {
     $('#world-title').textContent=lines[state.selected][lang].t;
-    $('#world-counter').textContent=`${String(state.selected+1).padStart(2,'0')} / 08`;
+    $('#world-counter').textContent=`${String(state.selected+1).padStart(2,'0')} / ${String(lines.length).padStart(2,'0')}`;
+    $('#world-explore').innerHTML=`${lines[state.selected].pet?(lang==='zh'?'浏览所有系列':'Explore collections'):text.explore} <span aria-hidden="true">↗</span>`;
     thumbs.forEach((button,i)=>button.setAttribute('aria-pressed',String(i===state.selected)));
     world.dataset.activeIndex=state.selected;world.dataset.motion=state.playing?'playing':'paused';
     $('#world-pause').setAttribute('aria-label',state.playing?text.pause:text.play);$('#world-pause').setAttribute('aria-pressed',String(!state.playing));
@@ -79,7 +89,8 @@ export function mountShowroom({Renderer=THREE.WebGLRenderer,textureLoader=null,o
     if(model)model.cards.forEach((card,i)=>{card.material.emissive.set(i===state.selected?0x423119:0x000000);card.material.emissiveIntensity=.18;});
   }
   function select(index,{instant=false}={}) {
-    state.selected=wrapIndex(index);state.target=nearestAngle(state.angle,state.selected);autoAt=state.elapsed;
+    state.selected=wrapIndex(index,lines.length);state.target=nearestAngle(state.angle,state.selected,lines.length);
+    selectionPending=!instant&&state.playing;
     if(instant||!state.playing)state.angle=state.target;
     updateLabels();requestDraw();
   }
@@ -97,7 +108,7 @@ export function mountShowroom({Renderer=THREE.WebGLRenderer,textureLoader=null,o
       const width=viewport.clientWidth||500;
       fallback.style.transform=`rotateX(${smoothedY*-5}deg) rotateY(${smoothedX*6}deg)`;
       fallbackCards.forEach((card,i)=>{
-        const a=state.angle+i*STEP,front=(Math.cos(a)+1)/2;
+        const a=state.angle+i*step,front=(Math.cos(a)+1)/2;
         card.style.transform=`translate3d(${Math.sin(a)*width*.32}px,${Math.sin(state.elapsed*.8+i)*7}px,${Math.cos(a)*100}px) rotateY(${-Math.sin(a)*22}deg) scale(${.64+front*.3})`;
         card.style.zIndex=String(Math.round(front*10));card.style.opacity=String(.45+front*.55);
       });
@@ -108,8 +119,14 @@ export function mountShowroom({Renderer=THREE.WebGLRenderer,textureLoader=null,o
     if(compact&&lastFrame&&timestamp-lastFrame<30)return;
     const delta=clock?Math.min((timestamp-clock)/1000,.06):0;clock=timestamp;lastFrame=timestamp;
     state.elapsed+=delta;smoothedX+=(pointerX-smoothedX)*.075;smoothedY+=(pointerY-smoothedY)*.075;
-    state.angle+=(state.target-state.angle)*(drag?.active?1:1-Math.exp(-delta*6));
-    if(!drag&&state.elapsed-autoAt>5.8)select(state.selected+1);
+    if(!drag){
+      // Constant angular velocity: a complete orbit in 66 seconds, with no dwell.
+      state.target-=delta*ROTATION_SPEED;state.angle-=delta*ROTATION_SPEED;
+      state.angle+=(state.target-state.angle)*(1-Math.exp(-delta*6));
+      if(selectionPending&&Math.abs(state.target-state.angle)<.025)selectionPending=false;
+      const front=wrapIndex(Math.round(-state.angle/step),lines.length);
+      if(!selectionPending&&front!==state.selected){state.selected=front;updateLabels();}
+    }
     draw();
   }
   function cssFrame(timestamp){frameId=0;if(!running())return;frame(timestamp);frameId=requestAnimationFrame(cssFrame);}
@@ -122,8 +139,8 @@ export function mountShowroom({Renderer=THREE.WebGLRenderer,textureLoader=null,o
     if(!running())draw();
   }
   function requestDraw(){if(!running()&&!state.disposed)draw();}
-  function setPlaying(playing,user=true){if(state.disposed)return;state.playing=playing;if(user)manualMotion=true;updateLabels();syncLoop();}
-  function reset(){pointerX=pointerY=smoothedX=smoothedY=0;state.angle=-5*STEP;select(5,{instant:true});}
+  function setPlaying(playing,user=true){if(state.disposed)return;if(!playing&&selectionPending){state.angle=state.target;selectionPending=false;}state.playing=playing;if(user)manualMotion=true;updateLabels();syncLoop();}
+  function reset(){pointerX=pointerY=smoothedX=smoothedY=0;state.angle=0;select(0,{instant:true});}
   function resize(){
     if(state.disposed)return;
     const w=viewport.clientWidth||500,h=viewport.clientHeight||440;
@@ -136,7 +153,7 @@ export function mountShowroom({Renderer=THREE.WebGLRenderer,textureLoader=null,o
     raycaster.setFromCamera(pointer,camera);const hits=raycaster.intersectObjects(model.cards.map(card=>card.backing),false);
     return hits.length?hits[0].object.userData.index:-1;
   }
-  listen(viewport,'pointerdown',event=>{if(event.button!==undefined&&event.button!==0)return;drag={id:event.pointerId,x:event.clientX,y:event.clientY,angle:state.target,active:false};viewport.focus({preventScroll:true});});
+  listen(viewport,'pointerdown',event=>{if(event.button!==undefined&&event.button!==0)return;drag={id:event.pointerId,x:event.clientX,y:event.clientY,angle:state.angle,active:false};viewport.focus({preventScroll:true});});
   listen(viewport,'pointermove',event=>{
     const rect=viewport.getBoundingClientRect();if(!preference.matches){pointerX=((event.clientX-rect.left)/rect.width-.5)*2;pointerY=((event.clientY-rect.top)/rect.height-.5)*2;}
     if(drag&&event.pointerId===drag.id){
@@ -152,20 +169,23 @@ export function mountShowroom({Renderer=THREE.WebGLRenderer,textureLoader=null,o
     if(!drag||event.pointerId!==drag.id)return;
     const wasDragging=drag.active;drag=null;viewport.classList.remove('dragging');
     if(viewport.hasPointerCapture?.(event.pointerId))viewport.releasePointerCapture(event.pointerId);
-    if(wasDragging)select(Math.round(-state.target/STEP));else{const index=hit(event);if(index>=0)select(index);}
-    autoAt=state.elapsed;
+    if(wasDragging)select(Math.round(-state.target/step));else{const index=hit(event);if(index>=0)select(index);}
   };
-  listen(window,'pointerup',finishDrag);listen(viewport,'pointercancel',()=>{drag=null;viewport.classList.remove('dragging');select(Math.round(-state.target/STEP));});
+  listen(window,'pointerup',finishDrag);listen(viewport,'pointercancel',()=>{drag=null;viewport.classList.remove('dragging');select(Math.round(-state.target/step));});
   listen(viewport,'pointerleave',()=>{pointerX=pointerY=0;hover=-1;viewport.classList.remove('over-product');if(!state.playing){smoothedX=smoothedY=0;draw();}});
   listen(viewport,'keydown',event=>{
     if(event.target!==viewport)return;
     if(['ArrowLeft','ArrowRight','Home','End',' '].includes(event.key))event.preventDefault();else return;
-    if(event.key===' ')setPlaying(!state.playing);else select(event.key==='Home'?0:event.key==='End'?7:state.selected+(event.key==='ArrowRight'?1:-1));
+    if(event.key===' ')setPlaying(!state.playing);else select(event.key==='Home'?0:event.key==='End'?lines.length-1:state.selected+(event.key==='ArrowRight'?1:-1));
   });
   listen($('#world-prev'),'click',()=>select(state.selected-1));listen($('#world-next'),'click',()=>select(state.selected+1));
   listen($('#world-pause'),'click',()=>setPlaying(!state.playing));listen($('#world-reset'),'click',reset);
   thumbs.forEach((button,i)=>listen(button,'click',()=>select(i)));
-  listen($('#world-explore'),'click',()=>document.querySelector(`.coll [data-line="${state.selected}"]`)?.click());
+  listen($('#world-explore'),'click',()=>{
+    const index=lines[state.selected].collectionIndex;
+    if(index===null)document.querySelector('#site-nav a[href="#collections"]')?.click();
+    else document.querySelector(`.coll [data-line="${index}"]`)?.click();
+  });
   listen(document,'visibilitychange',syncLoop);
   if(preference.addEventListener)listen(preference,'change',event=>{if(!manualMotion)setPlaying(!event.matches,false);});
   let visibility=null,sizeObserver=null;

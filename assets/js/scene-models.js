@@ -2,9 +2,9 @@
 import * as THREE from './vendor/three.module.js';
 
 export const STEP = Math.PI * 2 / 8;
-export const wrapIndex = value => ((value % 8) + 8) % 8;
-export function nearestAngle(current, index) {
-  const desired = -wrapIndex(index) * STEP;
+export const wrapIndex = (value,count=8) => ((value % count) + count) % count;
+export function nearestAngle(current, index, count=8) {
+  const desired = -wrapIndex(index,count) * Math.PI * 2 / count;
   return current + Math.atan2(Math.sin(desired - current), Math.cos(desired - current));
 }
 export function roundedRect(width, height, radius) {
@@ -53,7 +53,7 @@ export function buildShowroom(lines,{compact=false}={}) {
   const stem=mesh(new THREE.CylinderGeometry(.1,.14,.6,24),gold,sculpture,[0,-1.1,-.4]);
   const mount=mesh(new THREE.CylinderGeometry(.58,.7,.1,48),navy,sculpture,[0,-1.36,-.4]);
 
-  // Eight real catalog images sit on solid, rounded cards in a 3D carousel.
+  // Pet portraits and real catalog images share the same dimensional carousel.
   const cardGeometry=new THREE.ExtrudeGeometry(roundedRect(1.45,1.88,.14),{depth:.065,bevelEnabled:true,bevelSegments:3,bevelSize:.025,bevelThickness:.025,steps:1,curveSegments:10});
   cardGeometry.translate(0,0,-.035);
   const cards=lines.map((line,index)=>{
@@ -89,7 +89,7 @@ export function buildShowroom(lines,{compact=false}={}) {
 
 export function positionCards(cards,angle,time=0) {
   cards.forEach(({group},i)=>{
-    const a=angle+i*STEP,front=(Math.cos(a)+1)/2;
+    const a=angle+i*Math.PI*2/cards.length,front=(Math.cos(a)+1)/2;
     group.position.set(Math.sin(a)*2.48,-.12+Math.sin(time*.75+i*.9)*.085,Math.cos(a)*1.6);
     group.rotation.set(Math.sin(time*.45+i)*.025,-Math.sin(a)*.32,Math.sin(a)*.045);
     group.scale.setScalar(.73+front*.29);

@@ -56,6 +56,8 @@
 .world-css-card{position:absolute;width:21%;height:47%;left:39.5%;top:34%;border-radius:16px;border:1px solid #ffffff40;box-shadow:4px 5px 0 #00000025,0 20px 35px -15px #00000060;transform-style:preserve-3d;will-change:transform;backface-visibility:hidden}
 .world-css-card img{width:100%;height:85%;object-fit:contain;padding:7px;transform:translateZ(15px)}
 .world-css-card span{display:block;font-size:8px;letter-spacing:.15em;color:#12204a90;text-align:center;font-weight:600}
+.world-css-card--pet{border-color:#fff9;box-shadow:4px 5px 0 #b6944a55,0 20px 40px -15px #0008}
+.world-css-card--pet img{height:90%;padding:3px;filter:drop-shadow(0 9px 7px #12204a18)}
 
 /* Labels, depth, light response and stitched edges give the rest of the page equal care. */
 .detail-eyebrow{position:relative;display:flex;align-items:center;gap:12px;font:600 10px/1.5 var(--body);letter-spacing:.15em;text-transform:uppercase;color:#ab4b2d;margin-bottom:21px}
@@ -139,3 +141,9 @@
 }
 @media (max-width:359px){.world-categories{left:13px;right:13px;gap:4px}.world-categories button{height:27px;width:27px}.world-live{font-size:7px}.world-caption{left:14px;max-width:calc(100% - 133px)}.world-transport{right:12px;gap:3px}.world-transport button{width:25px;height:25px}.hero-world{height:455px}.hero-btns .btn{flex:1 1 100%;justify-content:center}}
 @media (prefers-reduced-motion:reduce){.depth-card,.depth-card *{transform:none!important}.world-css-orbit,.world-css-card{transition:none}.bar .track::after{animation:none}.foot-big:hover{transform:none}}
+
+/* Ten scenes remain directly selectable, with no page overflow on small screens. */
+.hero-world .world-categories{display:grid;grid-template-columns:repeat(10,minmax(24px,1fr));overflow-x:auto;scrollbar-width:none;padding-bottom:5px}
+.hero-world .world-categories::-webkit-scrollbar{display:none}
+.hero-world .world-categories button{width:100%;height:auto;aspect-ratio:1;max-width:40px;justify-self:center}
+@media(max-width:359px){.hero-world .world-categories{gap:3px}}
