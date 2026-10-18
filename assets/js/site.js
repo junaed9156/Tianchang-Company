@@ -168,7 +168,7 @@
   });
 
   const logoSpans = list => list.map(([f, n]) => `<span><img src="assets/logos/${f}.png" alt="${n}" loading="lazy"></span>`).join('');
-  const rowA = SHOPS.slice(0, 6), rowB = SHOPS.slice(6);
+  const half = Math.ceil(SHOPS.length / 2), rowA = SHOPS.slice(0, half), rowB = SHOPS.slice(half);
   $('#logos-a').innerHTML = logoSpans(rowA) + logoSpans(rowA).replace(/alt="[^"]*"/g, 'alt=""') + logoSpans(rowA).replace(/alt="[^"]*"/g, 'alt=""');
   $('#logos-b').innerHTML = logoSpans(rowB) + logoSpans(rowB).replace(/alt="[^"]*"/g, 'alt=""') + logoSpans(rowB).replace(/alt="[^"]*"/g, 'alt=""');
 
@@ -184,6 +184,11 @@
     $('#fac-name').textContent = f.name; $('#fac-desc').textContent = c.desc; $('#fac-products').textContent = c.products;
     $('#fac-work').textContent = c.work; $('#fac-addr').textContent = f.addr;
     $('#fac-img').src = f.img; $('#fac-img').alt = f.name; $('#fac-badge').src = f.badge;
+    // Audit certificates and the retailers whose audits this factory passed (Tonglu has none listed yet).
+    const logos = list => (list || []).map(([file, label]) => `<img src="assets/logos/${file}.png" alt="${label}" title="${label}" loading="lazy">`).join('');
+    $('#fac-audits').innerHTML = logos(f.audits); $('#fac-clients').innerHTML = logos(f.clients);
+    $('#fac-proof').hidden = !(f.audits || f.clients);
+    $$('#fac-proof img').forEach(img => { const square = () => img.classList.toggle('square', img.naturalWidth / img.naturalHeight < 1.4); if (img.complete) square(); else img.addEventListener('load', square, { once: true }); });
     const a = $('#fac-area'), tm = $('#fac-team');
     if (instant || reduce) { a.textContent = fmt(f.area, 'comma'); tm.textContent = fmt(f.team, 'int'); }
     else { countTo(a, f.area, 'comma', 1, +a.dataset.v || 0); countTo(tm, f.team, 'int', 1, +tm.dataset.v || 0); }

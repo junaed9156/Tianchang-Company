@@ -146,6 +146,14 @@ section[id]{scroll-margin-top:116px}
 .fac-tab b{font-size:19px;letter-spacing:-.02em}
 .fac-tab span{font-size:12px}
 .fac-panel{grid-template-columns:minmax(0,420px) minmax(0,1fr);padding:34px;gap:54px;border-radius:25px;background:#fff;border:1px solid var(--line)}
+/* Audits passed and the retailers each factory is audited for. */
+.fac-proof{display:grid;gap:14px;margin-top:22px}.fac-proof[hidden]{display:none}
+.fac-proof>div>span{display:block;margin-bottom:8px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.fac-logos{display:flex;flex-wrap:wrap;gap:8px}
+.fac-logos img{height:42px;width:auto;max-width:118px;padding:7px 11px;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:10px;transition:transform .3s,border-color .3s}
+.fac-logos img:hover{transform:translateY(-2px);border-color:#efc77899}
+.fac-logos img.square{padding:3px 10px}
+@media (max-width:640px){.fac-logos{gap:6px}.fac-logos img{height:36px;max-width:96px;padding:6px 8px}}
 .fac-photo{background:#fff;border-radius:18px;overflow:hidden}
 .fac-photo > img{max-height:390px;object-fit:contain;mix-blend-mode:normal}
 .fac-badge{border-radius:0 0 16px 0;padding:13px 16px}

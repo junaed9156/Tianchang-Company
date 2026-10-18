@@ -30,10 +30,14 @@ window.LINES = [
 ];
 
 window.SHOPS = [['target','Target'],['walmart','Walmart'],['petsmart','PetSmart'],['petco','Petco'],['action','Action'],['walgreens','Walgreens'],
-  ['tjmaxx','TJ Maxx'],['cvs','CVS'],['lowes',"Lowe's"],['carrefour','Carrefour'],['ross','Ross'],['aldi','ALDI']];
+  ['tjmaxx','TJ Maxx'],['cvs','CVS'],['lowes',"Lowe's"],['carrefour','Carrefour'],['ross','Ross'],['aldi','ALDI'],
+  ['costco','Costco'],['dollartree','Dollar Tree'],['zara','ZARA']];
 
 window.FACTORIES = [
+  // audits = certificates the factory holds; clients = retailers whose own factory audits it has passed (logo files in assets/logos).
   {name:'Tianchang Sign Crafts Co., Ltd.', img:'assets/factory/tianchang-1.jpg', badge:'assets/brand/sign.png', area:16500, team:151,
+   audits:[['bsci','amfori BSCI'],['sedex','Sedex'],['grs','Global Recycled Standard'],['scan','SCAN']],
+   clients:[['walmart','Walmart'],['costco','Costco'],['lowes',"Lowe's"],['action','Action'],['cvs','CVS'],['dollartree','Dollar Tree']],
    addr:'Area B, Industrial Park, Chajian Town, Tianchang, Anhui, China',
    en:{desc:'Our main China factory for pet apparel, plush toys and beds, with its own cutting, sewing, filling and sampling workshops.',
        products:'Pet apparel, pet toys, pet beds', work:'Cutting, sewing, filling and carding, finishing, QC, sampling, warehouse'},
@@ -46,6 +50,8 @@ window.FACTORIES = [
    zh:{desc:'集团的起点，专注针织生产：宠物毛衣、针织服装、围巾和帽子。',
        products:'宠物毛衣、针织服装、围巾和帽子', work:'裁剪、缝制、充棉梳棉、后整、质检、打样、仓库'}},
   {name:'High Sense (Cambodia) Co., Ltd.', img:'assets/factory/cambodia-1.jpg', badge:'assets/brand/hs.png', area:10000, team:610,
+   audits:[['bsci','amfori BSCI'],['grs','Global Recycled Standard'],['ocs','Organic Content Standard 100'],['scan','SCAN']],
+   clients:[['target','Target'],['petsmart','PetSmart'],['petco','Petco'],['lowes',"Lowe's"],['walgreens','Walgreens'],['aldi','ALDI'],['zara','ZARA']],
    addr:'Land Title No. 46, Phum Bos Ta Ney, Khum Kahaeng, Samraong Tong District, Kampong Speu Province, Cambodia (53 km from Phnom Penh)',
    en:{desc:'Our largest factory, 53 km from Phnom Penh, with duty advantages into the EU, US, Japan, Canada, Korea and Australia.',
        products:'Apparel, pet apparel, knitted garments, scarves and hats', work:'Cutting, sewing, knitting, printing and embroidery, finishing, QC, warehouse'},
@@ -85,7 +91,7 @@ window.ZH = {
   's5.h':'包装与出口','s5.p':'最大3,000平方米的仓库负责包装，并可从中国或柬埔寨出货，选择关税更优的一方。',
   'fac.h2':'三家工厂，一个团队','fac.p':'订单可在中国和柬埔寨工厂之间灵活分配，兼顾价格、交期和进口关税。',
   'ft.1':'中国安徽 · 2014年起','ft.2':'中国杭州 · 2008年起','ft.3':'柬埔寨 · 2023年起',
-  'k.area':'平方米厂房面积','k.team':'名员工','k.products':'产品','k.workshops':'车间','k.address':'地址',
+  'k.area':'平方米厂房面积','k.team':'名员工','k.products':'产品','k.workshops':'车间','k.address':'地址','k.audits':'已通过的验厂','k.clients':'客户验厂',
   'cap.h3':'月产能','cap.p':'集团每月产能达145万件，大型零售项目和旺季订单都能按时交货。',
   'china':'中国','cambodia':'柬埔寨',
   'bar.1':'宠物玩具（中国）','bar.2':'宠物服装（柬埔寨）','bar.3':'宠物服装（中国）','bar.4':'宠物毛衣（中国）','bar.5':'宠物毛衣（柬埔寨）',
