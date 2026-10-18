@@ -176,16 +176,6 @@ section[id]{scroll-margin-top:116px}
 .bk-steps b{width:26px;height:26px;font-size:12px}
 .bk-btns{gap:10px}
 .bk-btns .btn{font-size:12px;padding:16px 20px}
-.bk-card{padding:30px 27px 25px;border-radius:25px;border:1px solid #ffffff15}
-.bk-card h3{font-size:27px;line-height:1.2;letter-spacing:-.03em}
-.bk-card-p{font-size:13px;line-height:1.75;margin:12px 0 22px}
-.bk-routes{grid-template-columns:26% minmax(0,1fr)}
-.duty{gap:8px}
-.duty article{padding:10px 12px;gap:10px}
-.duty b{font-size:14px;line-height:1.3}
-.duty p{font-size:11px;line-height:1.6;margin-top:4px}
-.duty img{width:27px;height:19px}
-.duty-note{font-size:11px;line-height:1.8;color:#aeb8d6;margin-top:20px}
 .bk-float .bf1{width:85px;left:-2%;bottom:2%;opacity:.6}
 .bk-float .bf2{width:70px;left:32%;top:3%;opacity:.65}
 .trust{min-height:0;display:block;padding:100px 0 85px}
@@ -267,8 +257,8 @@ html.page-hidden *,html.page-hidden *::before,html.page-hidden *::after{animatio
   .process-pin{padding:85px 0}.step p{font-size:14px}
   .fac-panel{grid-template-columns:minmax(0,.8fr) minmax(0,1fr);padding:28px;gap:30px}.fac-info h3{font-size:25px}
   .capacity{grid-template-columns:220px minmax(0,1fr);gap:30px;padding:28px}.bar{grid-template-columns:145px minmax(30px,1fr) 65px;gap:12px;font-size:11px}
-  .bk-grid{grid-template-columns:1fr;gap:45px}.bk-title{max-width:16ch;font-size:56px}.bk-lead{max-width:65ch}.bk-copy{max-width:760px}.bk-card{max-width:850px;width:100%}.bk-routes{grid-template-columns:26% minmax(0,1fr)}
-  .bk-btns .btn{flex:0 1 auto}.bk-float{display:none}.duty p{font-size:12px}.duty article{padding:13px 17px}.duty-note{font-size:12px}
+  .bk-grid{grid-template-columns:1fr;gap:45px}.bk-title{max-width:16ch;font-size:56px}.bk-lead{max-width:65ch}.bk-copy{max-width:760px}
+  .bk-btns .btn{flex:0 1 auto}.bk-float{display:none}
   .certs{grid-template-columns:repeat(3,minmax(0,1fr))}.cert b{font-size:15px}.cert span{font-size:13px}
   .contact-grid{grid-template-columns:1.15fr .9fr;gap:35px}.contact-card{padding:25px}.reach a{font-size:13px}.reach small{display:block;margin-left:0}
   .about{font-size:12px}.foot-grid{grid-template-columns:1fr 1fr}
@@ -302,7 +292,7 @@ html.page-hidden *,html.page-hidden *::before,html.page-hidden *::after{animatio
   .explorer,.factories,.trust,.contact,.brandkh{padding-block:60px}.tabs{margin-bottom:20px}.tab{font-size:12px}.panel{padding:21px;border-radius:21px;gap:25px}.panel-info h3{font-size:28px}.panel-info p{font-size:13px}.panel-info dl{font-size:12px}.panel:not(.all) .grid8{gap:10px}.grid8 button{border-radius:13px}.panel.all .grid8{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.grid8 button::after{width:23px;height:23px;right:6px;bottom:6px;font-size:13px}.more-row{margin-top:19px;gap:12px}.more-row span{font-size:11px}
   .process-pin{padding:65px 0}.steps{grid-template-columns:1fr;gap:24px;padding-top:5px}.step{padding-bottom:26px;border-radius:20px}.step-media{aspect-ratio:16/10;border-radius:19px 19px 0 0}.step-txt{padding-inline:25px}.step-ico{margin-left:25px;width:44px;height:44px}.step h3{font-size:24px;margin:8px 0 12px}.step p{font-size:14px;line-height:1.9}.step-n{font-size:11px}
   .fac-tabs{grid-template-columns:1fr;gap:9px}.fac-tab{padding:16px 19px;display:flex;justify-content:space-between;align-items:center;gap:12px;border-radius:13px}.fac-tab b{font-size:17px}.fac-tab span{font-size:10px;margin-top:0;text-align:right}.fac-panel{padding:22px;border-radius:20px}.fac-info h3{font-size:25px}.fac-info > p{font-size:13px}.fac-stats{gap:10px}.fac-stats div{padding:14px}.fac-stats b{font-size:29px}.fac-stats span{font-size:10px}.facts div{grid-template-columns:74px minmax(0,1fr);gap:11px;font-size:11px;line-height:1.8}.capacity{padding:25px 22px;border-radius:20px}.cap-head h3{font-size:24px}.cap-head p{font-size:12px}.bar{grid-template-columns:1fr auto;grid-template-areas:'l v' 't t';gap:7px 12px;font-size:11px}.bars{gap:18px}.bar b{font-size:13px}
-  .bk-grid{gap:32px}.bk-title{font-size:46px;max-width:11ch;margin:23px 0}.bk-lead{font-size:14px}.bk-steps{margin-block:25px}.bk-btns .btn{flex:1 1 100%;font-size:12px}.bk-card{padding:26px 20px 23px;border-radius:21px}.bk-card h3{font-size:26px}.bk-card-p{font-size:12px;margin-bottom:21px}.bk-routes{grid-template-columns:1fr}.kh-map{display:none}.duty article{padding:13px 12px;gap:12px}.duty b{font-size:14px}.duty p{font-size:11px;line-height:1.7}.duty img{width:28px;height:20px}.duty-note{font-size:11px;margin-top:19px}
+  .bk-grid{gap:32px}.bk-title{font-size:46px;max-width:11ch;margin:23px 0}.bk-lead{font-size:14px}.bk-steps{margin-block:25px}.bk-btns .btn{flex:1 1 100%;font-size:12px}
   .certs{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.cert{padding:20px 15px;border-radius:15px}.cert-logo{height:64px;margin-bottom:17px}.cert-logo img{max-height:55px}.cert b{font-size:13px}.cert span{font-size:11px;line-height:1.8}.cert:last-child{grid-column:1/-1;display:grid;grid-template-columns:70px 1fr;gap:0 20px;align-items:center}.cert:last-child .cert-logo{grid-row:span 2;margin:0}.cert:last-child span{margin-top:4px}.clients{margin-top:45px}.clients-head{gap:12px;margin-bottom:23px}.clients-head h3{font-size:29px;max-width:19ch}.logo-track span{width:145px;height:75px;padding:16px 20px;border-radius:12px}.logo-track img{max-height:35px}
   .contact-grid{gap:35px}form.quote{gap:13px}.fl input,.fl select,.fl textarea{font-size:16px;min-height:59px}.fl span{font-size:13px}.fl textarea{min-height:130px}.contact-card{padding:26px;border-radius:21px}.contact .sec-head p{margin-top:17px}.person b{font-size:22px}.person span{font-size:11px}.avatar{width:54px;height:54px}.avatar img{width:41px}.about{font-size:12px}.reach a{font-size:14px}.reach small{font-size:10px}.catalog-dl b{font-size:12px}.catalog-dl small{font-size:11px}
   .foot{padding:48px 0 25px}.foot-big{font-size:17vw;margin-bottom:35px}.foot-grid{grid-template-columns:1fr;gap:25px;font-size:12px}.foot-grid .logo small{display:block}.foot-bottom{gap:12px;font-size:10px}.fab{right:16px;bottom:16px;padding:14px}.fab span{display:none}.lightbox{padding:16px}.lightbox img{max-width:90vw;border-radius:15px}.lb-nav{width:47px;height:47px}

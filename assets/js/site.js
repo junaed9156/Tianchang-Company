@@ -172,41 +172,10 @@
   $('#logos-a').innerHTML = logoSpans(rowA) + logoSpans(rowA).replace(/alt="[^"]*"/g, 'alt=""') + logoSpans(rowA).replace(/alt="[^"]*"/g, 'alt=""');
   $('#logos-b').innerHTML = logoSpans(rowB) + logoSpans(rowB).replace(/alt="[^"]*"/g, 'alt=""') + logoSpans(rowB).replace(/alt="[^"]*"/g, 'alt=""');
 
-  /* ======================= Route map: Cambodia -> six markets ======================= */
-  // Routes are drawn in pixels so each line ends exactly at its country row on the right.
+  /* ======================= Cambodia markets ======================= */
+  // The globe (assets/js/duty-globe.js) draws the routes; each market row keeps its route colour.
   const NS = 'http://www.w3.org/2000/svg';
-  const map = $('#route-map'), routePaths = $('#route-paths'), origin = $('#route-origin');
-  const dutyRows = $$('#duty article');
-  dutyRows.forEach((row, i) => row.style.setProperty('--c', MARKETS[i].color));
-  let routesDrawn = reduce;   // becomes true once the draw-in animation has played
-  function drawRoutes() {
-    const r = map.getBoundingClientRect(); if (!r.width || !r.height) return;
-    const w = r.width, h = r.height, ox = Math.min(64, w * .32), oy = h / 2;
-    origin.setAttribute('transform', `translate(${ox} ${oy})`);
-    routePaths.innerHTML = dutyRows.map((row, i) => {
-      const rr = row.getBoundingClientRect(), ey = rr.top + rr.height / 2 - r.top, ex = w + 2, m = MARKETS[i];
-      const d = `M${ox} ${oy} C ${ox + (w - ox) * .55} ${oy}, ${ox + (w - ox) * .45} ${ey}, ${ex} ${ey}`;
-      return `<path class="path-glow" data-i="${i}" d="${d}" stroke="${m.color}"/><path class="path" id="rp-${i}" data-i="${i}" d="${d}" stroke="${m.color}"/>
-        <circle class="end" cx="${ex}" cy="${ey}" r="5" fill="${m.color}"/>
-        <circle class="mover" r="4.5" fill="${m.color}" style="color:${m.color}">${reduce ? '' : `<animateMotion dur="3s" begin="${(i * .4).toFixed(2)}s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".4 0 .2 1"><mpath href="#rp-${i}"/></animateMotion>`}</circle>`;
-    }).join('');
-    if (!routesDrawn) $$('.path, .path-glow', routePaths).forEach(p => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
-  }
-  function revealRoutes() {
-    if (routesDrawn) return; routesDrawn = true;
-    $$('.path, .path-glow', routePaths).forEach((p, k) => gsap.to(p, { strokeDashoffset: 0, duration: 1.4, delay: Math.floor(k / 2) * .08, ease: 'power2.inOut',
-      onComplete: () => { p.style.strokeDasharray = ''; p.style.strokeDashoffset = ''; } }));
-  }
-  function focusRoute(i) {
-    map.classList.toggle('focus', i !== null);
-    $$('.path, .path-glow', routePaths).forEach(p => p.classList.toggle('hot', +p.dataset.i === i));
-    dutyRows.forEach((row, k) => row.classList.toggle('hot', k === i));
-  }
-  dutyRows.forEach((row, i) => { row.addEventListener('mouseenter', () => focusRoute(i)); row.addEventListener('mouseleave', () => focusRoute(null)); });
-  drawRoutes();
-  let rTimer; window.addEventListener('resize', () => { clearTimeout(rTimer); rTimer = setTimeout(drawRoutes, 150); });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawRoutes);
-  window.addEventListener('load', drawRoutes);
+  $$('#duty article').forEach((row, i) => row.style.setProperty('--c', MARKETS[i].color));
 
   /* ======================= Factories ======================= */
   let fac = 0, factoryTransition = null;
@@ -494,7 +463,6 @@
     onEnter: () => $$('.bars .count').forEach(el => countTo(el, +el.dataset.to, el.dataset.fmt, 1.8)) });
 
   // ---- Your brand + Cambodia
-  ScrollTrigger.create({ trigger: '.bk-routes', start: 'top 75%', once: true, onEnter: revealRoutes });
   gsap.from('.bk-steps li, .bk-btns > *', { x: -30, opacity: 0, duration: .7, stagger: .08, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.bk-steps', start: 'top 85%' } });
   gsap.from('.bk-card', { y: 60, opacity: 0, duration: 1, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '.bk-card', start: 'top 85%', onLeaveBack: null } });
   gsap.from('#duty article', { x: 40, opacity: 0, duration: .7, stagger: .07, clearProps: 'transform,translate,rotate,scale,opacity', scrollTrigger: { trigger: '#duty', start: 'top 80%' } });

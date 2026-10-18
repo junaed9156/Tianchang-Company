@@ -1,0 +1,30 @@
+/* Lower import duty from Cambodia: a compact card with a turning 3D globe of our export routes. */
+.brandkh .duty-card{grid-column:1/-1;position:relative;display:grid;grid-template-columns:260px minmax(0,1fr);grid-template-rows:1fr auto;column-gap:40px;align-items:center;padding:30px 34px;border-radius:26px;isolation:isolate;overflow:hidden;color:#fff;
+  background:radial-gradient(ellipse at 14% 50%,#2c4a8a55,transparent 45%),linear-gradient(150deg,#1b2c4f,#111d38 70%);border:1px solid #efc77830;box-shadow:inset 0 1px 0 #ffffff12,0 30px 70px -35px #020814aa}
+.brandkh .duty-card::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(#ffffff0c .8px,transparent .8px) 0 0/22px 22px;mask-image:linear-gradient(90deg,transparent,#000 40%)}
+.duty-globe{position:relative;grid-row:1;width:100%;aspect-ratio:1}
+.duty-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.duty-globe-still{position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#2f4c8c,#12204a 60%);box-shadow:inset -8px -10px 30px #0008,0 0 0 1px #5f84c955,0 0 40px #efc77826}
+.duty-globe-still i{position:absolute;left:66%;top:47%;width:10px;height:10px;border-radius:50%;background:#f2cd86;box-shadow:0 0 0 6px #f2cd8633,0 0 18px #f2cd86}
+.duty-globe.live .duty-globe-still{display:none}
+.duty-origin{grid-row:2;justify-self:center;display:flex;align-items:center;gap:7px;margin-top:4px;font-size:10px;color:#a9b7cd;white-space:nowrap}
+.duty-origin i{width:7px;height:7px;border-radius:50%;background:#f2cd86;box-shadow:0 0 0 3px #f2cd8630}.duty-origin b{color:#f6e7c4;font-weight:600}
+.duty-copy{grid-column:2;grid-row:1/3;min-width:0}
+.duty-card h3{font-size:clamp(24px,2.3vw,32px);line-height:1.15;letter-spacing:-.03em;color:#f8f1e1}
+.duty-card .bk-card-p{max-width:62ch;margin:10px 0 18px;font-size:13px;line-height:1.75;color:#b8c4d6}
+.duty{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.duty article{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:13px;background:#ffffff07;border:1px solid #ffffff12;cursor:default;outline:none;transition:background .35s,border-color .35s,box-shadow .35s,translate .35s}
+.duty article img{flex:none;width:26px;height:18px;margin-top:2px;border-radius:3px;object-fit:cover;box-shadow:0 0 0 1px #ffffff26}
+.duty b{display:block;font-size:12.5px;line-height:1.3;color:#f4ecda}
+.duty p{margin-top:3px;font-size:10.5px;line-height:1.55;color:#9fb0c6}
+.duty article.hot{background:#ffffff10;border-color:var(--c,#efc778);box-shadow:0 0 0 1px var(--c,#efc778) inset,0 10px 24px -14px var(--c,#efc778);translate:0 -2px}
+.duty article:focus-visible{outline:2px solid #efc778;outline-offset:2px}
+.duty-note{margin-top:14px;font-size:10.5px;line-height:1.7;color:#8e9db3}
+
+@media (max-width:1100px){.brandkh .duty-card{grid-template-columns:210px minmax(0,1fr);column-gap:26px;padding:26px}.duty{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){
+  .brandkh .duty-card{grid-template-columns:1fr;grid-template-rows:auto;padding:22px 18px;border-radius:21px}
+  .duty-globe{grid-row:auto;max-width:230px;margin:0 auto}.duty-origin{grid-row:auto}.duty-copy{grid-column:1;grid-row:auto;margin-top:16px}
+  .duty-card h3{font-size:25px}.duty-card .bk-card-p{font-size:12.5px}.duty{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){.duty article{transition:none}.duty article.hot{translate:none}}

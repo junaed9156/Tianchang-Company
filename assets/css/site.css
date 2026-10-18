@@ -291,35 +291,7 @@ html[lang|="zh"] .bk-title{max-width:7em}
 .bf2{width:100px;left:37%;top:7%;transform:rotate(10deg)}
 @media (prefers-reduced-motion:no-preference){.bk-float img{animation:bob2 6s ease-in-out infinite}.bf2{animation-delay:-3s}}
 
-.bk-card{position:relative;background:var(--ink);color:#fff;overflow:hidden}
-.bk-card::before{content:"";position:absolute;inset:0;background:radial-gradient(420px 320px at 12% 60%,rgba(242,182,50,.14),transparent 70%);pointer-events:none}
-.bk-card h3{position:relative}
-.bk-card-p{position:relative;color:#c7cfe6;max-width:64ch}
-.bk-routes{position:relative;display:grid}
-.kh-map{position:relative}
-.route-map{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.route-map .path{fill:none;stroke-width:2.5;stroke-linecap:round;transition:opacity .3s,stroke-width .3s}
-.route-map .path-glow{fill:none;stroke-width:9;opacity:.12;stroke-linecap:round;transition:opacity .3s}
-.route-map.focus .path,.route-map.focus .path-glow{opacity:.18}
-.route-map.focus .path.hot{opacity:1;stroke-width:3.5}
-.route-map.focus .path-glow.hot{opacity:.3}
-.route-map .end{stroke:var(--ink);stroke-width:3}
-.route-map .ring{fill:none;stroke:#ffb02e;stroke-width:2}
-@media (prefers-reduced-motion:no-preference){
-  .route-map .ring{animation:ring 2.6s var(--ease) infinite;transform-box:fill-box;transform-origin:center}
-  .route-map .r2{animation-delay:1.3s}
-}
 @keyframes ring{from{transform:scale(.6);opacity:1}to{transform:scale(2.6);opacity:0}}
-.route-map .o-name{fill:#fff;font-family:var(--display);font-size:14px}
-.route-map .o-sub{fill:#aeb8d6;font-size:11px;font-family:var(--body)}
-.route-map .mover{filter:drop-shadow(0 0 5px currentColor)}
-.duty{display:grid}
-.duty article{position:relative;display:grid;grid-template-columns:auto 1fr;align-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px}
-.duty article.hot{background:rgba(255,255,255,.11);border-color:var(--c,rgba(255,255,255,.3))}
-.duty img{object-fit:cover;border-radius:4px}
-.duty b{font-family:var(--display)}
-.duty p{color:#c7cfe6}
-.duty-note{position:relative}
 
 /* ---------- Trust ---------- */
 .trust{background:var(--paper)}
@@ -573,11 +545,6 @@ form.quote .btn[disabled]{opacity:.7;cursor:progress}
   .brandkh{padding:76px 0 24px}
   .bk-title{font-size:clamp(34px,3.6vw,54px);margin:12px 0 10px}
   .bk-steps{margin:14px 0 18px;gap:6px}
-  .bk-card{padding:18px 22px 12px}
-  .bk-card-p{margin:2px 0 8px}
-  .duty{gap:4px}
-  .duty article{padding:5px 12px}
-  .duty-note{margin-top:6px}
   .factories{padding:44px 0 28px}
   .fac-panel{padding:16px 28px}
   .capacity{padding:14px 24px}
