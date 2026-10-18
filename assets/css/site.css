@@ -114,8 +114,6 @@ html[lang|="zh"] .hero-title{font-size:clamp(36px,4.6vw,72px)}
 
 .hero-foot{display:flex;align-items:center}
 .hero-foot p{font-weight:600;white-space:nowrap}
-.hero-logos{display:flex;align-items:center;flex-wrap:wrap;flex:1}
-.hero-logos img{width:auto}
 .scroll-cue{border:2px solid var(--navy);border-radius:20px;display:grid;justify-items:center;padding-top:8px;flex:none}
 .scroll-cue span{height:10px;border-radius:4px;animation:cue 1.8s var(--ease) infinite}
 @keyframes cue{0%{transform:translateY(0);opacity:1}80%{transform:translateY(16px);opacity:0}100%{opacity:0}}
@@ -472,7 +470,6 @@ form.quote .btn[disabled]{opacity:.7;cursor:progress}
   .hero-title .outline{-webkit-text-stroke-width:1.5px}
   .hero-btns .btn{justify-content:center}
   .hero-foot{flex-wrap:wrap}
-  .hero-logos{gap:20px}
   .scroll-cue{display:none}
   .tabs{flex-wrap:nowrap;overflow-x:auto;margin:0 calc(var(--gut)*-1) 22px;padding:0 var(--gut) 4px;scrollbar-width:none}
   .tabs::-webkit-scrollbar{display:none}

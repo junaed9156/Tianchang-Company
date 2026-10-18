@@ -156,6 +156,17 @@
   $('#product').innerHTML = LINES.map(l => `<option value="${l.en.t}">${l[lang].t}</option>`).join('') + `<option value="Several products">${t.several}</option>`;
 
   /* ======================= Build: retailer logos ======================= */
+  // "Sold at": every client, doubled so the strip can scroll right to left without a seam.
+  // Wide logos are drawn shorter and square ones taller, so they all look about the same size.
+  const heroLogo = ([f, n], copy) => `<img src="assets/logos/${f}.png" alt="${copy ? '' : n}"${copy ? ' aria-hidden="true"' : ''}>`;
+  const heroTrack = $('#hero-logos-track');
+  heroTrack.innerHTML = SHOPS.map(s => heroLogo(s, false)).join('') + SHOPS.map(s => heroLogo(s, true)).join('');
+  heroTrack.classList.add('moving');
+  $$('img', heroTrack).forEach(img => {
+    const fit = () => { const aspect = img.naturalWidth / img.naturalHeight; if (aspect) img.style.height = Math.max(16, Math.min(36, 40 / Math.sqrt(aspect))) + 'px'; };
+    if (img.complete) fit(); else img.addEventListener('load', fit, { once: true });
+  });
+
   const logoSpans = list => list.map(([f, n]) => `<span><img src="assets/logos/${f}.png" alt="${n}" loading="lazy"></span>`).join('');
   const rowA = SHOPS.slice(0, 6), rowB = SHOPS.slice(6);
   $('#logos-a').innerHTML = logoSpans(rowA) + logoSpans(rowA).replace(/alt="[^"]*"/g, 'alt=""') + logoSpans(rowA).replace(/alt="[^"]*"/g, 'alt=""');
