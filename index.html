@@ -10,6 +10,8 @@
 <link rel="preload" href="assets/fonts/adventor-bold.woff" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css?v=20261018">
 <link rel="stylesheet" href="assets/css/polish.css?v=20261018">
+<link rel="stylesheet" href="assets/css/experience.css?v=20261018-3d">
+<link rel="modulepreload" href="assets/js/vendor/three.module.js">
 <script>
   // Respect motion preferences before the page is painted.
   (function () {
@@ -72,7 +74,11 @@
       </div>
     </div>
 
-    <div class="hero-stage" id="hero-stage" aria-hidden="true">
+    <div class="hero-world" id="hero-world">
+      <div class="world-topbar"><span class="world-live" id="world-heading">Interactive showroom</span><span class="world-drag" id="world-hint">Drag to rotate</span></div>
+      <div class="world-viewport" id="world-viewport" tabindex="0" role="group" aria-label="Interactive 3D product showroom. Drag or use left and right arrow keys to rotate.">
+      <div class="world-canvas" id="world-canvas" aria-hidden="true"></div>
+      <div class="hero-stage" id="hero-stage" aria-hidden="true">
       <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
       <svg class="hero-spark spark-one" viewBox="0 0 32 32"><path d="M16 0l3.8 12.2L32 16l-12.2 3.8L16 32l-3.8-12.2L0 16l12.2-3.8z"/></svg>
       <svg class="hero-spark spark-two" viewBox="0 0 32 32"><path d="M16 0l3.8 12.2L32 16l-12.2 3.8L16 32l-3.8-12.2L0 16l12.2-3.8z"/></svg>
@@ -87,6 +93,16 @@
       <img class="floater f-c" src="assets/cutouts/access-1.webp" alt="">
       <div class="sticker s1"><b>1.45M</b><span data-i18n="sticker.1">pieces a month</span></div>
       <div class="sticker s2"><span>BSCI · Sedex · GRS</span></div>
+      </div>
+      </div>
+      <div class="world-caption"><span class="world-counter" id="world-counter">06 / 08</span><b id="world-title">Jackets and outerwear</b><button class="world-explore" id="world-explore" type="button">Explore collection <span aria-hidden="true">↗</span></button></div>
+      <div class="world-transport">
+        <button type="button" id="world-prev" aria-label="Previous 3D collection"><svg><use href="#arrow"/></svg></button>
+        <button type="button" class="world-pause" id="world-pause" aria-label="Pause 3D animation" aria-pressed="false"><span id="world-pause-icon" aria-hidden="true">Ⅱ</span></button>
+        <button type="button" id="world-reset" aria-label="Reset 3D view"><span aria-hidden="true">↺</span></button>
+        <button type="button" id="world-next" aria-label="Next 3D collection"><svg><use href="#arrow"/></svg></button>
+      </div>
+      <div class="world-categories" id="world-categories" role="group" aria-label="Choose a collection"></div>
     </div>
   </div>
 
@@ -350,7 +366,7 @@
     </div>
     <aside class="contact-card">
       <div class="person">
-        <div class="avatar"><img src="assets/brand/pawsign-64.png" srcset="assets/brand/pawsign-64.png 1x, assets/brand/pawsign-128.png 2x" alt=""></div>
+        <div class="avatar avatar--portrait"><img src="assets/team/ryan-lu.jpg" alt="Ryan Lu" width="1619" height="2048" loading="lazy" decoding="async"></div>
         <div><b>Ryan Lu</b><span data-i18n="person.role">Sales contact, PAWSIGN group</span></div>
       </div>
       <p class="about" data-i18n="story">Since 2008, PAWSIGN has grown from one knitting workshop in Tonglu into a group of three factories in China and Cambodia. We design, sample and produce pet products for some of the biggest retailers in the US and Europe.</p>
@@ -398,5 +414,6 @@
 <script src="assets/js/vendor/SplitText.min.js"></script>
 <script src="assets/js/content.js?v=20261015b"></script>
 <script src="assets/js/site.js?v=20261018"></script>
+<script type="module" src="assets/js/experience.js?v=20261018-3d"></script>
 </body>
 </html>

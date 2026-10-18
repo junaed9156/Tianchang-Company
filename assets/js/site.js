@@ -414,59 +414,12 @@
       .from(heroSplit.flatMap(s => s.chars), { yPercent: 115, rotate: 8, duration: 1, stagger: .025, ease: 'expo.out' }, .15)
       .from('.hero-lead', { y: 24, opacity: 0, duration: .8 }, .55)
       .from('.hero-btns > *', { y: 24, opacity: 0, duration: .7, stagger: .08 }, .65)
-      .from('.tile', { yPercent: 8, scale: .85, opacity: 0, rotate: '+=8', duration: 1.15, stagger: .07, ease: 'back.out(1.2)' }, .2)
-      .from('.hero-orbit, .hero-spark', { scale: .85, opacity: 0, duration: 1.2, stagger: .08, clearProps: 'transform,opacity' }, .5)
-      .from('.floater', { scale: 0, opacity: 0, duration: .8, stagger: .12, ease: 'back.out(2)' }, .8)
-      .add(startHeroCycle, 1.6)
-      .from('.sticker', { scale: 0, opacity: 0, duration: .7, stagger: .15, ease: 'back.out(2)' }, .9)
       .from('.hero-foot > *', { y: 20, opacity: 0, duration: .7, stagger: .08 }, .9);
     return tl;
   }
 
-  // ---- Hero pictures change one after another
-  const HERO = window.HERO || [];
-  HERO.flat().forEach(n => { const im = new Image(); im.src = C + n + '.webp'; });   // preload
-  const heroPos = HERO.map(() => 0);
-  const order = [0, 3, 1, 4, 2, 5];
-  let heroStep = 0, heroCall = null, heroOn = true;
-  function swapNext() {
-    const tIdx = order[heroStep % order.length]; heroStep++;
-    const tile = $$('.tile')[tIdx]; const ti = tile && tile.querySelector('.ti'); const img = ti && ti.querySelector('img');
-    if (img && HERO[tIdx]) {
-      heroPos[tIdx] = (heroPos[tIdx] + 1) % HERO[tIdx].length;
-      const src = C + HERO[tIdx][heroPos[tIdx]] + '.webp';
-      gsap.timeline()
-        .to(ti, { scale: .55, rotate: -14, opacity: 0, y: -18, duration: .45, ease: 'back.in(1.6)' })
-        .add(() => { img.src = src; })
-        .fromTo(ti, { scale: .55, rotate: 16, opacity: 0, y: 26 }, { scale: 1, rotate: 0, opacity: 1, y: 0, duration: .8, ease: 'back.out(1.7)' })
-        .fromTo(tile, { scale: 1 }, { scale: 1.04, duration: .25, yoyo: true, repeat: 1, ease: 'sine.inOut' }, '<');
-    }
-    heroCall = gsap.delayedCall(3.4, swapNext);
-    heroCall.paused(!heroOn);
-  }
-  let heroVisible = true;
-  function syncHeroCycle() { heroOn = heroVisible && !document.hidden; if (heroCall) heroCall.paused(!heroOn); }
-  function startHeroCycle() { if (!heroCall && HERO.length) { heroCall = gsap.delayedCall(2.5, swapNext); syncHeroCycle(); } }
-  ScrollTrigger.create({ trigger: '.hero', start: 'top bottom', end: 'bottom top',
-    onToggle: self => { heroVisible = self.isActive; syncHeroCycle(); } });
-  document.addEventListener('visibilitychange', syncHeroCycle);
-
-  // Reveal immediately; product imagery loads without a blocking preloader.
+  // The independent 3D showroom owns hero motion and its pause controls.
   heroIntro(.05);
-
-  // ---- Hero parallax (scroll + mouse)
-  $$('.hero-stage [data-speed]').forEach(el => {
-    gsap.to(el, { y: () => (1 - parseFloat(el.dataset.speed)) * 260, ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true, invalidateOnRefresh: true } });
-  });
-  if (fine) {
-    const hero = $('#hero'), tiles = $$('.tile'), depth = [18, -26, 12, -32, 22, -16];
-    hero.addEventListener('mousemove', e => {
-      const x = e.clientX / innerWidth - .5, y = e.clientY / innerHeight - .5;
-      tiles.forEach((tl, i) => { tl.style.translate = `${x * depth[i]}px ${y * depth[i]}px`; });
-    });
-    tiles.forEach(tl => { tl.style.transition = 'translate .8s cubic-bezier(.22,1,.36,1)'; });
-  }
 
   // ---- Word band: endless loop that speeds up and reverses with the scroll
   const wordsLoop = gsap.to('#words-track', { xPercent: -50, duration: 40, ease: 'none', repeat: -1 });
