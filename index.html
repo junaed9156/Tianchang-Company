@@ -5,33 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PAWSIGN | Pet Products Manufacturer in China and Cambodia</title>
 <meta name="description" content="PAWSIGN makes pet apparel, sweaters, toys and beds in three factories in China and Cambodia. BSCI, Sedex, GRS and OCS certified. Products sold at Target, Walmart, PetSmart and more.">
-<meta name="theme-color" content="#12204a">
+<meta name="theme-color" content="#fbf9f3">
 <link rel="icon" type="image/png" href="assets/brand/pawsign-128.png">
 <link rel="preload" href="assets/fonts/adventor-bold.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=20261015b">
+<link rel="stylesheet" href="assets/css/site.css?v=20261018">
+<link rel="stylesheet" href="assets/css/polish.css?v=20261018">
 <script>
   // Mark JS + motion support early so content is hidden only when it will be animated in
   (function () {
     var d = document.documentElement; d.classList.add('js');
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) d.classList.add('reduce');
-    var seen = false; try { seen = sessionStorage.getItem('pw-intro') === '1'; } catch (e) {}
-    if (!reduce && !seen) d.classList.add('intro');
   })();
 </script>
 </head>
 <body>
-
-<!-- Preloader -->
-<div class="loader" id="loader" aria-hidden="true">
-  <div class="loader-inner">
-    <img src="assets/brand/pawsign-192.png" alt="" width="254" height="192">
-    <span class="loader-word">PAWSIGN</span>
-  </div>
-  <div class="loader-count"><span id="loader-num">0</span>%</div>
-  <div class="loader-bar"><i id="loader-bar"></i></div>
-</div>
-<div class="curtain" aria-hidden="true"></div>
+<a class="skip-link" href="#top">Skip to content</a>
 
 <!-- Global UI -->
 <div class="progress" aria-hidden="true"><i id="progress"></i></div>
@@ -65,7 +54,7 @@
   </div>
 </header>
 
-<main id="top">
+<main id="top" tabindex="-1">
 
 <!-- ================= HERO ================= -->
 <section class="hero" id="hero">
@@ -84,6 +73,9 @@
     </div>
 
     <div class="hero-stage" id="hero-stage" aria-hidden="true">
+      <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+      <svg class="hero-spark spark-one" viewBox="0 0 32 32"><path d="M16 0l3.8 12.2L32 16l-12.2 3.8L16 32l-3.8-12.2L0 16l12.2-3.8z"/></svg>
+      <svg class="hero-spark spark-two" viewBox="0 0 32 32"><path d="M16 0l3.8 12.2L32 16l-12.2 3.8L16 32l-3.8-12.2L0 16l12.2-3.8z"/></svg>
       <div class="tile t1" data-speed="0.85"><div class="ti"><img src="assets/cutouts/toys-1.webp" alt=""></div></div>
       <div class="tile t2" data-speed="1.15"><div class="ti"><img src="assets/cutouts/outerwear-1.webp" alt=""></div></div>
       <div class="tile t3" data-speed="0.95"><div class="ti"><img src="assets/cutouts/sweaters-1.webp" alt=""></div></div>
@@ -124,13 +116,20 @@
   <div class="blob b1"></div><div class="blob b2"></div>
 </section>
 
-<!-- ================= COLLECTIONS (horizontal) ================= -->
+<!-- ================= COLLECTIONS ================= -->
 <section class="collections" id="collections">
   <div class="wrap coll-head">
     <h2 class="split" data-i18n="coll.h2">Eight collections. One supplier.</h2>
     <p data-i18n="coll.p">Scroll through our ranges. Every product is made in our own factories, in your fabrics, colours, labels and packaging.</p>
   </div>
-  <div class="coll-pin" id="coll-pin">
+  <div class="wrap collection-controls">
+    <div class="collection-position" aria-hidden="true"><span id="collection-index">01 / 09</span><div class="collection-progress"><i id="collection-progress"></i></div></div>
+    <div class="collection-arrows">
+      <button id="collection-prev" type="button" aria-label="Previous collection" aria-controls="coll-pin" disabled><svg><use href="#arrow"/></svg></button>
+      <button id="collection-next" type="button" aria-label="Next collection" aria-controls="coll-pin"><svg><use href="#arrow"/></svg></button>
+    </div>
+  </div>
+  <div class="coll-pin" id="coll-pin" tabindex="0" role="region" aria-label="Product collections">
     <div class="coll-track" id="coll-track"></div>
   </div>
 </section>
@@ -398,6 +397,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/js/vendor/SplitText.min.js"></script>
 <script src="assets/js/content.js?v=20261015b"></script>
-<script src="assets/js/site.js?v=20261015b"></script>
+<script src="assets/js/site.js?v=20261018"></script>
 </body>
 </html>
