@@ -338,6 +338,18 @@
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
+  /* Hidden admin login: click "© 2026 PAWSIGN group" in the footer three times. */
+  const admTrigger = document.getElementById('admin-trigger');
+  if (admTrigger) {
+    let taps = 0, tapTimer = null;
+    admTrigger.addEventListener('click', () => {
+      taps++; clearTimeout(tapTimer); tapTimer = setTimeout(() => { taps = 0; }, 700);
+      if (taps < 3) return;
+      taps = 0; window.getSelection && window.getSelection().removeAllRanges();
+      import(new URL('assets/js/admin.js?v=1', document.baseURI).href).then(m => m.openAdmin()).catch(() => {});
+    });
+  }
+
   /* ======================= Counters ======================= */
   function countTo(el, to, kind, dur = 2, from = 0) {
     if (reduce) { el.textContent = fmt(to, kind); return; }

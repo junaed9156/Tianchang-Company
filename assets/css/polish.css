@@ -318,3 +318,6 @@ html.page-hidden *,html.page-hidden *::before,html.page-hidden *::after{animatio
 @media (prefers-reduced-motion:reduce){.coll-art img{transition:none}.step-media img{filter:none}.step{background:#ffffff0c;border-color:#ffffff25}
   .logo-track{gap:18px}.logo-track span:nth-child(n+7){display:none}.logo-row{mask-image:none;-webkit-mask-image:none}
 }
+
+/* Footer line that opens the admin login on a triple click */
+#admin-trigger{-webkit-user-select:none;user-select:none}

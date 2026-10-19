@@ -2,6 +2,10 @@
 
 // Product lines. img = first 8 photos (assets/products), more = extra photos in assets/gallery/<id>-NN.jpg,
 // cut = number of cut-out photos in assets/cutouts/<id>-N.webp, color = the line's colour.
+// SHOPS = retailer logos (files in assets/logos).
+// FACTORIES: audits = certificates the factory holds; clients = retailers whose own factory audits it has passed.
+// The admin panel rewrites everything between the two @admin-data markers when you publish.
+// @admin-data-start
 window.LINES = [
   {id:'toys', color:'#9fd4ff', ink:'#0b5aa6', more:35, cut:6, img:['toys-1','toys-2','toys-3','toys-4','toys-5','toys-6','toys-7','toys-8'],
    en:{tab:'Toys', t:'Plush and squeaky toys', d:'Plush, rubber-spike and crinkle toys in any shape, from sea animals to food characters.', made:'Tianchang, Anhui', cap:'500,000 toys a month'},
@@ -34,7 +38,6 @@ window.SHOPS = [['target','Target'],['walmart','Walmart'],['petsmart','PetSmart'
   ['costco','Costco'],['dollartree','Dollar Tree'],['zara','ZARA']];
 
 window.FACTORIES = [
-  // audits = certificates the factory holds; clients = retailers whose own factory audits it has passed (logo files in assets/logos).
   {name:'Tianchang Sign Crafts Co., Ltd.', img:'assets/factory/tianchang-1.jpg', badge:'assets/brand/sign.png', area:16500, team:151,
    audits:[['bsci','amfori BSCI'],['sedex','Sedex'],['grs','Global Recycled Standard'],['scan','SCAN']],
    clients:[['walmart','Walmart'],['costco','Costco'],['lowes',"Lowe's"],['action','Action'],['cvs','CVS'],['dollartree','Dollar Tree']],
@@ -58,6 +61,7 @@ window.FACTORIES = [
    zh:{desc:'集团规模最大的工厂，距金边53公里，出口欧盟、美国、日本、加拿大、韩国和澳大利亚享有关税优势。',
        products:'服装、宠物服装、针织服装、围巾和帽子', work:'裁剪、缝制、针织、印花和刺绣、后整、质检、仓库'}},
 ];
+// @admin-data-end
 
 // Export markets drawn on the Cambodia route map
 window.MARKETS = [

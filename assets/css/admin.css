@@ -1,0 +1,57 @@
+/* PAWSIGN admin panel. Loaded only when the panel is opened. */
+html.adm-open{overflow:hidden}
+.adm{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:20px;background:rgba(15,24,52,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font-family:var(--body);color:var(--ink);overflow:auto}
+.adm-card{position:relative;width:min(440px,100%);max-height:calc(100vh - 40px);overflow:auto;background:var(--paper);border-radius:22px;padding:30px 28px 26px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.adm-card.adm-wide{width:min(980px,100%);display:flex;flex-direction:column;padding:26px 28px 0}
+.adm h2{font-family:var(--display);font-size:24px;line-height:1.15;margin:0 34px 18px 0;color:var(--navy)}
+.adm h4{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy-2);margin:4px 0 10px}
+.adm p{font-size:14px;line-height:1.5}
+.adm-x{position:absolute;top:14px;right:16px;width:36px;height:36px;border-radius:50%;font-size:24px;line-height:1;color:var(--navy)}
+.adm-x:hover{background:rgba(18,32,74,.08)}
+.adm-form{display:grid;gap:14px}
+.adm-f{display:grid;gap:6px;font-size:13px;font-weight:600;color:var(--navy)}
+.adm-f small{font-weight:400;color:#5b6480;font-size:12px}
+.adm input,.adm textarea{font:inherit;font-size:15px;font-weight:400;color:var(--ink);background:#fff;border:1.5px solid #d9d6cc;border-radius:12px;padding:11px 13px;width:100%}
+.adm textarea{resize:vertical;min-height:70px;line-height:1.45}
+.adm input:focus,.adm textarea:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(18,32,74,.12)}
+.adm-btn{justify-self:start;background:var(--navy);color:#fff;border-radius:999px;padding:13px 24px;font-weight:600;font-size:15px}
+.adm-btn:hover:not(:disabled){background:var(--navy-2)}
+.adm-btn:disabled{opacity:.45;cursor:default}
+.adm-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
+.adm-ghost:hover:not(:disabled){background:rgba(18,32,74,.06)}
+.adm-link{margin-top:14px;font-size:13px;color:var(--orange);text-decoration:underline;text-underline-offset:3px}
+.adm-msg{min-height:1.2em;color:var(--orange-2);font-weight:500}
+.adm-msg.ok{color:#1d7a4a}
+.adm-note{color:#5b6480}
+.adm-steps{margin:0 0 4px 18px;font-size:13.5px;line-height:1.55;display:grid;gap:4px}
+.adm-steps a{color:var(--orange);text-decoration:underline}
+.adm-head{display:flex;align-items:baseline;gap:18px;margin-right:40px}
+.adm-head h2{margin-bottom:12px}
+.adm-head .adm-link{margin:0}
+.adm-tabs{display:flex;gap:6px;border-bottom:1.5px solid #e4e0d4;margin:0 -28px;padding:0 28px}
+.adm-tabs button{padding:10px 16px;font-weight:600;font-size:14px;color:#5b6480;border-bottom:3px solid transparent;margin-bottom:-1.5px}
+.adm-tabs button[aria-selected="true"]{color:var(--navy);border-color:var(--gold)}
+.adm-body{flex:1;overflow:auto;margin:0 -28px;padding:18px 28px}
+.adm-list{display:grid;gap:10px}
+.adm-item{background:#fff;border:1.5px solid #e4e0d4;border-radius:16px;padding:0 18px}
+.adm-item[open]{padding-bottom:18px}
+.adm-item summary{display:flex;align-items:center;gap:10px;padding:14px 0;cursor:pointer;font-size:15px;list-style:none}
+.adm-item summary::-webkit-details-marker{display:none}
+.adm-item summary::after{content:"+";margin-left:auto;font-size:20px;color:var(--navy-2)}
+.adm-item[open] summary::after{content:"−"}
+.adm-item summary span{color:#5b6480;font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.adm-dot{width:14px;height:14px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.adm-2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.adm-2>div,.adm-3{display:grid;gap:12px;align-content:start}
+.adm-3{grid-template-columns:2fr 1fr 1fr;margin-bottom:12px}
+.adm-item>.adm-f{margin-bottom:16px}
+.adm-foot{display:flex;align-items:center;justify-content:flex-end;gap:16px;flex-wrap:wrap;border-top:1.5px solid #e4e0d4;margin:0 -28px;padding:14px 28px;background:var(--paper);position:sticky;bottom:0}
+.adm-foot p{margin-right:auto}
+.adm-unsaved{color:var(--navy-2);font-weight:600}
+.adm-unsaved:empty,.adm-foot .adm-msg:empty{display:none}
+@media (max-width:700px){
+  .adm{padding:10px;place-items:start stretch}
+  .adm-card,.adm-card.adm-wide{max-height:calc(100vh - 20px);padding-left:18px;padding-right:18px}
+  .adm-tabs,.adm-body,.adm-foot{margin-left:-18px;margin-right:-18px;padding-left:18px;padding-right:18px}
+  .adm-2,.adm-3{grid-template-columns:1fr}
+}
